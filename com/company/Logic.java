@@ -27,7 +27,8 @@ public class Logic extends BorderPane implements Initializable {
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
 
-       drawCalendar();
+        drawCalendar();
+        //Parser.parse();
     }
 
     private void drawCalendar() {
