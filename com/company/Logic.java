@@ -63,7 +63,12 @@ public class Logic extends BorderPane implements Initializable {
         // рисуем сами числа в неделе
         int currentDay = currentMonth.get(Calendar.DAY_OF_MONTH);
         int daysInMonth = currentMonth.getActualMaximum(Calendar.DAY_OF_MONTH);
-        int dayOfWeek = currentMonth.get(Calendar.DAY_OF_WEEK) - 1;
+        int dayOfWeek;
+        if ((currentMonth.get(Calendar.DAY_OF_WEEK) - 1) != 0) {
+            dayOfWeek = currentMonth.get(Calendar.DAY_OF_WEEK) - 1;
+        } else {
+            dayOfWeek = 7;
+        }
         int row = 1;
         for (int i = currentDay; i <= daysInMonth; i++) {
             if (dayOfWeek == 8) {
@@ -77,7 +82,11 @@ public class Logic extends BorderPane implements Initializable {
         }
 
         // рисуем дни предыдущего месяца там, где остались пустые ячейки
-        dayOfWeek = currentMonth.get(Calendar.DAY_OF_WEEK) - 1;
+        if ((currentMonth.get(Calendar.DAY_OF_WEEK) - 1) != 0) {
+            dayOfWeek = currentMonth.get(Calendar.DAY_OF_WEEK) - 1;
+        } else {
+            dayOfWeek = 7;
+        }
         if (currentDay != 1) {
             Calendar prevMonth = getPreviousMonth(currentMonth);
             int daysInPrevMonth = prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH);
@@ -91,17 +100,23 @@ public class Logic extends BorderPane implements Initializable {
 
         // рисуем дни следующего месяца там, где остались пустые ячейки
         currentMonth.set(Calendar.DAY_OF_MONTH, currentMonth.getActualMaximum(Calendar.DAY_OF_MONTH));
-        dayOfWeek = currentMonth.get(Calendar.DAY_OF_WEEK) - 1;
-        if (dayOfWeek != 7) {
-            int day = 1;
-            for (int i = dayOfWeek; i < 7; i++) {
-                Text tDate = new Text(String.valueOf(day));
-                tDate.setFill(Color.GRAY);
-                gpBody.add(tDate, i, row);
-                day++;
-            }
+        if ((currentMonth.get(Calendar.DAY_OF_WEEK) - 1) != 0) {
+            dayOfWeek = currentMonth.get(Calendar.DAY_OF_WEEK) - 1;
+        } else {
+            dayOfWeek = 7;
         }
 
+        int day = 1;
+        while (row < 7) {
+             for (int i = dayOfWeek; i < 7; i++) {
+                 Text tDate = new Text(String.valueOf(day));
+                 tDate.setFill(Color.GRAY);
+                 gpBody.add(tDate, i, row);
+                 day++;
+             }
+             row++;
+             dayOfWeek = 0;
+        }
         //setCenter(gpBody);
         //setMargin(gpBody, new Insets(30));
     }
