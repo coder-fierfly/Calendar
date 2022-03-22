@@ -23,7 +23,6 @@ public class Logic extends BorderPane implements Initializable {
     public Calendar currentMonth;
 
     public void initialize(URL location, ResourceBundle resources) {
-    //public Logic() {
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
 
@@ -195,8 +194,7 @@ public class Logic extends BorderPane implements Initializable {
     }
 
     private String getMonthName(int n) {
-        String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September",
-                "October", "November", "December"};
+        String[] monthNames = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
         return monthNames[n];
     }
 }
