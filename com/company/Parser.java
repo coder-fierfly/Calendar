@@ -43,7 +43,6 @@ public class Parser {
         char let = letters[(int) ((Math.random()*((26 - 1) + 1)) + 1)];
         int count = 0;
 
-
         StringBuilder sb = new StringBuilder();
         while (true) {  // TODO придумать что-нибудь для оптимизации чтения страницы (f.e. читать заголовок, но без использования get(), однако для этого нужно обходить защиту сайта (ошибку 403) - я еще не разобралась, как)
             sb.append("https://gufo.me/dict/").append(lang).append("ru?page=").append(count + 1).append("&letter=").append(let);
