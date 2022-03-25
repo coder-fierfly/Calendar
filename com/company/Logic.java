@@ -1,15 +1,11 @@
 package com.company;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
@@ -79,9 +75,6 @@ public class Logic extends BorderPane implements Initializable {
             GridPane.setHalignment(tDayName, HPos.CENTER);
         }
 
-        // делаем дни кликабельными
-        addButtons();
-
         // рисуем сами числа в неделе
         int currentDay = currentMonth.get(Calendar.DAY_OF_MONTH);
         int daysInMonth = currentMonth.getActualMaximum(Calendar.DAY_OF_MONTH);
@@ -105,10 +98,15 @@ public class Logic extends BorderPane implements Initializable {
             }
             sb.append(currentMonth.get(Calendar.MONTH) + 1).append("/").append(currentDay).append("/").append(currentMonth.get(Calendar.YEAR));
             if (dateNow.equals(String.valueOf(sb))) {
-               tDate.setFill(Color.BLUE);
+                tDate.setFill(Color.BLUE);
             }
+
+            // делаем дни кликабельными
+            addButtons(String.valueOf(sb), dayOfWeek - 1, row);
+
             gpBody.add(tDate, dayOfWeek - 1, row);
             GridPane.setHalignment(tDate, HPos.CENTER);
+
             currentDay++;
             dayOfWeek++;
         }
@@ -125,6 +123,7 @@ public class Logic extends BorderPane implements Initializable {
             for (int i = dayOfWeek - 2; i >= 0; i--) {
                 Text tDate = new Text(String.valueOf(daysInPrevMonth));
                 tDate.setFill(Color.GRAY);
+
                 gpBody.add(tDate, i, 1);
                 GridPane.setHalignment(tDate, HPos.CENTER);
                 daysInPrevMonth--;
@@ -141,64 +140,99 @@ public class Logic extends BorderPane implements Initializable {
 
         int day = 1;
         while (row < 7) {
-             for (int i = dayOfWeek; i < 7; i++) {
-                 Text tDate = new Text(String.valueOf(day));
-                 tDate.setFill(Color.GRAY);
-                 gpBody.add(tDate, i, row);
-                 GridPane.setHalignment(tDate, HPos.CENTER);
-                 day++;
-             }
-             row++;
-             dayOfWeek = 0;
+            for (int i = dayOfWeek; i < 7; i++) {
+                Text tDate = new Text(String.valueOf(day));
+                tDate.setFill(Color.GRAY);
+                gpBody.add(tDate, i, row);
+                GridPane.setHalignment(tDate, HPos.CENTER);
+                day++;
+            }
+            row++;
+            dayOfWeek = 0;
         }
         //setCenter(gpBody);
         //setMargin(gpBody, new Insets(30));
+    }
 
+
+    public String[] getWords(String id) {
+        StringBuilder sb = new StringBuilder();
+        if ((currentMonth.get(Calendar.MONTH) + 1) < 10) {
+            sb.append("0");
+        }
+        sb.append(currentMonth.get(Calendar.MONTH) + 1).append("/").append(currentMonth.get(Calendar.DAY_OF_MONTH)).append("/").append(currentMonth.get(Calendar.YEAR));
+        System.out.println(sb);
         File file = new File("data.txt");
+
+        String line;
+        String[] w = null;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            try {
+                while((line = br.readLine()) != null) {
+                    //if(line.startsWith("03/25/2022")) {//(String.valueOf(sb))) {
+                    if(line.startsWith(id)) {
+                        System.out.println(line);
+                        line = line.substring(11);
+                        w = line.split("/");
+                        break;
+                    }
+                }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return w;
+    }
+
+    public void addWords(String[] w, String id) {
         try {
             FileWriter writer = new FileWriter("data.txt", true);
             String lineSeparator = System.getProperty("line.separator");
-            writer.write("хм??&" + lineSeparator);
+            String line = String.format("%s %s/%s", id, w[0], w[1]);
+            writer.write(line + lineSeparator);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void addButtons() {
-        for (int i = 0; i < 7; i++) {
-            for (int i1 = 1; i1 < 7; i1++) {
-                Button toggleButton11 = new Button();
-                toggleButton11.setMaxWidth(Double.MAX_VALUE);
-                toggleButton11.setMaxHeight(Double.MAX_VALUE);
-                toggleButton11.setStyle("-fx-background-color: #38A3A5;");
-                //toggleButton11.();//setBackground(new Color(0000));
-                StringBuilder sb = new StringBuilder(3);
-                sb.append(i).append(i1);
-                toggleButton11.setId(String.valueOf(sb));
-                //toggleButton11.setId(String.valueOf(i) + i1);
-                GridPane.setConstraints(toggleButton11, i, i1);
-                gpBody.setVgap(5);
-                gpBody.setHgap(5);
-                gpBody.getChildren().addAll(toggleButton11);
-                List<Button> toggleButtonList = new ArrayList();
-                toggleButtonList.add(toggleButton11);
+    public void addButtons(String id, int dayOfWeek, int row) {
+        Button toggleButton11 = new Button();
+        toggleButton11.setMaxWidth(Double.MAX_VALUE);
+        toggleButton11.setMaxHeight(Double.MAX_VALUE);
+        toggleButton11.setStyle("-fx-background-color: #38A3A5;");
 
-                for (Button tempToggleButton : toggleButtonList) {
-                    tempToggleButton.setOnAction(
-                            event -> {
-                        makeButton(tempToggleButton);
-                    });
-                }
-            }
-        }
+        toggleButton11.setId(String.valueOf(id));
+        GridPane.setConstraints(toggleButton11, dayOfWeek, row);
+        gpBody.setVgap(5);
+        gpBody.setHgap(5);
+        gpBody.getChildren().add(toggleButton11);
+        toggleButton11.setOnAction(
+        event -> {
+            makeButton(toggleButton11);
+        });
     }
 
-    public void makeButton(Button tempToggleButton) {  // TODO ehehehhh
-        Label secondLabel = new Label("да вы прям полиглот");
+    public void makeButton(Button button) {  // TODO ehehehhh
+        String[] w = getWords(button.getId());
+        if (w == null) {
+            w = Parser.parse();
+        }
+        Label label = new Label();
+        if (w != null) {
+            label.setText(String.format("да вы прям полиглот.\nслова за выбранный день:\n%s - %s", w[0], w[1]));
+            addWords(w, button.getId());
+        } else {
+            label.setText("слов на этот день нет, не было и не будет.");
+        }
         StackPane secondaryLayout = new StackPane();
-        secondaryLayout.getChildren().add(secondLabel);
-        Scene secondScene = new Scene(secondaryLayout, 230, 100);
+        secondaryLayout.getChildren().add(label);
+        Scene secondScene = new Scene(secondaryLayout, 300, 100);
         Stage newWindow = new Stage();
         newWindow.setTitle("крутые календарно-языковые штуки");
         newWindow.setScene(secondScene);
@@ -276,11 +310,12 @@ public class Logic extends BorderPane implements Initializable {
 
     private int getMonthNum(String name) {
         String[] monthNames = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
-        for (int i = 0; i < 12; i++) {
+        int i;
+        for (i = 0; i < 12; i++) {
             if (monthNames[i].equals(name)) {
-                return i;
+                break;
             }
         }
-        return 0;
+        return i;
     }
 }
