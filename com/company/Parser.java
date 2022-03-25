@@ -7,7 +7,8 @@ import org.jsoup.nodes.Document;
 import java.io.*;
 
 public class Parser {
-    public static void parse() {
+    public static String[] parse() {
+        String[] w = new String[2];
         String lang = "et";
         Connection connect = findPage(lang);
         try {
@@ -17,6 +18,7 @@ public class Parser {
                 word = word.replaceAll("-", "");
             }
             System.out.println(word);
+            w[0] = word;
             word = word.replaceAll(" ", "_");
             StringBuilder sb = new StringBuilder();
             sb.append("https://gufo.me/dict/").append(lang).append("ru/").append(word);
@@ -25,11 +27,13 @@ public class Parser {
 
             String trans = connect.get().select("#dictionary-acticle > article > p > span").text();
             System.out.println(trans);
+            w[1] = trans;
             //Dictionary dictionary = new Dictionary();
             //HashMap map = new HashMap();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return w;
     }
 
     public static Connection findPage(String lang) {
@@ -42,6 +46,7 @@ public class Parser {
         char[] letters = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 'š', 't', 'u', 'v', 'w', 'õ', 'ä', 'ö', 'ü'};
         char let = letters[(int) ((Math.random()*((26 - 1) + 1)) + 1)];
         int count = 0;
+
 
         StringBuilder sb = new StringBuilder();
         while (true) {  // TODO придумать что-нибудь для оптимизации чтения страницы (f.e. читать заголовок, но без использования get(), однако для этого нужно обходить защиту сайта (ошибку 403) - я еще не разобралась, как)
