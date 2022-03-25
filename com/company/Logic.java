@@ -6,6 +6,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -28,15 +31,44 @@ public class Logic extends BorderPane implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
-
-       drawCalendar();
-       Parser.parse();
+        ObservableList<String> months = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
+        mComboBox.setItems(months);
+        ObservableList<Integer> years = FXCollections.observableArrayList();
+        for (int i = 1900; i <= 2100; i++) {
+            years.add(i);
+        }
+        yComboBox.setItems(years);
+        drawCalendar();
+        //Parser.parse();
     }
 
     private void drawCalendar() {
         drawHeader();
         drawBody();
         drawFooter();
+        changeMonth();
+    }
+
+    @FXML ComboBox mComboBox;
+    @FXML ComboBox yComboBox;
+    public void changeMonth() {
+        mComboBox.setOnAction(event -> {
+            gpBody.setGridLinesVisible(false);
+            gpBody.getChildren().clear();
+            gpBody.setGridLinesVisible(true);
+            currentMonth = new GregorianCalendar(currentMonth.get(Calendar.YEAR), getMonthNum((String) mComboBox.getValue()), 1);
+            mComboBox.setValue(mComboBox.getValue());  // устанавливаем выбранный элемент по умолчанию
+            drawCalendar();
+        });
+
+        yComboBox.setOnAction(event -> {
+            gpBody.setGridLinesVisible(false);
+            gpBody.getChildren().clear();
+            gpBody.setGridLinesVisible(true);
+            currentMonth = new GregorianCalendar((Integer) yComboBox.getValue(), currentMonth.get(Calendar.MONTH), 1);
+            yComboBox.setValue(yComboBox.getValue());
+            drawCalendar();
+        });
     }
 
     @FXML private Label monthName;
@@ -66,6 +98,10 @@ public class Logic extends BorderPane implements Initializable {
 
         // делаем дни кликабельными
         addButtons();
+
+        // меняем подписи у выпадающих списков выбора года и месяца
+        mComboBox.setValue(getMonthName(currentMonth.get(Calendar.MONTH)));
+        yComboBox.setValue(currentMonth.get(Calendar.YEAR));
 
         // рисуем сами числа в неделе
         int currentDay = currentMonth.get(Calendar.DAY_OF_MONTH);
@@ -170,17 +206,16 @@ public class Logic extends BorderPane implements Initializable {
                 toggleButtonList.add(toggleButton11);
 
                 for (Button tempToggleButton : toggleButtonList) {
-                    tempToggleButton.setOnAction(event -> makeButton(tempToggleButton));
-                    /* tempToggleButton.setOnAction(actionEvent -> {
-                        // TODO ehehehhh
+                    tempToggleButton.setOnAction(
+                            event -> {
                         makeButton(tempToggleButton);
-                    }); */
+                    });
                 }
             }
         }
     }
 
-    public void makeButton(Button tempToggleButton) {
+    public void makeButton(Button tempToggleButton) {  // TODO ehehehhh
         Label secondLabel = new Label("да вы прям полиглот");
         StackPane secondaryLayout = new StackPane();
         secondaryLayout.getChildren().add(secondLabel);
@@ -191,7 +226,6 @@ public class Logic extends BorderPane implements Initializable {
         newWindow.initModality(Modality.WINDOW_MODAL);
         newWindow.show();
     }
-
 
     @FXML private Button nextMonth;
     @FXML private Button prevMonth;
@@ -252,5 +286,15 @@ public class Logic extends BorderPane implements Initializable {
     private String getMonthName(int n) {
         String[] monthNames = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
         return monthNames[n];
+    }
+
+    private int getMonthNum(String name) {
+        String[] monthNames = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
+        for (int i = 0; i <= 12; i++) {
+            if (monthNames[i].equals(name)) {
+                return i;
+            }
+        }
+        return 0;
     }
 }
