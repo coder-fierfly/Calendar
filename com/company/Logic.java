@@ -1,18 +1,15 @@
 package com.company;
-import java.io.*;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -21,13 +18,19 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.*;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.ResourceBundle;
+
 public class Logic extends BorderPane implements Initializable {
     public Calendar currentMonth;
-
     public void initialize(URL location, ResourceBundle resources) {
+       ObservableList<String> months = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
-        ObservableList<String> months = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
         mComboBox.setItems(months);
         ObservableList<Integer> years = FXCollections.observableArrayList();
         for (int i = 1900; i <= 2100; i++) {
@@ -45,20 +48,20 @@ public class Logic extends BorderPane implements Initializable {
         gpBody.setGridLinesVisible(false);
         gpBody.getChildren().clear();
         gpBody.setGridLinesVisible(true);
-        drawHeader();
+        //drawHeader();
         drawBody();
         drawFooter();
 
     }
 
-    @FXML private Label monthName;
-    private void drawHeader() {
-        // рисуем заголовок: месяц и год
-        String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
-        String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
-        String tHeader = monthString + ", " + yearString;
-        monthName.setText(tHeader);
-    }
+//    @FXML private Label monthName;
+//    private void drawHeader() {
+//        // рисуем заголовок: месяц и год
+//        String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
+//        String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
+//        String tHeader = monthString + ", " + yearString;
+//        monthName.setText(tHeader);
+//    }
 
     @FXML private GridPane gpBody;
     private void drawBody() {
@@ -79,6 +82,7 @@ public class Logic extends BorderPane implements Initializable {
         int currentDay = currentMonth.get(Calendar.DAY_OF_MONTH);
         int daysInMonth = currentMonth.getActualMaximum(Calendar.DAY_OF_MONTH);
         int dayOfWeek;
+
         if ((currentMonth.get(Calendar.DAY_OF_WEEK) - 1) != 0) {
             dayOfWeek = currentMonth.get(Calendar.DAY_OF_WEEK) - 1;
         } else {
@@ -165,6 +169,7 @@ public class Logic extends BorderPane implements Initializable {
         File file = new File("data.txt");
 
         String line;
+        //TODO what is w??? and why w?
         String[] w = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -213,9 +218,9 @@ public class Logic extends BorderPane implements Initializable {
         gpBody.setHgap(5);
         gpBody.getChildren().add(toggleButton11);
         toggleButton11.setOnAction(
-        event -> {
-            makeButton(toggleButton11);
-        });
+                event -> {
+                    makeButton(toggleButton11);
+                });
     }
 
     public void makeButton(Button button) {  // TODO ehehehhh
@@ -240,24 +245,46 @@ public class Logic extends BorderPane implements Initializable {
         newWindow.show();
     }
 
+    @FXML private AnchorPane stage;
     @FXML private Button nextMonth;
     @FXML private Button prevMonth;
-    @FXML ComboBox mComboBox;
-    @FXML ComboBox yComboBox;
+    @FXML private MenuItem topic;
+    @FXML private MenuItem changeLang;
+    @FXML private MenuItem info;
+    @FXML ComboBox<String> mComboBox;
+    @FXML ComboBox<Integer> yComboBox;
     private void drawFooter() {  // вы бы знали, как долго я с этим емучилась
         prevMonth.setOnAction(e -> previous());
         nextMonth.setOnAction(e -> next());
         mComboBox.setOnAction(e -> {
-            currentMonth = new GregorianCalendar(currentMonth.get(Calendar.YEAR), getMonthNum((String) mComboBox.getValue()), 1);
+            currentMonth = new GregorianCalendar(currentMonth.get(Calendar.YEAR), getMonthNum(mComboBox.getValue()), 1);
             mComboBox.setValue(mComboBox.getValue());  // устанавливаем выбранный элемент по умолчанию
             drawCalendar();
         });
 
         yComboBox.setOnAction(e -> {
-            currentMonth = new GregorianCalendar((Integer) yComboBox.getValue(), currentMonth.get(Calendar.MONTH), 1);
+            currentMonth = new GregorianCalendar(yComboBox.getValue(), currentMonth.get(Calendar.MONTH), 1);
             yComboBox.setValue(yComboBox.getValue());
             drawCalendar();
         });
+
+        //TODO кнопка информации
+//        info.setOnAction(event -> {
+//            stage.getScene().getWindow().hide();
+//            FXMLLoader loader = new FXMLLoader();
+//            loader.setLocation(getClass().getResource("/com/company/info.fxml"));
+//            try {
+//                loader.load();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            Parent parent = loader.getRoot();
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(parent));
+//            stage.show();
+//            //stage.showAndWait();
+//        });
+
         //HBox hbFooter = new HBox(10);
         //hbFooter.getChildren().addAll(prevMonth, nextMonth);
         //hbFooter.setAlignment(Pos.CENTER);
@@ -318,4 +345,5 @@ public class Logic extends BorderPane implements Initializable {
         }
         return i;
     }
+
 }
