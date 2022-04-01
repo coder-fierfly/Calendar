@@ -1,7 +1,7 @@
 package com.company;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,6 +9,7 @@ import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -17,7 +18,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.awt.event.ActionEvent;
 import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -246,11 +249,8 @@ public class Logic extends BorderPane implements Initializable {
     }
 
     @FXML private AnchorPane stage;
-    @FXML private Button nextMonth;
-    @FXML private Button prevMonth;
-    @FXML private MenuItem topic;
-    @FXML private MenuItem changeLang;
-    @FXML private MenuItem info;
+    @FXML private Button nextMonth, prevMonth;
+    @FXML private MenuItem topic, changeLang, info;
     @FXML ComboBox<String> mComboBox;
     @FXML ComboBox<Integer> yComboBox;
     private void drawFooter() {  // вы бы знали, как долго я с этим емучилась
@@ -268,28 +268,31 @@ public class Logic extends BorderPane implements Initializable {
             drawCalendar();
         });
 
-        //TODO кнопка информации
-//        info.setOnAction(event -> {
-//            stage.getScene().getWindow().hide();
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(getClass().getResource("/com/company/info.fxml"));
-//            try {
-//                loader.load();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            Parent parent = loader.getRoot();
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(parent));
-//            stage.show();
-//            //stage.showAndWait();
-//        });
+        //кнопка информации
+        info.setOnAction(event -> {
+            try {
+                infoOpen();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         //HBox hbFooter = new HBox(10);
         //hbFooter.getChildren().addAll(prevMonth, nextMonth);
         //hbFooter.setAlignment(Pos.CENTER);
         //setBottom(hbFooter);
         //setMargin(hbFooter, new Insets(15));
+    }
+
+
+    //TODO последняя версия загрузки окна информации (менять его дизайн в fxml)
+    @FXML
+    private void infoOpen() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     private void previous() {
@@ -345,5 +348,4 @@ public class Logic extends BorderPane implements Initializable {
         }
         return i;
     }
-
 }
