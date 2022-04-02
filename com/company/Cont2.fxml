@@ -25,7 +25,7 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <AnchorPane layoutX="136.0" layoutY="37.0" prefHeight="478.0" prefWidth="763.0" style="-fx-background-color: #38A3A5;">
+                <AnchorPane fx:id="firstColor" layoutX="136.0" layoutY="37.0" prefHeight="478.0" prefWidth="763.0" style="-fx-background-color: #38A3A5;">
                     <children>
                         <GridPane id="gpBody" fx:id="gpBody" gridLinesVisible="true" prefHeight="478.0" prefWidth="763.0">
                             <columnConstraints>
@@ -49,13 +49,13 @@
                         </GridPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="136.0" layoutY="515.0" prefHeight="62.0" prefWidth="766.0" style="-fx-background-color: #C7F9CC;">
+                <AnchorPane fx:id="secondColor" layoutX="136.0" layoutY="515.0" prefHeight="62.0" prefWidth="766.0" style="-fx-background-color: #C7F9CC;">
                     <children>
                         <Button layoutX="35.0" layoutY="18.0" mnemonicParsing="false" text="Статистика" />
                         <Button layoutX="662.0" layoutY="18.0" mnemonicParsing="false" text="Словарь" />
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutY="-1.0" prefHeight="578.0" prefWidth="136.0" style="-fx-background-color: #80ED99;">
+                <AnchorPane fx:id="thirdColor" layoutY="-1.0" prefHeight="578.0" prefWidth="136.0" style="-fx-background-color: #80ED99;">
                <children>
                   <MenuButton layoutX="19.0" layoutY="14.0" mnemonicParsing="false" text="&quot;Шестеренка&quot;">
                     <items>
@@ -65,7 +65,7 @@
                     </items>
                   </MenuButton>
                </children></AnchorPane>
-                <AnchorPane layoutX="137.0" prefHeight="38.0" prefWidth="763.0" style="-fx-background-color: #C7F9CC;">
+                <AnchorPane fx:id="fourthColor" layoutX="137.0" prefHeight="38.0" prefWidth="763.0" style="-fx-background-color: #C7F9CC;">
                     <children>
                         <Button fx:id="nextMonth" layoutX="724.0" layoutY="7.0" mnemonicParsing="false" text="&gt;" />
                         <Button fx:id="prevMonth" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" text="&lt;" />

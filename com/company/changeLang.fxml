@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.ChangeLang">
+
+   <Button layoutX="278.0" layoutY="361.0" mnemonicParsing="false" text="Сохранить" />
+   <RadioButton layoutX="148.0" layoutY="90.0" mnemonicParsing="false" text="Английский" />
+   <RadioButton layoutX="148.0" layoutY="108.0" mnemonicParsing="false" text="Польский" />
+   <RadioButton layoutX="148.0" layoutY="126.0" mnemonicParsing="false" text="Эльфийский" />
+   <ScrollBar layoutX="593.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="411.0" prefWidth="14.0" />
+
+</AnchorPane>

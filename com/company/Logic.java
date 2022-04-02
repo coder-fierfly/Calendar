@@ -1,7 +1,6 @@
 package com.company;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,18 +8,13 @@ import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.awt.event.ActionEvent;
 import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -30,6 +24,12 @@ import java.util.ResourceBundle;
 
 public class Logic extends BorderPane implements Initializable {
     public Calendar currentMonth;
+    public AnchorPane firstColor;
+    public AnchorPane secondColor;
+    public AnchorPane thirdColor;
+    public AnchorPane fourthColor;
+    Boolean isDark = false;
+
     public void initialize(URL location, ResourceBundle resources) {
        ObservableList<String> months = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
         currentMonth = new GregorianCalendar();
@@ -54,7 +54,6 @@ public class Logic extends BorderPane implements Initializable {
         //drawHeader();
         drawBody();
         drawFooter();
-
     }
 
 //    @FXML private Label monthName;
@@ -213,7 +212,7 @@ public class Logic extends BorderPane implements Initializable {
         Button toggleButton11 = new Button();
         toggleButton11.setMaxWidth(Double.MAX_VALUE);
         toggleButton11.setMaxHeight(Double.MAX_VALUE);
-        toggleButton11.setStyle("-fx-background-color: #38A3A5;");
+        toggleButton11.setStyle("-fx-background-color: transparent;");
 
         toggleButton11.setId(String.valueOf(id));
         GridPane.setConstraints(toggleButton11, dayOfWeek, row);
@@ -248,7 +247,6 @@ public class Logic extends BorderPane implements Initializable {
         newWindow.show();
     }
 
-    @FXML private AnchorPane stage;
     @FXML private Button nextMonth, prevMonth;
     @FXML private MenuItem topic, changeLang, info;
     @FXML ComboBox<String> mComboBox;
@@ -277,6 +275,18 @@ public class Logic extends BorderPane implements Initializable {
             }
         });
 
+        //кнопка смены языка
+        changeLang.setOnAction(event -> {
+            try {
+                changeLangOpen();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        //кнопка темы
+        topic.setOnAction(event -> changeColor());
+
         //HBox hbFooter = new HBox(10);
         //hbFooter.getChildren().addAll(prevMonth, nextMonth);
         //hbFooter.setAlignment(Pos.CENTER);
@@ -285,7 +295,7 @@ public class Logic extends BorderPane implements Initializable {
     }
 
 
-    //TODO последняя версия загрузки окна информации (менять его дизайн в fxml)
+    //загрузка окна информации(менять его дизайн в fxml)
     @FXML
     private void infoOpen() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));
@@ -293,6 +303,33 @@ public class Logic extends BorderPane implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    //загрузка окна смены языка(менять его дизайн в fxml)
+    @FXML
+    private void changeLangOpen() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("changeLang.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    //Функция смены цвета
+    private void changeColor() {
+        if (!isDark) {
+            firstColor.setBackground(Background.fill(Color.BURLYWOOD));
+            secondColor.setBackground(Background.fill(Color.BLUE));
+            thirdColor.setBackground(Background.fill(Color.BLACK));
+            fourthColor.setBackground(Background.fill(Color.BLUE));
+            isDark = true;
+        } else {
+            firstColor.setBackground(Background.fill(Paint.valueOf("#38A3A5")));
+            secondColor.setBackground(Background.fill(Paint.valueOf("#C7F9CC")));
+            thirdColor.setBackground(Background.fill(Paint.valueOf("#80ED99")));
+            fourthColor.setBackground(Background.fill(Paint.valueOf("#C7F9CC")));
+            isDark = false;
+        }
     }
 
     private void previous() {
