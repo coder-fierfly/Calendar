@@ -22,7 +22,7 @@ public class Vocab implements Initializable {
         vocabList.setItems(getAllWords());
     }
 
-    @FXML //загрузка окна словаря (менять его дизайн в fxml)
+    @FXML // загрузка окна словаря (менять его дизайн в fxml)
     public void vocabOpen() throws IOException {
         FXMLLoader loader = new FXMLLoader(Vocab.class.getResource("Vocab.fxml"));
         Parent root = loader.load();
