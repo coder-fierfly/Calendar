@@ -22,6 +22,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
+import javax.naming.Context;
+
 public class Logic extends BorderPane implements Initializable {
     public Calendar currentMonth;
     public AnchorPane firstColor;
@@ -195,11 +197,33 @@ public class Logic extends BorderPane implements Initializable {
     }
 
     public static void addWords(String w) {
+
+        List<String> list = new ArrayList<>();
+        String line;
         try {
-            FileWriter writer = new FileWriter("data.txt", true);
+            BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+            try {
+                while((line = br.readLine()) != null) {
+                    list.add(line);
+                }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            FileWriter writer = new FileWriter("data.txt", false);
             String lineSeparator = System.getProperty("line.separator");
             writer.write(w + lineSeparator);
             writer.close();
+            FileWriter writer2 = new FileWriter("data.txt", true);
+            for (String lines : list) {
+                writer2.write(lines + lineSeparator);
+            }
+            writer2.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -216,22 +240,21 @@ public class Logic extends BorderPane implements Initializable {
         gpBody.setVgap(5);
         gpBody.setHgap(5);
         gpBody.getChildren().add(toggleButton11);
-        toggleButton11.setOnAction(
-        event -> {
-            Calendar cal = Calendar.getInstance();  //new GregorianCalendar();
-            cal.set(Calendar.MONTH, Integer.parseInt(id.substring(0, 2)) - 1);  // TODO
+        toggleButton11.setOnAction(event -> {
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.MONTH, Integer.parseInt(id.substring(0, 2)) - 1);
             cal.set(Calendar.DATE, Integer.parseInt(id.substring(3, 5)));
             cal.set(Calendar.YEAR, Integer.parseInt(id.substring(6)));
             System.out.println(cal.getTime());
-            //cal.set(id.getChars(6, 8, chars, 0), id.getChars(0, 1, chars, 0), id.getChars(9, 11, chars, 0), 0, 0, 0);
+
             if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
                 Test test = new Test();
+                test.setId(id);
                 try {
                     test.testOpen(id);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                //test.makeTest(id);
             } else {
                 makeButton(toggleButton11);
             }
@@ -281,6 +304,7 @@ public class Logic extends BorderPane implements Initializable {
             yComboBox.setValue(yComboBox.getValue());
             drawCalendar();
         });
+
         //кнопка информации
         info.setOnAction(event -> {
             try {
@@ -311,11 +335,6 @@ public class Logic extends BorderPane implements Initializable {
 
         //кнопка темы
         topic.setOnAction(event -> changeColor());
-        //HBox hbFooter = new HBox(10);
-        //hbFooter.getChildren().addAll(prevMonth, nextMonth);
-        //hbFooter.setAlignment(Pos.CENTER);
-        //setBottom(hbFooter);
-        //setMargin(hbFooter, new Insets(15));
     }
 
     @FXML //загрузка окна информации (менять его дизайн в fxml)
