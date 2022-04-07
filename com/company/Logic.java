@@ -165,14 +165,7 @@ public class Logic extends BorderPane implements Initializable {
     }
 
     public String[] getWords(String id) {
-        StringBuilder sb = new StringBuilder();
-        if ((currentMonth.get(Calendar.MONTH) + 1) < 10) {
-            sb.append("0");
-        }
-        sb.append(currentMonth.get(Calendar.MONTH) + 1).append("/").append(currentMonth.get(Calendar.DAY_OF_MONTH))
-                .append("/").append(currentMonth.get(Calendar.YEAR));
         File file = new File("data.txt");
-
         String line;
         String[] w = null;
         try {
@@ -196,12 +189,34 @@ public class Logic extends BorderPane implements Initializable {
         return w;
     }
 
-    public static void addWords(String w) {
+    public String getParty(String id) {
+        File file = new File("parties.txt");
+        String line = null;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            try {
+                while((line = br.readLine()) != null) {
+                    if(line.startsWith(id)) {
+                        System.out.println(line);
+                        line = line.substring(11);
+                        break;
+                    }
+                }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return line;
+    }
 
+    public static void addWords(String w, String fineName) {
         List<String> list = new ArrayList<>();
         String line;
         try {
-            BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(fineName));
             try {
                 while((line = br.readLine()) != null) {
                     list.add(line);
@@ -215,11 +230,11 @@ public class Logic extends BorderPane implements Initializable {
         }
 
         try {
-            FileWriter writer = new FileWriter("data.txt", false);
+            FileWriter writer = new FileWriter(fineName, false);
             String lineSeparator = System.getProperty("line.separator");
             writer.write(w + lineSeparator);
             writer.close();
-            FileWriter writer2 = new FileWriter("data.txt", true);
+            FileWriter writer2 = new FileWriter(fineName, true);
             for (String lines : list) {
                 writer2.write(lines + lineSeparator);
             }
@@ -249,7 +264,8 @@ public class Logic extends BorderPane implements Initializable {
 
             if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
                 Test test = new Test();
-                test.setId(id);
+                test.setId(id); // TODO: ВАЖНО!!! я запуталась и не понимаю, как передать айди через два класса, если они оба инициализируются
+
                 try {
                     test.testOpen(id);
                 } catch (IOException e) {
@@ -262,17 +278,29 @@ public class Logic extends BorderPane implements Initializable {
     }
 
     public void makeButton(Button button) {
-        String[] w = getWords(button.getId());
+        String id = button.getId();
+
+        String[] w = getWords(id);
         if (w == null) {
             Parser parser = new Parser();
             w = parser.parse(lang);
             StringBuilder sb = new StringBuilder();
-            sb.append(button.getId()).append(" ").append(w[0]).append("/").append(w[1]);
-            addWords(String.valueOf(sb));
+            sb.append(id).append(" ").append(w[0]).append("/").append(w[1]);
+            addWords(String.valueOf(sb), "data.txt");
         }
+
+        String p = getParty(id);
+        if (p == null) {
+            PartyParser pp = new PartyParser();
+            p = pp.parse(button.getId());
+            StringBuilder sb = new StringBuilder();
+            sb.append(id).append(" ").append(p);
+            addWords(String.valueOf(sb), "parties.txt"); // хочу пати значит будет пати вот так никаких холидей и всего такого
+        }
+
         Label label = new Label();
         //if (w != null) {
-            label.setText(String.format("да вы прям полиглот.\nслова за выбранный день:\n%s - %s", w[0], w[1]));
+            label.setText(String.format("Да вы прям полиглот.\nСлово за выбранный день:\n%s - %s\nТакже сегодня отмечается следующее событие:\n%s", w[0], w[1], p));
         //} else {
         //    label.setText("слов на этот день нет, не было и не будет.");
         //}
