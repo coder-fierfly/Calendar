@@ -1,6 +1,8 @@
 package com.company;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -308,20 +310,21 @@ public class Logic extends BorderPane implements Initializable {
     //загрузка окна смены языка(менять его дизайн в fxml)
     @FXML
     private void changeLangOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("changeLang.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChangeLang.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
     }
 
-    //Функция смены цвета
+    // Функция смены цвета
+    //TODO номальный дизайн
     private void changeColor() {
         if (!isDark) {
-            firstColor.setBackground(Background.fill(Color.BURLYWOOD));
-            secondColor.setBackground(Background.fill(Color.BLUE));
+            firstColor.setBackground(Background.fill(Color.DARKCYAN));
+            secondColor.setBackground(Background.fill(Color.DARKBLUE));
             thirdColor.setBackground(Background.fill(Color.BLACK));
-            fourthColor.setBackground(Background.fill(Color.BLUE));
+            fourthColor.setBackground(Background.fill(Color.DARKBLUE));
             isDark = true;
         } else {
             firstColor.setBackground(Background.fill(Paint.valueOf("#38A3A5")));
