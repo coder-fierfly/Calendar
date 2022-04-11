@@ -1,4 +1,5 @@
 package com.company;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,7 +34,7 @@ public class Logic extends BorderPane implements Initializable {
     Boolean isDark = false;
 
     public void initialize(URL location, ResourceBundle resources) {
-       ObservableList<String> months = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
+        ObservableList<String> months = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
         mComboBox.setItems(months);
@@ -67,7 +68,9 @@ public class Logic extends BorderPane implements Initializable {
 //        monthName.setText(tHeader);
 //    }
 
-    @FXML private GridPane gpBody;
+    @FXML
+    private GridPane gpBody;
+
     private void drawBody() {
         //gpBody.setHgap(10);
         //gpBody.setVgap(10);
@@ -178,9 +181,9 @@ public class Logic extends BorderPane implements Initializable {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
-                while((line = br.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
                     //if(line.startsWith("03/25/2022")) {//(String.valueOf(sb))) {
-                    if(line.startsWith(id)) {
+                    if (line.startsWith(id)) {
                         System.out.println(line);
                         line = line.substring(11);
                         w = line.split("/");
@@ -249,10 +252,15 @@ public class Logic extends BorderPane implements Initializable {
         newWindow.show();
     }
 
-    @FXML private Button nextMonth, prevMonth;
-    @FXML private MenuItem topic, changeLang, info;
-    @FXML ComboBox<String> mComboBox;
-    @FXML ComboBox<Integer> yComboBox;
+    @FXML
+    private Button nextMonth, prevMonth;
+    @FXML
+    private MenuItem topic, changeLang, info;
+    @FXML
+    ComboBox<String> mComboBox;
+    @FXML
+    ComboBox<Integer> yComboBox;
+
     private void drawFooter() {  // вы бы знали, как долго я с этим емучилась
         prevMonth.setOnAction(e -> previous());
         nextMonth.setOnAction(e -> next());

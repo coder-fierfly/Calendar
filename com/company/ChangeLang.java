@@ -31,6 +31,7 @@ public class ChangeLang {
     }
 
     public AnchorPane stageLang;
+
     //кнопочка сохранения языка. в идеале должна закрывать окно.
     public void saveLang() {
         //TODO сделать в парсере смену языка
