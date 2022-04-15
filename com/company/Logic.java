@@ -190,8 +190,11 @@ public class Logic extends BorderPane implements Initializable {
 
     private String[] getWords(String id) {
         File file = new File("data.txt");
-
-        if (!file.exists()) {
+        // потом возможно это нужно удалить, т.к. мы будем создавать файл при регистрации
+        // и каждый раз проверять его существование не нужно будет
+        if(file.exists()){
+            System.out.println("шото файла нету, куда дели?");
+        } else {
             file = new File("data.txt");
         }
 
@@ -285,13 +288,16 @@ public class Logic extends BorderPane implements Initializable {
         gpBody.setHgap(5);
         gpBody.getChildren().add(toggleButton11);
 
+        System.out.println(id);
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.MONTH, Integer.parseInt(id.substring(0, 2)) - 1);
         cal.set(Calendar.DATE, Integer.parseInt(id.substring(3, 5)));
         cal.set(Calendar.YEAR, Integer.parseInt(id.substring(6)));
         ParserThread pt = new ParserThread(id);
         if (cal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+            //makeButton(toggleButton11.getId());
             pt.start();
+            System.out.println(id + "started");
         }
         toggleButton11.setOnAction(event -> {
             System.out.println(cal.getTime());
@@ -426,16 +432,16 @@ public class Logic extends BorderPane implements Initializable {
     //функция смены цвета
     private void changeColor() {
         if (!isDark) {
-            firstColor.setStyle("-fx-background-color: #a5a5a5;");
-            secondColor.setStyle("-fx-background-color: #303131;");
-            thirdColor.setStyle("-fx-background-color: #2a2a2a;");
-            fourthColor.setStyle("-fx-background-color: #303131;");
+            firstColor.setStyle("-fx-background-color: BURLYWOOD;");
+            secondColor.setStyle("-fx-background-color: BLUE;");
+            thirdColor.setStyle("-fx-background-color: BLACK;");
+            fourthColor.setStyle("-fx-background-color: BLUE;");
             isDark = true;
         } else {
-            firstColor.setStyle("-fx-background-color: #d1f0f1;");
-            secondColor.setStyle("-fx-background-color: #8ed8d8;");
-            thirdColor.setStyle("-fx-background-color: #61c7c7;");
-            fourthColor.setStyle("-fx-background-color: #8ed8d8;");
+            firstColor.setStyle("-fx-background-color: #38A3A5;");
+            secondColor.setStyle("-fx-background-color: #C7F9CC;");
+            thirdColor.setStyle("-fx-background-color: #80ED99;");
+            fourthColor.setStyle("-fx-background-color: #C7F9CC;");
             isDark = false;
         }
     }

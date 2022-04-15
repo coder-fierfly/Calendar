@@ -2,15 +2,15 @@ package com.company;
 
 import java.io.*;
 
-public class ParserThread extends Thread {
+public class ParserThread extends Thread    {// Наша очередь из сотрудников, наследник класса Thread
     private String id;
 
-    ParserThread(String id) {
+    ParserThread(String id) {// Конструктор, аргумент- массив имен сотрудников
         this.id = id;
     }
 
     @Override
-    public void run() {  // этот метод будет вызван при старте потока
+    public void run() { // Этот метод будет вызван при старте потока
         Parser parser = new Parser();
         String[] w = getWords(id);
         if (w == null) {
@@ -75,6 +75,7 @@ public class ParserThread extends Thread {
     }
 
     private String[] getWords(String id) {
+        //Сначала идет путь к каталогу
         File file = new File("data.txt");
 
         try {
@@ -82,9 +83,7 @@ public class ParserThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         System.out.println(file.exists());
-
         String line;
         String[] w = null;
         try {
