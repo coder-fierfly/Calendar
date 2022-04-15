@@ -2,7 +2,7 @@ package com.company;
 
 import java.io.*;
 
-class ParserThread extends Thread    {// Наша очередь из сотрудников, наследник класса Thread
+public class ParserThread extends Thread    {// Наша очередь из сотрудников, наследник класса Thread
     private String id;
 
     ParserThread(String id) {// Конструктор, аргумент- массив имен сотрудников
@@ -75,7 +75,15 @@ class ParserThread extends Thread    {// Наша очередь из сотру
     }
 
     private String[] getWords(String id) {
+        //Сначала идет путь к каталогу
         File file = new File("data.txt");
+
+        try {
+            boolean bool = file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(file.exists());
         String line;
         String[] w = null;
         try {
