@@ -424,16 +424,16 @@ public class Logic extends BorderPane implements Initializable {
     //функция смены цвета
     private void changeColor() {
         if (!isDark) {
-            firstColor.setStyle("-fx-background-color: BURLYWOOD;");
-            secondColor.setStyle("-fx-background-color: BLUE;");
-            thirdColor.setStyle("-fx-background-color: BLACK;");
-            fourthColor.setStyle("-fx-background-color: BLUE;");
+            firstColor.setStyle("-fx-background-color: #a5a5a5;");
+            secondColor.setStyle("-fx-background-color: #303131;");
+            thirdColor.setStyle("-fx-background-color: #2a2a2a;");
+            fourthColor.setStyle("-fx-background-color: #303131;");
             isDark = true;
         } else {
-            firstColor.setStyle("-fx-background-color: #38A3A5;");
-            secondColor.setStyle("-fx-background-color: #C7F9CC;");
-            thirdColor.setStyle("-fx-background-color: #80ED99;");
-            fourthColor.setStyle("-fx-background-color: #C7F9CC;");
+            firstColor.setStyle("-fx-background-color: #d1f0f1;");
+            secondColor.setStyle("-fx-background-color: #8ed8d8;");
+            thirdColor.setStyle("-fx-background-color: #61c7c7;");
+            fourthColor.setStyle("-fx-background-color: #8ed8d8;");
             isDark = false;
         }
     }
