@@ -8,7 +8,6 @@
             xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.company.Test">
-    <Label fx:id="resultLabel" alignment="CENTER" layoutX="-1.0" layoutY="94.0" prefHeight="88.0" prefWidth="600.0"
-           text="Label"/>
-    <Button fx:id="reButton" layoutX="258.0" layoutY="245.0" mnemonicParsing="false" text="Перепройти"/>
+    <Label fx:id="resultLabel" alignment="CENTER" layoutX="-1.0" layoutY="94.0" prefHeight="88.0" prefWidth="600.0" text="Label" />
+    <Button fx:id="reButton" layoutX="258.0" layoutY="245.0" mnemonicParsing="false" text="Перепройти" />
 </AnchorPane>

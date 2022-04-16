@@ -1,6 +1,8 @@
+
 package com.company;
 
 import javafx.animation.FadeTransition;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.*;
 import javafx.concurrent.*;
 import javafx.geometry.*;
@@ -17,11 +19,13 @@ public class FadeApp {
     private Pane splashLayout;
     private ProgressBar loadProgress;
     private Label progressText;
+    private static final int SPLASH_WIDTH = 676;
+    private static final int SPLASH_HEIGHT = 227;
 
     public void init() {
         loadProgress = new ProgressBar();
-        loadProgress.setPrefWidth(656);
-        progressText = new Label("Необходимо найти слова для словаря...");
+        loadProgress.setPrefWidth(SPLASH_WIDTH - 20);
+        progressText = new Label("Will find friends for peanuts . . .");
         splashLayout = new VBox();
         splashLayout.getChildren().addAll(loadProgress, progressText);
         progressText.setAlignment(Pos.CENTER);
@@ -29,7 +33,6 @@ public class FadeApp {
     }
 
     Task<ObservableList<String>> friendTask;
-
     public void startLoad() {
         friendTask = new Task<>() {
             @Override
@@ -47,9 +50,8 @@ public class FadeApp {
                 return foundFriends;
             }
         };
-
         initStage = new Stage();
-        showSplash(initStage, friendTask, () -> showMainStage());
+        showSplash(initStage, friendTask, () -> showMainStage(friendTask.valueProperty()));
         new Thread(friendTask).start();
     }
 
@@ -63,8 +65,15 @@ public class FadeApp {
         fadeSplash.play();
     }
 
-    private void showMainStage() {
-        // todo ожидание завершения поиска
+    private void showMainStage(ReadOnlyObjectProperty<ObservableList<String>> friends) {
+        //mainStage = new Stage();
+        //mainStage.setTitle("My Friends");
+
+        //final ListView<String> peopleView = new ListView<>();
+        //peopleView.itemsProperty().bind(friends);
+
+        //mainStage.setScene(new Scene(peopleView));
+        //mainStage.show();
     }
 
     private void showSplash(final Stage initStage, Task<?> task, InitCompletionHandler initCompletionHandler) {
@@ -75,18 +84,20 @@ public class FadeApp {
                 loadProgress.progressProperty().unbind();
                 loadProgress.setProgress(1);
                 initStage.toFront();
+
                 initCompletionHandler.complete();
-            }
+            }  // todo add code to gracefully handle other task states.
         });
 
         Scene splashScene = new Scene(splashLayout, Color.TRANSPARENT);
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         initStage.setScene(splashScene);
-        initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - 338);
-        initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - 113);
+        initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);
+        initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - SPLASH_HEIGHT / 2);
         initStage.initStyle(StageStyle.TRANSPARENT);
         initStage.setAlwaysOnTop(true);
         initStage.show();
+        //endLoad();
     }
 
     public interface InitCompletionHandler {

@@ -1,5 +1,4 @@
 package com.company;
-
 import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -30,6 +29,8 @@ public class Logic extends BorderPane implements Initializable {
     public AnchorPane thirdColor;
     public AnchorPane fourthColor;
     Boolean isDark = false;
+    String lang = "et";
+    Parser parser = new Parser();
 
     public void initialize(URL location, ResourceBundle resources) {
         currentMonth = new GregorianCalendar();
@@ -45,6 +46,9 @@ public class Logic extends BorderPane implements Initializable {
     }
 
     private void drawCalendar() {
+        //FadeApp fadeApp = new FadeApp();
+        //fadeApp.init();
+
         // меняем подписи у выпадающих списков выбора года и месяца
         mComboBox.setPromptText(getMonthName(currentMonth.get(Calendar.MONTH)));  // setValue(getMonthName(currentMonth.get(Calendar.MONTH)));
         yComboBox.setPromptText(String.valueOf(currentMonth.get(Calendar.YEAR)));
@@ -52,30 +56,31 @@ public class Logic extends BorderPane implements Initializable {
         gpBody.getChildren().clear();
         gpBody.setGridLinesVisible(true);
 
-        // todo запускать окошко загрузки, пока идет поиск слов
-        /* FadeApp fadeApp = new FadeApp();
-        fadeApp.init();
-        Runnable task1 = fadeApp::startLoad;
-        Runnable task2 = this::drawBody;
-        Platform.setImplicitExit(false);
+        //Runnable task1 = fadeApp::startLoad;
+        //Runnable task2 = this::drawBody;
+        //Platform.setImplicitExit(false);
 
-        Thread t1 = new Thread(task1);
-        Thread t2 = new Thread(task2);
-        t1.start();
-        t2.start();
-        fadeApp.startLoad(); */
+        //Thread t1 = new Thread(task1);
+        //Thread t2 = new Thread(task2);
+        //t1.start();
+        //t2.start();
+        //fadeApp.startLoad();
         drawBody();
         drawFooter();
+        //fadeApp.endLoad();
     }
 
-    @FXML
-    private GridPane gpBody;
-
+    @FXML private GridPane gpBody;
     public void drawBody() {
+        //gpBody.setHgap(10);
+        //gpBody.setVgap(10);
+        //gpBody.setAlignment(Pos.CENTER);
+        //gpBody.setMinHeight(300);
 
         // рисуем дни недели
         for (int day = 1; day <= 7; day++) {
             Text tDayName = new Text(getDayName(day));
+            //tDayName.setStyle("-fx-text-fill: #8B008B;");
             gpBody.add(tDayName, day - 1, 0);
             GridPane.setHalignment(tDayName, HPos.CENTER);
         }
@@ -122,9 +127,14 @@ public class Logic extends BorderPane implements Initializable {
             GridPane.setHalignment(tDate, HPos.CENTER);
             currentDay++;
             dayOfWeek++;
-        }
 
+            /* if (i == daysInMonth) {
+                fadeApp.startLoad();
+                fadeApp.endLoad();
+            } */
+        }
         fadeApp.startLoad();
+
         /* for (ParserThread thread : list) {
             try {
                 thread.join();
@@ -132,6 +142,7 @@ public class Logic extends BorderPane implements Initializable {
                 e.printStackTrace();
             }
         } */
+
         fadeApp.endLoad();
 
         // рисуем дни предыдущего месяца там, где остались пустые ячейки
@@ -173,24 +184,24 @@ public class Logic extends BorderPane implements Initializable {
             row++;
             dayOfWeek = 0;
         }
+        //setCenter(gpBody);
+        //setMargin(gpBody, new Insets(30));
     }
 
     private String[] getWords(String id) {
         File file = new File("data.txt");
-        // потом возможно это нужно удалить, т.к. мы будем создавать файл при регистрации
-        // и каждый раз проверять его существование не нужно будет
-        if(file.exists()){
-            System.out.println("шото файла нету, куда дели?");
-        } else {
+
+        if (!file.exists()) {
             file = new File("data.txt");
         }
+
         String line;
         String[] w = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
-                while ((line = br.readLine()) != null) {
-                    if (line.startsWith(id)) {
+                while((line = br.readLine()) != null) {
+                    if(line.startsWith(id)) {
                         System.out.println(line);
                         line = line.substring(11);
                         w = line.split("/");
@@ -213,8 +224,8 @@ public class Logic extends BorderPane implements Initializable {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
-                while ((line = br.readLine()) != null) {
-                    if (line.startsWith(id)) {
+                while((line = br.readLine()) != null) {
+                    if(line.startsWith(id)) {
                         System.out.println(line);
                         line = line.substring(11);
                         break;
@@ -236,7 +247,7 @@ public class Logic extends BorderPane implements Initializable {
         try {
             BufferedReader br = new BufferedReader(new FileReader(fineName));
             try {
-                while ((line = br.readLine()) != null) {
+                while((line = br.readLine()) != null) {
                     list.add(line);
                 }
                 br.close();
@@ -282,7 +293,6 @@ public class Logic extends BorderPane implements Initializable {
         if (cal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
             pt.start();
         }
-
         toggleButton11.setOnAction(event -> {
             System.out.println(cal.getTime());
             if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
@@ -319,7 +329,11 @@ public class Logic extends BorderPane implements Initializable {
 
     public void showButton(String text) {
         Label label = new Label();
+        //if (w != null) {
         label.setText(text);
+        //} else {
+        //    label.setText("слов на этот день нет, не было и не будет.");
+        //}
         StackPane secondaryLayout = new StackPane();
         secondaryLayout.getChildren().add(label);
         Scene secondScene = new Scene(secondaryLayout, 300, 100);
@@ -334,7 +348,7 @@ public class Logic extends BorderPane implements Initializable {
     @FXML private MenuItem topic, changeLang, info;
     @FXML private ComboBox<String> mComboBox;
     @FXML private ComboBox<Integer> yComboBox;
-    private void drawFooter() {
+    private void drawFooter() {  // вы бы знали, как долго я с этим емучилась
         prevMonth.setOnAction(e -> previous());
         nextMonth.setOnAction(e -> next());
         mComboBox.setOnAction(e -> {
@@ -349,7 +363,7 @@ public class Logic extends BorderPane implements Initializable {
             drawCalendar();
         });
 
-        // кнопка информации
+        //кнопка информации
         info.setOnAction(event -> {
             try {
                 infoOpen();
@@ -358,7 +372,7 @@ public class Logic extends BorderPane implements Initializable {
             }
         });
 
-        // кнопка смены языка
+        //кнопка смены языка
         changeLang.setOnAction(event -> {
             try {
                 changeLangOpen();
@@ -367,7 +381,7 @@ public class Logic extends BorderPane implements Initializable {
             }
         });
 
-        // кнопка словаря
+        //кнопка словаря
         vocab.setOnAction(event -> {
             try {
                 Vocab vocab = new Vocab();
@@ -377,7 +391,7 @@ public class Logic extends BorderPane implements Initializable {
             }
         });
 
-        // кнопка статистики
+        //кнопка статистики
         stat.setOnAction(event -> {
             try {
                 Stat stat = new Stat();
@@ -387,11 +401,11 @@ public class Logic extends BorderPane implements Initializable {
             }
         });
 
-        // кнопка темы
+        //кнопка темы
         topic.setOnAction(event -> changeColor());
     }
 
-    @FXML // загрузка окна информации
+    @FXML //загрузка окна информации (менять его дизайн в fxml)
     private void infoOpen() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));
         Parent root = loader.load();
@@ -400,7 +414,7 @@ public class Logic extends BorderPane implements Initializable {
         stage.show();
     }
 
-    @FXML // загрузка окна смены языка
+    @FXML //загрузка окна смены языка (менять его дизайн в fxml)
     private void changeLangOpen() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("changeLang.fxml"));
         Parent root = loader.load();
@@ -409,7 +423,7 @@ public class Logic extends BorderPane implements Initializable {
         stage.show();
     }
 
-    // функция смены цвета
+    //функция смены цвета
     private void changeColor() {
         if (!isDark) {
             firstColor.setStyle("-fx-background-color: #a5a5a5;");

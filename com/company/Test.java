@@ -22,32 +22,33 @@ import java.util.Collections;
 import java.util.List;
 
 public class Test implements Initializable {
+    @FXML private ToggleGroup answers;
+    @FXML private Text question_text;
+    @FXML private RadioButton radio_btn_1, radio_btn_2, radio_btn_3, radio_btn_4;
+    @FXML private Button answerBtn;
+    @FXML public Label idLabel;
+    //public String id = "fff";
     @FXML
-    private ToggleGroup answers;
-    @FXML
-    private Text question_text;
-    @FXML
-    private RadioButton radio_btn_1, radio_btn_2, radio_btn_3, radio_btn_4;
-    @FXML
-    private Button answerBtn;
-    @FXML
-    public Label idLabel;
 
-
-    @FXML
-    private int nowQuestion = 0, correctAnswers;  // переменные для установки текущего номера вопроса и для подсчета количества верных ответов
-
-    private String nowCorrectAnswer;  // в эту переменную будет устанавливаться корректный ответ текущего вопроса
+    // переменные для установки текущего номера вопроса и для подсчета количества верных ответов
+    private int nowQuestion = 0, correctAnswers;
+    // в эту переменную будет устанавливаться корректный ответ текущего вопроса
+    private String nowCorrectAnswer;
 
     public Label resultLabel;
     public Button reButton;
 
+    //private String id;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Logic.test = this;
+        //String id = Context.getInstance().getString();
         String id = getTestId();
         System.out.println(id);
-        // resultLabel.setText("Тест был пройден с результатом %s баллов.\nПерепройти?", res);
+        //String id = idLabel.getText();
 
+        //resultLabel.setText("Тест был пройден с результатом %s баллов.\nПерепройти?");
         reButton.setOnAction(event -> {
             radio_btn_1.setVisible(true);
             radio_btn_2.setVisible(true);
@@ -58,6 +59,7 @@ public class Test implements Initializable {
             reButton.setVisible(false);
         });
         Questions[] questions = doTest(id);
+        System.out.println(id);
         // берем корректный ответ для текущего вопроса
         nowCorrectAnswer = questions[nowQuestion].correctAns();
         question_text.setText(questions[nowQuestion].getQuestion());
@@ -136,6 +138,21 @@ public class Test implements Initializable {
         return line;
     }
 
+    public void transferMessage(String message) {
+        //Display the message
+        // id = message;
+        idLabel.setText(message);
+        System.out.println(idLabel.getText());
+    }
+
+    /* public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    } */
+
     public Questions[] doTest(String id) {
         File file = new File("data.txt");
         String line;
@@ -143,51 +160,59 @@ public class Test implements Initializable {
         String[] newWords;
         StringBuilder sb = new StringBuilder();
 
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.MONTH, Integer.parseInt(id.substring(0, 2)) - 1);
-        cal.set(Calendar.DATE, Integer.parseInt(id.substring(3, 5)));
-        cal.set(Calendar.YEAR, Integer.parseInt(id.substring(6)));
-        System.out.println(cal.getTime());
-
-        for (int i = 0; i < 6; i++) {
-            sb.setLength(0);
-            cal.add(Calendar.DAY_OF_MONTH, -1);
-            System.out.println(cal.getTime());
-            if ((cal.get(Calendar.MONTH) + 1) < 10) {
-                sb.append("0");
-            }
-            sb.append(cal.get(Calendar.MONTH) + 1).append("/");
-            if (cal.get(Calendar.DAY_OF_MONTH) < 10) {
-                sb.append("0");
-            }
-            sb.append(cal.get(Calendar.DAY_OF_MONTH)).append("/").append(cal.get(Calendar.YEAR));
-
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
             try {
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                try {
-                    line = br.readLine();
-                    System.out.println(sb);
-                    while (line != null) {
-                        if (line.startsWith(String.valueOf(sb))) {
-                            line = line.substring(11);
-                            System.out.println(line);
-                            newWords = line.split("/");
-                            words.add(newWords);
-                            break;
-                        }
-                        line = br.readLine();
+
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.MONTH, Integer.parseInt(id.substring(0, 2)) - 1);
+                cal.set(Calendar.DATE, Integer.parseInt(id.substring(3, 5)));
+                cal.set(Calendar.YEAR, Integer.parseInt(id.substring(6)));
+                System.out.println(cal.getTime());
+                for (int i = 0; i < 5; i++) {
+                    cal.add(Calendar.DAY_OF_MONTH, -1);
+                    System.out.println(cal.getTime());
+                    if ((cal.get(Calendar.MONTH) + 1) < 10) {
+                        sb.append("0");
                     }
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    sb.append(cal.get(Calendar.MONTH) + 1).append("/");
+                    if (cal.get(Calendar.DAY_OF_MONTH) < 10) {
+                        sb.append("0");
+                    }
+                    sb.append(cal.get(Calendar.DAY_OF_MONTH)).append("/").append(cal.get(Calendar.YEAR));
                 }
 
-            } catch (FileNotFoundException e) {
+                /* boolean lineFound = false;
+                while (!lineFound) {
+                    while ((line = br.readLine()) != null) {
+                        if (line.startsWith(id)) {
+                            lineFound = true;
+                            break;
+                        }
+                    }
+                    // StringBuilder myString = new StringBuilder(id);
+                   // myString.setCharAt(id.charAt(), ch);
+                    // TODO чтобы можно было брать по неделям слова для тестов
+                } */
+                //System.out.println(getId());
+                int count = 0;
+                while (((line = br.readLine()) != null) && (count < 6)) {
+                    line = line.substring(11);
+                    System.out.println(line);
+                    newWords = line.split("/");
+                    words.add(newWords);
+                    ++count;
+                    System.out.println(count);
+                }
+                br.close();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
-        Questions[] questions = new Questions[]{
+        Questions[] questions = new Questions[] {
                 new Questions("Как правильно переводится слово " + words.get(0)[0] + "?", new String[]{words.get(1)[1], words.get(5)[1], words.get(3)[1], words.get(0)[1]}),
                 new Questions("Как правильно переводится слово " + words.get(1)[0] + "?", new String[]{words.get(3)[1], words.get(2)[1], words.get(0)[1], words.get(1)[1]}),
                 new Questions("Как правильно переводится слово " + words.get(2)[0] + "?", new String[]{words.get(4)[1], words.get(1)[1], words.get(0)[1], words.get(2)[1]}),
@@ -199,7 +224,7 @@ public class Test implements Initializable {
         return questions;
     }
 
-    @FXML //загрузка окна тестов
+    @FXML //загрузка окна тестов (менять его дизайн в fxml)
     public void testOpen() throws IOException {
         FXMLLoader loader = new FXMLLoader(Test.class.getResource("sample.fxml"));
         Parent root = loader.load();
@@ -207,6 +232,7 @@ public class Test implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("тест");
         stage.show();
+        //this.makeTest(id);
     }
 
     private boolean checkWord(String w) {
@@ -215,8 +241,8 @@ public class Test implements Initializable {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
-                while ((line = br.readLine()) != null) {
-                    if (line.contains(w)) {
+                while((line = br.readLine()) != null) {
+                    if(line.contains(w)) {
                         return true;
                     }
                 }

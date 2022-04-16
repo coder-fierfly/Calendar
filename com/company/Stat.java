@@ -22,7 +22,7 @@ public class Stat implements Initializable {
         statList.setItems(getAllWords());
     }
 
-    @FXML // загрузка окна словаря
+    @FXML // загрузка окна словаря (менять его дизайн в fxml)
     public void statOpen() throws IOException {
         FXMLLoader loader = new FXMLLoader(Vocab.class.getResource("Stat.fxml"));
         Parent root = loader.load();
@@ -41,7 +41,7 @@ public class Stat implements Initializable {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
-                while ((line = br.readLine()) != null) {
+                while((line = br.readLine()) != null) {
                     System.out.println(line);
                     sb.append(Logic.getMonthName(Integer.parseInt(line.substring(0, 2)) - 1))
                             .append(", ").append(line, 6, 10);

@@ -13,7 +13,6 @@ public class PartyParser {
         try {
             Document document;
             try {
-                //TODO ERROR Connection timed out: no further information
                 document = connect.get();
             } catch (UnknownHostException e) {
                 return null;
