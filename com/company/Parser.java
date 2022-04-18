@@ -16,6 +16,7 @@ public class Parser {
         try {
             Document document;
             try {
+                // TODO здесь была ошибка Connection timed out: no further information
                 document = connect.get();
             } catch (UnknownHostException e) {
                 return null;
@@ -23,6 +24,7 @@ public class Parser {
 
             String word = findWord(document);
             if (word.charAt(word.length() - 1) == '-') {
+                System.out.println("ПРОИЗОШЛА ЗАМЕНА ПОСЛЕДНЕГО -");
                 word = word.replaceAll("-", "");
             }
             System.out.println(word);
@@ -32,7 +34,7 @@ public class Parser {
             StringBuilder sb = new StringBuilder();
             sb.append("https://gufo.me/dict/").append(lang).append("ru/").append(word);
             connect = Jsoup.connect(String.valueOf(sb)).userAgent("Mozilla");
-
+//TODO здесь была ошибка самая первая при включении 1900 Connection timed out: no further information
             String trans = connect.get().select("#dictionary-acticle > article > p > span").text();
             System.out.println(trans);
             w[1] = trans;

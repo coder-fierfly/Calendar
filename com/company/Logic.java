@@ -177,11 +177,13 @@ public class Logic extends BorderPane implements Initializable {
 
     private String[] getWords(String id) {
         File file = new File("data.txt");
-
-        if (!file.exists()) {
+        // потом возможно это нужно удалить, т.к. мы будем создавать файл при регистрации
+        // и каждый раз проверять его существование не нужно будет
+        if(file.exists()){
+            System.out.println("шото файла нету, куда дели?");
+        } else {
             file = new File("data.txt");
         }
-
         String line;
         String[] w = null;
         try {
