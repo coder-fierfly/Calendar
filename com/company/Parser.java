@@ -24,8 +24,11 @@ public class Parser {
 
             String word = findWord(document);
             if (word.charAt(word.length() - 1) == '-') {
-                System.out.println("ПРОИЗОШЛА ЗАМЕНА ПОСЛЕДНЕГО -");
-                word = word.replaceAll("-", "");
+                word = word.substring(0, word.length() - 1);
+                System.out.println("заменили последний лишний дефис.");
+            }
+            if (word.contains("!")) {
+                word = word.replace("!", "");
             }
             System.out.println(word);
 
