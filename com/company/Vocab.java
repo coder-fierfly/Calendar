@@ -45,8 +45,11 @@ public class Vocab implements Initializable {
                     System.out.println(line);
                     sb.append(Logic.getMonthName(Integer.parseInt(line.substring(0, 2)) - 1))
                             .append(", ").append(line, 6, 10);
-                    if (!vocab.contains(String.valueOf(sb))) {
+                    if (!vocab.contains(String.valueOf(sb)) && (!vocab.isEmpty())) {
                         vocab.add("");
+                        vocab.add(String.valueOf(sb));
+                    }
+                    if (!vocab.contains(String.valueOf(sb))) {
                         vocab.add(String.valueOf(sb));
                     }
                     if (line.length() > 13) {
