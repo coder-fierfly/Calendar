@@ -23,6 +23,9 @@ public class Parser {
             }
 
             String word = findWord(document);
+            while (word.equals("")) {
+                word = findWord(document);
+            }
             if (word.charAt(word.length() - 1) == '-') {
                 word = word.substring(0, word.length() - 1);
                 System.out.println("заменили последний лишний дефис.");
