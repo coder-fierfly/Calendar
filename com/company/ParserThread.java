@@ -2,21 +2,24 @@ package com.company;
 
 import java.io.*;
 
-public class ParserThread extends Thread    {// Наша очередь из сотрудников, наследник класса Thread
+public class ParserThread {// Наша очередь из сотрудников, наследник класса Thread
     private String id;
 
     ParserThread(String id) {// Конструктор, аргумент- массив имен сотрудников
         this.id = id;
     }
 
-    @Override
     public void run() { // Этот метод будет вызван при старте потока
-        Parser parser = new Parser();
-        String[] w = getWords(id);
+                newParser pvf = new newParser(id);
+                String[] w = getWords(id);
+
         if (w == null) {
-            do {
-                w = parser.parse(getLang());
-            } while (checkWord(w[0]));
+
+                try {
+                    w = pvf.getPage();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             StringBuilder sb = new StringBuilder();
             sb.append(id).append(" ").append(w[0]).append("/").append(w[1]);
             if (!checkWord(String.valueOf(sb))) {
