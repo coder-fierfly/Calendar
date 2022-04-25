@@ -22,7 +22,7 @@ public class Vocab implements Initializable {
         vocabList.setItems(getAllWords());
     }
 
-    @FXML // загрузка окна словаря (менять его дизайн в fxml)
+    @FXML // загрузка окна словаря
     public void vocabOpen() throws IOException {
         FXMLLoader loader = new FXMLLoader(Vocab.class.getResource("Vocab.fxml"));
         Parent root = loader.load();
@@ -34,19 +34,22 @@ public class Vocab implements Initializable {
 
     private ObservableList<String> getAllWords() {
         ObservableList<String> vocab = FXCollections.observableArrayList();
-
         StringBuilder sb = new StringBuilder();
         File file = new File("data.txt");
         String line;
+
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
-                while((line = br.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
                     System.out.println(line);
                     sb.append(Logic.getMonthName(Integer.parseInt(line.substring(0, 2)) - 1))
                             .append(", ").append(line, 6, 10);
-                    if (!vocab.contains(String.valueOf(sb))) {
+                    if (!vocab.contains(String.valueOf(sb)) && (!vocab.isEmpty())) {
                         vocab.add("");
+                        vocab.add(String.valueOf(sb));
+                    }
+                    if (!vocab.contains(String.valueOf(sb))) {
                         vocab.add(String.valueOf(sb));
                     }
                     if (line.length() > 13) {
