@@ -282,15 +282,16 @@ public class Logic extends BorderPane implements Initializable {
         cal.set(Calendar.MONTH, Integer.parseInt(id.substring(0, 2)) - 1);
         cal.set(Calendar.DATE, Integer.parseInt(id.substring(3, 5)));
         cal.set(Calendar.YEAR, Integer.parseInt(id.substring(6)));
-        newParser pvf = new newParser(id);
-        try {
-            pvf.getPage();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        newParser pvf = new newParser(id);
+//        try {
+//            pvf.getPage();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        ParserThread pt = new ParserThread(id);
         ParserThread pt = new ParserThread(id);
         if (cal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
-            pt.start();
+            pt.run();
         }
 
 

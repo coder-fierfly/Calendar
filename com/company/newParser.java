@@ -2,7 +2,6 @@ package com.company;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 
 import java.io.*;
@@ -19,24 +18,27 @@ public class newParser {
         this.id = id;
     }
 
-    public void getPage() throws IOException {
-        //	appendChild(Node child) Вставьте узел в конец дочерних элементов этого элемента.
-        // appendElement(String tagName) Создайте новый элемент по имени тега и добавьте его в качестве последнего дочернего элемента.
-        // appendTo(Element parent) Добавьте этот элемент к предоставленному родительскому элементу в качестве его следующего дочернего элемента.
-        //	attr(String attributeKey, String attributeValue) Установите значение атрибута для этого элемента.
-        //	attr(String attributeKey, boolean attributeValue) Установите логическое значение атрибута для этого элемента.
-        //	prependChild(Node child) Добавьте узел в начало дочерних элементов этого элемента.
-        //  val() Получить значение элемента формы (ввод, текстовое поле и т. д.).
+    public String[] getPage() throws IOException {
+        File numFile = new File("numFile");
+        /*	appendChild(Node child) Вставьте узел в конец дочерних элементов этого элемента.
+         appendElement(String tagName) Создайте новый элемент по имени тега и добавьте его в качестве последнего дочернего элемента.
+         appendTo(Element parent) Добавьте этот элемент к предоставленному родительскому элементу в качестве его следующего дочернего элемента.
+        	attr(String attributeKey, String attributeValue) Установите значение атрибута для этого элемента.
+        	attr(String attributeKey, boolean attributeValue) Установите логическое значение атрибута для этого элемента.
+        	prependChild(Node child) Добавьте узел в начало дочерних элементов этого элемента.
+          val() Получить значение элемента формы (ввод, текстовое поле и т. д.).
 
-        // attributes() Получить все атрибуты элемента.
-        // 	className() Получает буквальное значение атрибута class этого элемента, которое может включать несколько имен классов, разделенных пробелом.
-        //	getElementsByAttribute(String key) Найдите элементы, у которых есть именованный набор атрибутов.
-        // getElementsByAttributeValueStarting(String key, String valuePrefix) Найдите элементы, атрибуты которых начинаются с префикса значения.
-        // getElementsByAttributeValueNot(String key, String value) Найдите элементы, которые либо не имеют этого атрибута, либо имеют его с другим значением.
-        // id() Получить idатрибут этого элемента.
-        // id(String id) Установите idатрибут этого элемента.
-        File file = new File("be.xml");
-        FileInputStream fis = new FileInputStream(file);
+         attributes() Получить все атрибуты элемента.
+         	className() Получает буквальное значение атрибута class этого элемента, которое может включать несколько имен классов, разделенных пробелом.
+        	getElementsByAttribute(String key) Найдите элементы, у которых есть именованный набор атрибутов.
+         getElementsByAttributeValueStarting(String key, String valuePrefix) Найдите элементы, атрибуты которых начинаются с префикса значения.
+         getElementsByAttributeValueNot(String key, String value) Найдите элементы, которые либо не имеют этого атрибута, либо имеют его с другим значением.
+         id() Получить idатрибут этого элемента.
+         id(String id) Установите idатрибут этого элемента.*/
+
+        File fileBe = new File("be.xml");
+        File infoFile = new File("infoFile.txt");
+        FileInputStream fis = new FileInputStream(fileBe);
         //TODO переделать идентификатор
         Document doc = Jsoup.parse(fis, null, "BE", Parser.xmlParser());
         int sizeBe = 43509;
@@ -51,11 +53,16 @@ public class newParser {
 
         // TODO если все так и останется, то переделать сразу в стрингу
         // перед этим делать проверку в getNumEl на совпадение с имеющимся файлом
-        Element desktopOnly = Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(sizeBe)))).child(0);
+        String allWord = Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(sizeBe)))).after(Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(sizeBe))))).text();
+        String[] wordMass = allWord.split(" ", 2);
+        System.out.println(wordMass.length);
+        return wordMass;
         // пока достается вот так
         // <k>бамбавік</k>
-        int df = 3;
-        String sd = String.valueOf(df);
+
+
+//        int df = 3;
+//        String sd = String.valueOf(df);
 
 //        System.out.println("НАША ПРОБА СЛАЩЕ МЕДА");
 //        System.out.println("НАША ПРОБА СЛАЩЕ МЕДА");
@@ -63,17 +70,43 @@ public class newParser {
     }
 
     private int getNumEl(int size) {
-        //проверка должны быть с файлом
+        String line;
+        String lineSeparator = System.getProperty("line.separator");
         String[] checkStr = new String[size];
         //наше будующее id. По сути просто является местом элемента в файле.
         int id;
         do {
             id = (int) (Math.random() * size);
-        } while (checkStr[id - 1] != null);
-        checkStr[id - 1] = "+";
-        // TODO надо это бы записывать в файл после записи в str[],
-        // чтобы все оставалось после закрытия приложения
+        } while (checkWord(String.valueOf(id)));
+        try {
+            FileWriter fw = new FileWriter("numFile");
+            fw.write(id);
+            fw.write(lineSeparator);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return id;
+    }
+
+    private boolean checkWord(String w) {
+        File numFile = new File("numFile");
+        String line;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(numFile));
+            try {
+                while ((line = br.readLine()) != null) {
+                    if (line.equals(w)) {
+                        return true;
+                    }
+                }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
