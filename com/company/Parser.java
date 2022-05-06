@@ -4,6 +4,7 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+//TODO: берегись звездочек
 import java.io.*;
 import java.net.UnknownHostException;
 
@@ -11,6 +12,7 @@ public class Parser {
     public int[] pages = new int[0];
 
     public String[] parse(String lang) {
+        //TODO: опять ты попався
         String[] w = new String[2];
         Connection connect = findPage(lang);
         try {
@@ -27,6 +29,7 @@ public class Parser {
             }
             System.out.println(word);
 
+            //TODO: а как какать
             w[0] = word;
             word = word.replaceAll(" ", "_");
             StringBuilder sb = new StringBuilder();
@@ -35,10 +38,12 @@ public class Parser {
 
             String trans = connect.get().select("#dictionary-acticle > article > p > span").text();
             System.out.println(trans);
+            //TODO: та же самая w
             w[1] = trans;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //TODO: и здесь
         return w;
     }
 

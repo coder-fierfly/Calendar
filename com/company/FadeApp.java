@@ -1,5 +1,6 @@
 package com.company;
 
+//TODO: тут есть импорты со звездочкой, если получится их исправить
 import javafx.animation.FadeTransition;
 import javafx.collections.*;
 import javafx.concurrent.*;
@@ -82,6 +83,7 @@ public class FadeApp {
         Scene splashScene = new Scene(splashLayout, Color.TRANSPARENT);
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         initStage.setScene(splashScene);
+        //TODO: может, 338 и 113 можно вызывать откуда-то? если нет, то просто сотрите меня
         initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - 338);
         initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - 113);
         initStage.initStyle(StageStyle.TRANSPARENT);

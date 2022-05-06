@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
 
+//TODO: кста нам вроде говорили, что лучше не делать такие импорты со звездочкой, так что если получится исправить, будет славно
 import java.io.*;
 import java.util.Objects;
 

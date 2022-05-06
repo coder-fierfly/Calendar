@@ -1,5 +1,6 @@
 package com.company;
 
+//TODO: импорты со звездочкой
 import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -187,6 +188,7 @@ public class Logic extends BorderPane implements Initializable {
             file = new File("data.txt");
         }
         String line;
+        //TODO: ага попалась еще одна однобуквенная!!
         String[] w = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -242,6 +244,7 @@ public class Logic extends BorderPane implements Initializable {
     }
 
     public static void addWords(String w, String fileName) {
+        //TODO: тута тоже однобуквенная.... хз вообще насколько важно такие буферные переменные переименовывать
         System.out.println(w);
         File file = new File(fileName);
         if (!file.exists()) {
@@ -271,6 +274,7 @@ public class Logic extends BorderPane implements Initializable {
         try {
             FileWriter writer = new FileWriter(fileName, false);
             String lineSeparator = System.getProperty("line.separator");
+            //TODO: та же самая w, что сверху была, чтобы не потерялась
             writer.write(w + lineSeparator);
             writer.close();
             FileWriter writer2 = new FileWriter(fileName, true);
@@ -317,6 +321,7 @@ public class Logic extends BorderPane implements Initializable {
                     e.printStackTrace();
                 }
             } else {
+                //TODO: опа целых две однобуквенных вот это улов
                 String[] w = getWords(id);
                 String p = getParty(id);
                 if (p == null || w[0] == null) {
@@ -329,6 +334,7 @@ public class Logic extends BorderPane implements Initializable {
         return pt;
     }
 
+    //TODO: ну тут то же самое
     public void addId(String w) {
         String fineName = "testId.txt";
         File file = new File(fineName);
@@ -509,6 +515,7 @@ public class Logic extends BorderPane implements Initializable {
 
     private String getDayName(int n) {
         StringBuilder sb = new StringBuilder();
+        //TODO: надо ли менять эту n? мудрецы уже который век бьются над этим вопросом....
         switch (n) {
             case 1 -> sb.append("Понедельник");
             case 2 -> sb.append("Вторник");
@@ -521,6 +528,7 @@ public class Logic extends BorderPane implements Initializable {
         return sb.toString();
     }
 
+    //TODO: и здесь тоже
     public static String getMonthName(int n) {
         String[] monthNames = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
         return monthNames[n];

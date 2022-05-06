@@ -1,5 +1,6 @@
 package com.company;
 
+//TODO: зазвездились
 import java.io.*;
 
 public class ParserThread {
@@ -11,6 +12,7 @@ public class ParserThread {
 
     public void run() {
         NewParser pvf = new NewParser();
+        //TODO: многа w
         String[] w = getWords(id);
 
         if (w == null) {
@@ -27,6 +29,7 @@ public class ParserThread {
             }
         }
 
+        //TODO: и p
         String p = getParty(id);
         if (p == null) {
             PartyParser pp = new PartyParser();
@@ -95,6 +98,7 @@ public class ParserThread {
         }
 
         String line;
+        //TODO: и опять
         String[] w = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -117,6 +121,7 @@ public class ParserThread {
         return w;
     }
 
+    //TODO: и еще раз
     private boolean checkWord(String w) {
         File file = new File("data.txt");
         if (!file.exists()) {

@@ -35,6 +35,7 @@ public class ChangeLang {
         }
     }
 
+    //TODO: переменная w из одной буковки ;((
     public void addLang(String w) {
         String fineName = "lang.txt";
         try {
