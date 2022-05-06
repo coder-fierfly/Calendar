@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
+//TODO: рыбачу на луне
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;

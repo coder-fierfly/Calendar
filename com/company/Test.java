@@ -12,6 +12,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+//TODO: фабрика звезд какая-то
 import java.io.*;
 import java.net.URL;
 import java.util.*;
