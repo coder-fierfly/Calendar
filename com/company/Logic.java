@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,9 +23,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
 
 public class Logic extends BorderPane implements Initializable {
     public Calendar currentMonth;
@@ -213,7 +211,16 @@ public class Logic extends BorderPane implements Initializable {
 
     private String getParty(String id) {
         File file = new File("parties.txt");
-        String line = null;
+        if (!file.exists()) {
+            try {
+                boolean bool = file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        String line;
+        StringBuilder sb = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
@@ -221,7 +228,7 @@ public class Logic extends BorderPane implements Initializable {
                     if (line.startsWith(id)) {
                         System.out.println(line);
                         line = line.substring(11);
-                        break;
+                        sb.append(line).append("\n");
                     }
                 }
                 br.close();
@@ -231,14 +238,24 @@ public class Logic extends BorderPane implements Initializable {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return line;
+        return String.valueOf(sb);
     }
 
-    public static void addWords(String w, String fineName) {
+    public static void addWords(String w, String fileName) {
+        System.out.println(w);
+        File file = new File(fileName);
+        if (!file.exists()) {
+            try {
+                boolean bool = file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         List<String> list = new ArrayList<>();
         String line;
         try {
-            BufferedReader br = new BufferedReader(new FileReader(fineName));
+            BufferedReader br = new BufferedReader(new FileReader(fileName));
             try {
                 while ((line = br.readLine()) != null) {
                     list.add(line);
@@ -252,11 +269,11 @@ public class Logic extends BorderPane implements Initializable {
         }
 
         try {
-            FileWriter writer = new FileWriter(fineName, false);
+            FileWriter writer = new FileWriter(fileName, false);
             String lineSeparator = System.getProperty("line.separator");
             writer.write(w + lineSeparator);
             writer.close();
-            FileWriter writer2 = new FileWriter(fineName, true);
+            FileWriter writer2 = new FileWriter(fileName, true);
             for (String lines : list) {
                 writer2.write(lines + lineSeparator);
             }
@@ -282,13 +299,7 @@ public class Logic extends BorderPane implements Initializable {
         cal.set(Calendar.MONTH, Integer.parseInt(id.substring(0, 2)) - 1);
         cal.set(Calendar.DATE, Integer.parseInt(id.substring(3, 5)));
         cal.set(Calendar.YEAR, Integer.parseInt(id.substring(6)));
-//        newParser pvf = new newParser(id);
-//        try {
-//            pvf.getPage();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        ParserThread pt = new ParserThread(id);
+
         ParserThread pt = new ParserThread(id);
         if (cal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
             pt.run();
@@ -309,9 +320,9 @@ public class Logic extends BorderPane implements Initializable {
                 String[] w = getWords(id);
                 String p = getParty(id);
                 if (p == null || w[0] == null) {
-                    showButton("Отсутствует подключение к интернету!");
+                    showButton("Отсутствует подключение к интернету!", id);
                 } else {
-                    showButton(String.format("Да вы прям полиглот.\nСлово за выбранный день:\n%s - %s\nТакже сегодня отмечается следующее событие:\n%s", w[0], w[1], p));
+                    showButton(String.format("Да вы прям полиглот.\nСлово за выбранный день:\n%s - %s\n\nТакже сегодня отмечается следующее событие:\n%s", w[0], w[1], p), id);
                 }
             }
         });
@@ -320,6 +331,13 @@ public class Logic extends BorderPane implements Initializable {
 
     public void addId(String w) {
         String fineName = "testId.txt";
+        File file = new File(fineName);
+        try {
+            boolean bool = file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         try {
             FileWriter writer = new FileWriter(fineName, false);
             writer.write(w);
@@ -329,17 +347,44 @@ public class Logic extends BorderPane implements Initializable {
         }
     }
 
-    public void showButton(String text) {
+    public void showButton(String text, String id) {
+
+        VBox secondaryLayout = new VBox(10);
         Label label = new Label();
         label.setText(text);
-        StackPane secondaryLayout = new StackPane();
         secondaryLayout.getChildren().add(label);
-        Scene secondScene = new Scene(secondaryLayout, 300, 100);
+        secondaryLayout.setSpacing(10);
+        Label userName = new Label("Вы можете добавить новое событие на этот день: ");
+        secondaryLayout.getChildren().add(userName);
+        TextField userTextField = new TextField();
+        secondaryLayout.getChildren().add(userTextField);
+
+        Button btn = new Button("Добавить");
+        //HBox hbBtn = new HBox(30);
+        //hbBtn.setAlignment(Pos.BASELINE_RIGHT);
+
+        //hbBtn.getChildren().add(btn);
+        secondaryLayout.getChildren().add(btn);
+
+        btn.setOnAction(e -> {
+            StringBuilder sb = new StringBuilder();
+            sb.append(id).append(" ").append(userTextField.getText());
+            addWords(String.valueOf(sb), "parties.txt");
+        });
+
+        Scene secondScene = new Scene(secondaryLayout, 500, 300);
         Stage newWindow = new Stage();
         newWindow.setTitle("крутые штуки");
         newWindow.setScene(secondScene);
         newWindow.initModality(Modality.WINDOW_MODAL);
         newWindow.show();
+
+           /* try {
+                Panel panel = new Panel();
+                panel.panelOpen(text);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } */
     }
 
     @FXML private Button nextMonth, prevMonth, vocab, stat;

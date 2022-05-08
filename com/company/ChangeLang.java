@@ -4,11 +4,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Objects;
 
 public class ChangeLang {
 
@@ -18,33 +22,32 @@ public class ChangeLang {
     public ToggleGroup answers;
 
     //кнопки выбора языка
-    //TODO по какой-то причине RadioButton выбирается не только 1 а можно выбрать все. возможно это по тому, что я пока что не подключила функцию
     public void radioLangButton() {
+        // TODO написать другие языки на радиобаттонах после полного внесения
         if (de.isSelected()) {
-            //Logic.setLang("de");
             addLang("de");
-            //save.setOnAction(e -> saveLang());
             System.out.println("de");
+            cleanFiles();
+            saveLang();
         } else if (en.isSelected()) {
-            //Logic.setLang("en");
-            addLang("en");
-            //save.setOnAction(e -> saveLang());
-            System.out.println("en");
+            addLang("sc");
+            System.out.println("sc");
+            cleanFiles();
+            saveLang();
         } else if (et.isSelected()) {
-            //Logic.setLang("et");
-            addLang("et");
-            //save.setOnAction(e -> saveLang());
-            System.out.println("et");
-            //TODO здесь должно вылезать сообщение если язык не выбран, но чел пытается что-то сохранить
+            addLang("be");
+            System.out.println("be");
+            cleanFiles();
+            saveLang();
         } else {
-            save.setOnAction(e -> makeChoice.setText("Вы не сделали выбор."));
+            makeChoice.setText("Вы не сделали выбор.");
         }
     }
 
     public void addLang(String w) {
-        String fineName = "lang.txt";
+        String fileName = "lang.txt";
         try {
-            FileWriter writer = new FileWriter(fineName, false);
+            FileWriter writer = new FileWriter(fileName, false);
             writer.write(w);
             writer.close();
         } catch (IOException e) {
@@ -52,11 +55,44 @@ public class ChangeLang {
         }
     }
 
-    public AnchorPane stageLang;
-    //кнопочка сохранения языка. в идеале должна закрывать окно.
+    public void cleanFiles() {
+        BufferedWriter numFile = null;
+        BufferedWriter parties = null;
+        BufferedWriter data = null;
+        try {
+            numFile  = Files.newBufferedWriter(Paths.get("numFile.txt"));
+            parties = Files.newBufferedWriter(Paths.get("parties.txt"));
+            data = Files.newBufferedWriter(Paths.get("data.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+//            assert numFile != null;
+//            assert parties != null;
+//            parties.write("");
+            if (data != null) {
+                data.write("");
+                parties.write("");
+                numFile.write("");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            assert numFile != null;
+            numFile.flush();
+            assert parties != null;
+            parties.flush();
+          //  assert numFile != null;
+            numFile.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //кнопочка сохранения языка. закрывает окно.
     public void saveLang() {
-        //TODO сделать в парсере смену языка
-        save.setOnAction(e -> stageLang.getScene().getWindow());
-//        stageLang.close();
+        Stage stage = (Stage) save.getScene().getWindow();
+        stage.close();
     }
 }

@@ -22,26 +22,33 @@ public class Stat implements Initializable {
         statList.setItems(getAllWords());
     }
 
-    @FXML // загрузка окна словаря (менять его дизайн в fxml)
+    @FXML // загрузка окна статистики
     public void statOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Vocab.class.getResource("Stat.fxml"));
+        FXMLLoader loader = new FXMLLoader(Stat.class.getResource("Stat.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.setTitle("словарь");
+        stage.setTitle("статистика");
         stage.show();
     }
 
     private ObservableList<String> getAllWords() {
         ObservableList<String> vocab = FXCollections.observableArrayList();
-
         StringBuilder sb = new StringBuilder();
         File file = new File("testData.txt");
+        if (!file.exists()) {
+            try {
+                boolean bool = file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         String line;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
-                while((line = br.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
                     System.out.println(line);
                     sb.append(Logic.getMonthName(Integer.parseInt(line.substring(0, 2)) - 1))
                             .append(", ").append(line, 6, 10);
