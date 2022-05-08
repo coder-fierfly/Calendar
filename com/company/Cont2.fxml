@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Logic">
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-        <AnchorPane fx:id="firstColor" layoutX="138.0" layoutY="38.0" prefHeight="478.0" prefWidth="763.0" style="-fx-background-color: #d1f0f1;">
-            <GridPane id="gpBody" fx:id="gpBody" gridLinesVisible="true" layoutX="-1.0" prefHeight="477.0" prefWidth="764.0">
+<AnchorPane fx:id="apBody" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Logic">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="577.0" prefWidth="902.0" VBox.vgrow="ALWAYS">
+        <AnchorPane fx:id="firstColor" layoutY="39.0" prefHeight="475.0" prefWidth="901.0" style="-fx-background-color: #d1f0f1;">
+            <GridPane id="gpBody" fx:id="gpBody" gridLinesVisible="true" maxHeight="475.0" maxWidth="901.5" minHeight="475.0" minWidth="901.5" prefHeight="475.0" prefWidth="901.5">
                 <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,32 +31,92 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
+            <rotationAxis>
+               <Point3D />
+            </rotationAxis>
             </GridPane>
         </AnchorPane>
-        <AnchorPane fx:id="secondColor" layoutX="136.0" layoutY="515.0" prefHeight="62.0" prefWidth="766.0" style="-fx-background-color: #8ed8d8;">
-            <Button fx:id="stat" layoutX="35.0" layoutY="18.0" mnemonicParsing="false" text="Статистика" />
-            <Button fx:id="vocab" layoutX="662.0" layoutY="18.0" mnemonicParsing="false" text="Словарь" />
-        </AnchorPane>
-        <AnchorPane fx:id="thirdColor" layoutY="-1.0" prefHeight="578.0" prefWidth="136.0" style="-fx-background-color: #61c7c7;">
-            <MenuButton layoutX="6.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="Настройки">
+        <AnchorPane fx:id="secondColor" layoutY="515.0" prefHeight="62.0" prefWidth="902.0" style="-fx-background-color: #8ed8d8;">
+            <Button fx:id="stat" layoutX="25.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" stylesheets="@main.css" text="Статистика">
+            <font>
+               <Font name="Segoe UI Semilight" size="13.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+            <Button fx:id="vocab" layoutX="150.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" stylesheets="@main.css" text="Словарь">
+            <font>
+               <Font name="Segoe UI Semilight" size="13.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+            <MenuButton alignment="CENTER_RIGHT" graphicTextGap="6.0" layoutX="755.0" layoutY="16.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" popupSide="TOP" prefHeight="30.0" prefWidth="125.0" stylesheets="@main.css" text="Настройки" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
                 <items>
                     <MenuItem fx:id="topic" mnemonicParsing="false" text="Тема" />
                     <MenuItem fx:id="changeLang" mnemonicParsing="false" text="Выбор языка" />
-                    <MenuItem fx:id="info" mnemonicParsing="false" text="Информация" />
+                    <MenuItem fx:id="info" text="Информация" />
                 </items>
             <graphic>
                <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../../Настройки.png" />
+                     <Image url="@../../Settings.png" />
                   </image></ImageView>
             </graphic>
+            <font>
+               <Font name="Segoe UI Semilight" size="13.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
             </MenuButton>
         </AnchorPane>
-        <AnchorPane fx:id="fourthColor" layoutX="136.0" prefHeight="38.0" prefWidth="766.0" style="-fx-background-color: #8ed8d8;">
-            <Button fx:id="nextMonth" layoutX="724.0" layoutY="7.0" mnemonicParsing="false" text="&gt;" />
-            <Button fx:id="prevMonth" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" text="&lt;" />
-            <ComboBox fx:id="mComboBox" layoutX="224.0" layoutY="6.0" prefWidth="150.0" />
-            <ComboBox fx:id="yComboBox" layoutX="382.0" layoutY="6.0" prefHeight="26.0" prefWidth="76.0" />
+        <AnchorPane fx:id="fourthColor" prefHeight="38.0" prefWidth="902.0" style="-fx-background-color: #8ed8d8;">
+         <ImageView fitHeight="23.0" fitWidth="49.0" layoutX="832.0" layoutY="8.0" opacity="0.87" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../ArrowRight.png" />
+            </image>
+            <effect>
+               <DropShadow height="9.14" radius="4.067500000000001" width="9.13">
+                  <color>
+                     <Color opacity="0.5699999928474426" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </ImageView>
+            <Button fx:id="nextMonth" layoutX="830.0" layoutY="7.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="49.0" text="&gt;">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+         <ImageView fitHeight="23.0" fitWidth="70.0" layoutX="25.0" layoutY="7.5" opacity="0.87" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../ArrowLeft.png" />
+            </image>
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor>
+            <effect>
+               <DropShadow height="9.14" radius="4.067500000000001" width="9.13">
+                  <color>
+                     <Color opacity="0.5652173757553101" />
+                  </color>
+               </DropShadow>
+            </effect></ImageView>
+            <Button fx:id="prevMonth" layoutX="25.0" layoutY="7.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="46.0" text="&lt;">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+            <ComboBox fx:id="mComboBox" layoutX="311.0" layoutY="6.0" prefWidth="150.0" stylesheets="@main.css">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></ComboBox>
+            <ComboBox fx:id="yComboBox" layoutX="470.0" layoutY="6.0" prefHeight="26.0" prefWidth="76.0" stylesheets="@main.css">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></ComboBox>
         </AnchorPane>
     </AnchorPane>
 </AnchorPane>
