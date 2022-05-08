@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Info">
-    <Text layoutX="76.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Какая-то там информация о нас"
-          wrappingWidth="506.60150146484375"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Info">
+    <Text layoutX="60.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Информация о нас" wrappingWidth="506.60150146484375">
+      <font>
+         <Font name="Segoe UI Semibold" size="20.0" />
+      </font>
+      <fill>
+         <LinearGradient endX="1.0" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.03529411926865578" green="0.4588235318660736" blue="0.43921568989753723" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.05882352963089943" green="0.45098039507865906" blue="0.5411764979362488" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill></Text>
 </AnchorPane>

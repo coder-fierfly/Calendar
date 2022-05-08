@@ -18,8 +18,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -80,6 +82,7 @@ public class Logic extends BorderPane implements Initializable {
             Text tDayName = new Text(getDayName(day));
             gpBody.add(tDayName, day - 1, 0);
             GridPane.setHalignment(tDayName, HPos.CENTER);
+            tDayName.setFont(Font.font ("Segoe UI Semilight", 13));
         }
 
         // рисуем сами числа в неделе
@@ -295,8 +298,8 @@ public class Logic extends BorderPane implements Initializable {
 
         toggleButton11.setId(String.valueOf(id));
         GridPane.setConstraints(toggleButton11, dayOfWeek, row);
-        gpBody.setVgap(5);
-        gpBody.setHgap(5);
+        gpBody.setVgap(0);
+        gpBody.setHgap(0);
         gpBody.getChildren().add(toggleButton11);
 
         Calendar cal = Calendar.getInstance();
@@ -380,7 +383,8 @@ public class Logic extends BorderPane implements Initializable {
 
         Scene secondScene = new Scene(secondaryLayout, 500, 300);
         Stage newWindow = new Stage();
-        newWindow.setTitle("крутые штуки");
+        newWindow.setTitle("Информация о дне");
+        newWindow.getIcons().add(new Image("file:Calendar.png"));
         newWindow.setScene(secondScene);
         newWindow.initModality(Modality.WINDOW_MODAL);
         newWindow.show();
@@ -402,7 +406,7 @@ public class Logic extends BorderPane implements Initializable {
         nextMonth.setOnAction(e -> next());
         mComboBox.setOnAction(e -> {
             currentMonth = new GregorianCalendar(currentMonth.get(Calendar.YEAR), getMonthNum(mComboBox.getValue()), 1);
-            mComboBox.setValue(mComboBox.getValue());  // устанавливаем выбранный элемент по умолчанию
+            mComboBox.setValue(mComboBox.getValue()); // устанавливаем выбранный элемент по умолчанию
             drawCalendar();
         });
 
@@ -460,6 +464,8 @@ public class Logic extends BorderPane implements Initializable {
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Информация");
+        stage.getIcons().add(new Image("file:Calendar.png"));
         stage.show();
     }
 
@@ -469,6 +475,8 @@ public class Logic extends BorderPane implements Initializable {
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Язык");
+        stage.getIcons().add(new Image("file:Calendar.png"));
         stage.show();
     }
 
@@ -477,13 +485,11 @@ public class Logic extends BorderPane implements Initializable {
         if (!isDark) {
             firstColor.setStyle("-fx-background-color: #a5a5a5;");
             secondColor.setStyle("-fx-background-color: #303131;");
-            thirdColor.setStyle("-fx-background-color: #2a2a2a;");
             fourthColor.setStyle("-fx-background-color: #303131;");
             isDark = true;
         } else {
             firstColor.setStyle("-fx-background-color: #d1f0f1;");
             secondColor.setStyle("-fx-background-color: #8ed8d8;");
-            thirdColor.setStyle("-fx-background-color: #61c7c7;");
             fourthColor.setStyle("-fx-background-color: #8ed8d8;");
             isDark = false;
         }

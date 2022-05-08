@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 //TODO: рыбачу на луне
@@ -29,7 +30,8 @@ public class Stat implements Initializable {
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.setTitle("статистика");
+        stage.setTitle("Статистика");
+        stage.getIcons().add(new Image("file:Calendar.png"));
         stage.show();
     }
 
