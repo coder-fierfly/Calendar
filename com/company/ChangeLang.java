@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 public class ChangeLang {
 
-    public RadioButton de, en, et;
+    public RadioButton de, be, et, cs, sv;
     public Label makeChoice;
     public Button save;
     public ToggleGroup answers;
@@ -22,19 +22,19 @@ public class ChangeLang {
     //кнопки выбора языка
     public void radioLangButton() {
         // TODO написать другие языки на радиобаттонах после полного внесения
-        if (de.isSelected()) {
+        if (be.isSelected()) {
+            addLang("be");
+            System.out.println("be");
+            cleanFiles();
+            saveLang();
+        } else if (de.isSelected()) {
             addLang("de");
             System.out.println("de");
             cleanFiles();
             saveLang();
-        } else if (en.isSelected()) {
-            addLang("sc");
-            System.out.println("sc");
-            cleanFiles();
-            saveLang();
-        } else if (et.isSelected()) {
-            addLang("be");
-            System.out.println("be");
+        } else if (cs.isSelected()) {
+            addLang("cs");
+            System.out.println("cs");
             cleanFiles();
             saveLang();
         } else if (et.isSelected()) {
