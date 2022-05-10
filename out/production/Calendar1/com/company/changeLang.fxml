@@ -2,20 +2,57 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:controller="com.company.ChangeLang" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1">
-    <RadioButton fx:id="en" layoutX="57.0" layoutY="47.0" mnemonicParsing="false" text="Английский">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.ChangeLang">
+    <RadioButton fx:id="en" layoutX="60.0" layoutY="89.0" mnemonicParsing="false" text="Английский">
         <toggleGroup>
-            <ToggleGroup fx:id="answers"/>
+            <ToggleGroup fx:id="answers" />
         </toggleGroup>
+      <font>
+         <Font name="Segoe UI Light" size="14.0" />
+      </font>
     </RadioButton>
-    <RadioButton fx:id="de" toggleGroup="$answers" layoutX="58.0" layoutY="65.0" mnemonicParsing="false"
-                 text="Немецкий"/>
-    <RadioButton fx:id="et" toggleGroup="$answers" layoutX="59.0" layoutY="83.0" mnemonicParsing="false"
-                 text="Эстонский"/>
-    <Button fx:id="save" onAction="#radioLangButton" layoutX="76.0" layoutY="161.0" mnemonicParsing="false"
-            text="Сохранить"/>
-    <Label fx:id="makeChoice" layoutX="31.0" layoutY="144.0"/>
+    <RadioButton fx:id="de" layoutX="60.0" layoutY="115.0" mnemonicParsing="false" text="Немецкий" toggleGroup="$answers">
+      <font>
+         <Font name="Segoe UI Light" size="14.0" />
+      </font>
+   </RadioButton>
+    <RadioButton fx:id="et" layoutX="60.0" layoutY="142.0" mnemonicParsing="false" text="Эстонский" toggleGroup="$answers">
+      <font>
+         <Font name="Segoe UI Light" size="14.0" />
+      </font>
+   </RadioButton>
+    <Button fx:id="save" layoutX="60.0" layoutY="200.0" mnemonicParsing="false" onAction="#radioLangButton" prefHeight="20.0" prefWidth="100.0" stylesheets="@main.css" text="Сохранить">
+      <font>
+         <Font name="Segoe UI Light" size="13.0" />
+      </font>
+   </Button>
+    <Label fx:id="makeChoice" layoutX="60.0" layoutY="171.0" prefHeight="20.0" prefWidth="163.0" textFill="#bf4545">
+      <font>
+         <Font name="Segoe UI Semibold" size="14.0" />
+      </font>
+   </Label>
+   <Text layoutX="60.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите нужный язык:">
+      <font>
+         <Font name="Segoe UI Semibold" size="20.0" />
+      </font>
+      <fill>
+         <LinearGradient endX="1.0" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.03411306068301201" green="0.46052631735801697" blue="0.4392056465148926" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.05994151905179024" green="0.451559454202652" blue="0.5394737124443054" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
 </AnchorPane>
