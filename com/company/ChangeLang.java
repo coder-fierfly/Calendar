@@ -11,7 +11,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import javafx.scene.layout.AnchorPane;
 
 public class ChangeLang {
 
@@ -38,6 +37,16 @@ public class ChangeLang {
             System.out.println("be");
             cleanFiles();
             saveLang();
+        } else if (et.isSelected()) {
+            addLang("et");
+            System.out.println("et");
+            cleanFiles();
+            saveLang();
+        } else if (et.isSelected()) {
+            addLang("sv");
+            System.out.println("sv");
+            cleanFiles();
+            saveLang();
         } else {
             makeChoice.setText("Вы не сделали выбор.");
         }
@@ -59,16 +68,13 @@ public class ChangeLang {
         BufferedWriter parties = null;
         BufferedWriter data = null;
         try {
-            numFile  = Files.newBufferedWriter(Paths.get("numFile.txt"));
+            numFile = Files.newBufferedWriter(Paths.get("numFile.txt"));
             parties = Files.newBufferedWriter(Paths.get("parties.txt"));
             data = Files.newBufferedWriter(Paths.get("data.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-//            assert numFile != null;
-//            assert parties != null;
-//            parties.write("");
             if (data != null) {
                 data.write("");
                 parties.write("");
@@ -82,7 +88,7 @@ public class ChangeLang {
             numFile.flush();
             assert parties != null;
             parties.flush();
-          //  assert numFile != null;
+            //  assert numFile != null;
             numFile.flush();
         } catch (IOException e) {
             e.printStackTrace();

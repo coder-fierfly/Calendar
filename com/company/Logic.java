@@ -1,6 +1,7 @@
 package com.company;
 
 //TODO: импорты со звездочкой
+
 import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -12,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -82,7 +82,7 @@ public class Logic extends BorderPane implements Initializable {
             Text tDayName = new Text(getDayName(day));
             gpBody.add(tDayName, day - 1, 0);
             GridPane.setHalignment(tDayName, HPos.CENTER);
-            tDayName.setFont(Font.font ("Segoe UI Semilight", 13));
+            tDayName.setFont(Font.font("Segoe UI Semilight", 13));
         }
 
         // рисуем сами числа в неделе
@@ -185,7 +185,7 @@ public class Logic extends BorderPane implements Initializable {
         File file = new File("data.txt");
         // потом возможно это нужно удалить, т.к. мы будем создавать файл при регистрации
         // и каждый раз проверять его существование не нужно будет
-        if(file.exists()){
+        if (file.exists()) {
             System.out.println("шото файла нету, куда дели?");
         } else {
             file = new File("data.txt");
@@ -397,10 +397,15 @@ public class Logic extends BorderPane implements Initializable {
             } */
     }
 
-    @FXML private Button nextMonth, prevMonth, vocab, stat;
-    @FXML private MenuItem topic, changeLang, info;
-    @FXML private ComboBox<String> mComboBox;
-    @FXML private ComboBox<Integer> yComboBox;
+    @FXML
+    private Button nextMonth, prevMonth, vocab, stat;
+    @FXML
+    private MenuItem topic, changeLang, info;
+    @FXML
+    private ComboBox<String> mComboBox;
+    @FXML
+    private ComboBox<Integer> yComboBox;
+
     private void drawFooter() {
         prevMonth.setOnAction(e -> previous());
         nextMonth.setOnAction(e -> next());

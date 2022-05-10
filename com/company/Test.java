@@ -31,8 +31,6 @@ public class Test implements Initializable {
     private RadioButton radio_btn_1, radio_btn_2, radio_btn_3, radio_btn_4;
     @FXML
     private Button answerBtn;
-    @FXML
-    public Label idLabel;
 
 
     @FXML

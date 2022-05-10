@@ -1,6 +1,7 @@
 package com.company;
 
 //TODO: тут есть импорты со звездочкой, если получится их исправить
+
 import javafx.animation.FadeTransition;
 import javafx.collections.*;
 import javafx.concurrent.*;
