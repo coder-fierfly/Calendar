@@ -12,7 +12,6 @@ public class Parser {
     public int[] pages = new int[0];
 
     public String[] parse(String lang) {
-        //TODO: опять ты попався
         String[] w = new String[2];
         Connection connect = findPage(lang);
         try {
@@ -66,7 +65,7 @@ public class Parser {
                 break;
         }
 
-        int page = (int) ((Math.random()*((26 - 1) + 1)) + 1);
+        int page = (int) ((Math.random() * ((26 - 1) + 1)) + 1);
         char let = letters[page];
         int count = 0;
         StringBuilder sb = new StringBuilder();
@@ -91,7 +90,7 @@ public class Parser {
         }
 
         System.out.println(count);
-        count = (int) ((Math.random()*((count - 1) + 1)) + 1);
+        count = (int) ((Math.random() * ((count - 1) + 1)) + 1);
         sb.append("https://gufo.me/dict/").append(lang).append("ru?page=").append(count).append("&letter=").append(let);
         return Jsoup.connect(String.valueOf(sb)).userAgent("Mozilla");
     }
@@ -112,7 +111,7 @@ public class Parser {
         }
 
         System.out.println(count);
-        int let = ((int) ((Math.random()*((count - 1) + 1)) + 1));
+        int let = ((int) ((Math.random() * ((count - 1) + 1)) + 1));
         sb.append("#all_words > div > div:nth-child(1) > ul > li:nth-child(").append(let).append(") > a");
         return (document.select(String.valueOf(sb)).text());
     }

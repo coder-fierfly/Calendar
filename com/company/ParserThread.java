@@ -12,30 +12,29 @@ public class ParserThread {
 
     public void run() {
         NewParser pvf = new NewParser();
-        //TODO: многа w
-        String[] w = getWords(id);
+        //TODO: многа words
+        String[] words = getWords(id);
 
-        if (w == null) {
+        if (words == null) {
             try {
-                w = pvf.getPage();
+                words = pvf.getPage();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             StringBuilder sb = new StringBuilder();
-            sb.append(id).append(" ").append(w[0]).append("/").append(w[1]);
+            sb.append(id).append(" ").append(words[0]).append("/").append(words[1]);
             if (!checkWord(String.valueOf(sb))) {
                 Logic.addWords(String.valueOf(sb), "data.txt");
             }
         }
 
-        //TODO: и p
-        String p = getParty(id);
-        if (p == null) {
+        String part = getParty(id);
+        if (part == null) {
             PartyParser pp = new PartyParser();
-            p = pp.parse(id);
+            part = pp.parse(id);
             StringBuilder sb = new StringBuilder();
-            sb.append(id).append(" ").append(p);
+            sb.append(id).append(" ").append(part);
             Logic.addWords(String.valueOf(sb), "parties.txt");
         }
     }
@@ -98,8 +97,7 @@ public class ParserThread {
         }
 
         String line;
-        //TODO: и опять
-        String[] w = null;
+        String[] words = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
@@ -107,7 +105,7 @@ public class ParserThread {
                     if (line.startsWith(id)) {
                         System.out.println(line);
                         line = line.substring(11);
-                        w = line.split("/");
+                        words = line.split("/");
                         break;
                     }
                 }
@@ -118,11 +116,11 @@ public class ParserThread {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return w;
+        return words;
     }
 
-    //TODO: и еще раз
-    private boolean checkWord(String w) {
+
+    private boolean checkWord(String word) {
         File file = new File("data.txt");
         if (!file.exists()) {
             try {
@@ -136,7 +134,7 @@ public class ParserThread {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
                 while ((line = br.readLine()) != null) {
-                    if (line.contains(w)) {
+                    if (line.contains(word)) {
                         return true;
                     }
                 }

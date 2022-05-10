@@ -11,13 +11,6 @@ import java.util.Objects;
 public class NewParser {
 
     public String[] getPage() throws IOException {
-        //Запихнуть это в свич
-//        FileReader fileReader = new FileReader("lang.txt");
-//        fileReader.close();
-        //char[] ch = new char[2];
-
-        // считаем сначала первую строку
-        //System.out.println("ASD:ASD:KLAS:DLKAS:LDA" + String.valueOf(fi.read(CharBuffer.allocate(1))));
         File file = new File("lang.txt");
         //создаем объект FileReader для объекта File
         FileReader fr = new FileReader(file);
@@ -40,13 +33,20 @@ public class NewParser {
                 vocFile = new File("de.xml");
                 vocSize = 13001;
             }
+            case "sv" -> {
+                vocFile = new File("sv.xml");
+                vocSize = 10403;
+            }
+            case "et" -> {
+                vocFile = new File("et.xml");
+                vocSize = 58652;
+            }
             default -> throw new IllegalStateException("Unexpected value: " + fileName);
         }
         // TODO при выборе другого свича делать полное стирание всех файлов
 
         FileInputStream fis = new FileInputStream(vocFile);
-        //TODO переделать идентификатор
-        Document doc = Jsoup.parse(fis, null, "BE", Parser.xmlParser());
+        Document doc = Jsoup.parse(fis, null, "VOC", Parser.xmlParser());
 
 
         String allWord = Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize)))).after(Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize))))).text();
@@ -96,10 +96,10 @@ public class NewParser {
         File numFile = new File("numFile.txt");
         try {
             boolean bool = numFile.createNewFile();
-            if(bool){
+            if (bool) {
                 System.out.println("2 СООООООООООООООООООООООООООООООООООООООООООООЗДАЛСЯЯЯЯЯЯЯЯЯЯЯЯЯЯЯЯЯЯ");
             } else {
-                System.out.println( "\n" +" 2 уже существует numFile.txt");
+                System.out.println("\n" + " 2 уже существует numFile.txt");
             }
         } catch (IOException e) {
             e.printStackTrace();
