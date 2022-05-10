@@ -6,8 +6,12 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import javafx.scene.layout.AnchorPane;
 
 public class ChangeLang {
 
@@ -18,30 +22,68 @@ public class ChangeLang {
 
     //кнопки выбора языка
     public void radioLangButton() {
+        // TODO написать другие языки на радиобаттонах после полного внесения
         if (de.isSelected()) {
             addLang("de");
             System.out.println("de");
+            cleanFiles();
             saveLang();
         } else if (en.isSelected()) {
-            addLang("en");
-            System.out.println("de");
+            addLang("sc");
+            System.out.println("sc");
+            cleanFiles();
             saveLang();
         } else if (et.isSelected()) {
-            addLang("et");
-            System.out.println("et");
+            addLang("be");
+            System.out.println("be");
+            cleanFiles();
             saveLang();
         } else {
             makeChoice.setText("Вы не сделали выбор.");
         }
     }
 
-    //TODO: переменная w из одной буковки ;((
     public void addLang(String w) {
-        String fineName = "lang.txt";
+        String fileName = "lang.txt";
         try {
-            FileWriter writer = new FileWriter(fineName, false);
+            FileWriter writer = new FileWriter(fileName, false);
             writer.write(w);
             writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cleanFiles() {
+        BufferedWriter numFile = null;
+        BufferedWriter parties = null;
+        BufferedWriter data = null;
+        try {
+            numFile  = Files.newBufferedWriter(Paths.get("numFile.txt"));
+            parties = Files.newBufferedWriter(Paths.get("parties.txt"));
+            data = Files.newBufferedWriter(Paths.get("data.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+//            assert numFile != null;
+//            assert parties != null;
+//            parties.write("");
+            if (data != null) {
+                data.write("");
+                parties.write("");
+                numFile.write("");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            assert numFile != null;
+            numFile.flush();
+            assert parties != null;
+            parties.flush();
+          //  assert numFile != null;
+            numFile.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
