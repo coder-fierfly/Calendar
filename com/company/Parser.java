@@ -4,8 +4,7 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-//TODO: берегись звездочек
-import java.io.*;
+import java.io.IOException;
 import java.net.UnknownHostException;
 
 public class Parser {
