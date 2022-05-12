@@ -71,7 +71,7 @@
             </cursor>
             </MenuButton>
         </AnchorPane>
-        <AnchorPane fx:id="fourthColor" prefHeight="38.0" prefWidth="902.0" style="-fx-background-color: #8ed8d8;">
+        <AnchorPane fx:id="thirdColor" prefHeight="38.0" prefWidth="902.0" style="-fx-background-color: #8ed8d8;">
          <ImageView fitHeight="23.0" fitWidth="49.0" layoutX="832.0" layoutY="8.0" opacity="0.87" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../ArrowRight.png" />

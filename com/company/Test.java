@@ -12,15 +12,19 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-//TODO: фабрика звезд какая-то
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Calendar;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class Test implements Initializable {
     @FXML

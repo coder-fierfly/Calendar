@@ -65,13 +65,12 @@ public class NewParser {
         //TODO нормальная запись в файл, почему-то все стирается..
         FileWriter fw = null;
         try {
-            fw = new FileWriter("numFile.txt");
+            fw = new FileWriter("numFile.txt", true);
         } catch (IOException e) {
             e.printStackTrace();
         }
         String idStr = String.valueOf(id);
         try {
-            assert fw != null;
             fw.write(idStr);
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,7 +81,6 @@ public class NewParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //fw.flush();
         try {
             fw.close();
         } catch (IOException e) {
@@ -96,11 +94,6 @@ public class NewParser {
         File numFile = new File("numFile.txt");
         try {
             boolean bool = numFile.createNewFile();
-            if (bool) {
-                System.out.println("2 СООООООООООООООООООООООООООООООООООООООООООООЗДАЛСЯЯЯЯЯЯЯЯЯЯЯЯЯЯЯЯЯЯ");
-            } else {
-                System.out.println("\n" + " 2 уже существует numFile.txt");
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }

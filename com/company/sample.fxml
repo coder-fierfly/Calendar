@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="747.0" style="-fx-background-color: #F4F7FB;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Test">
-    <Button fx:id="reButton" layoutX="330.0" layoutY="102.0" mnemonicParsing="false" text="Перепройти" />
+    <Button fx:id="reButton" layoutX="330.0" layoutY="102.0" mnemonicParsing="false" text="Пройти тест" stylesheets="@main.css" />
     <RadioButton fx:id="radio_btn_1" layoutX="237.0" layoutY="198.0" mnemonicParsing="false" text="1" textFill="#5e5e5e" visible="false">
         <font>
             <Font name="Montserrat Regular" size="13.0" />
@@ -35,7 +35,7 @@
             <Font name="Montserrat Regular" size="13.0" />
         </font>
     </RadioButton>
-    <Button fx:id="answerBtn" layoutX="286.0" layoutY="381.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" style="-fx-background-color: #f7746a; -fx-border-color: #f7746a; -fx-border-radius: 5px;" text="Ответить" textFill="WHITE" visible="false">
+    <Button fx:id="answerBtn" layoutX="286.0" layoutY="381.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" stylesheets="@main.css" text="Ответить" textFill="WHITE" visible="false">
         <font>
             <Font name="Montserrat Regular" size="13.0" />
         </font>
