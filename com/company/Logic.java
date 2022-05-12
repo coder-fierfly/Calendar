@@ -1,12 +1,19 @@
 package com.company;
-
-//TODO: импорты со звездочкой
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,21 +25,25 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.control.*;
+
 
 public class Logic extends BorderPane implements Initializable {
     public Calendar currentMonth;
     public AnchorPane firstColor;
     public AnchorPane secondColor;
     public AnchorPane thirdColor;
-    public AnchorPane fourthColor;
     Boolean isDark = false;
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,19 +68,20 @@ public class Logic extends BorderPane implements Initializable {
         gpBody.setGridLinesVisible(true);
 
         // todo запускать окошко загрузки, пока идет поиск слов
-        /* FadeApp fadeApp = new FadeApp();
+        FadeApp fadeApp = new FadeApp();
         fadeApp.init();
-        Runnable task1 = fadeApp::startLoad;
+        /*Runnable task1 = fadeApp::startLoad;
         Runnable task2 = this::drawBody;
         Platform.setImplicitExit(false);
 
         Thread t1 = new Thread(task1);
         Thread t2 = new Thread(task2);
         t1.start();
-        t2.start();
-        fadeApp.startLoad(); */
+        t2.start();*/
+        fadeApp.startLoad();
         drawBody();
         drawFooter();
+        fadeApp.endLoad();
     }
 
     @FXML
@@ -397,21 +409,16 @@ public class Logic extends BorderPane implements Initializable {
             } */
     }
 
-    @FXML
-    private Button nextMonth, prevMonth, vocab, stat;
-    @FXML
-    private MenuItem topic, changeLang, info;
-    @FXML
-    private ComboBox<String> mComboBox;
-    @FXML
-    private ComboBox<Integer> yComboBox;
-
+    @FXML private Button nextMonth, prevMonth, vocab, stat;
+    @FXML private MenuItem topic, changeLang, info;
+    @FXML private ComboBox<String> mComboBox;
+    @FXML private ComboBox<Integer> yComboBox;
     private void drawFooter() {
         prevMonth.setOnAction(e -> previous());
         nextMonth.setOnAction(e -> next());
         mComboBox.setOnAction(e -> {
             currentMonth = new GregorianCalendar(currentMonth.get(Calendar.YEAR), getMonthNum(mComboBox.getValue()), 1);
-            mComboBox.setValue(mComboBox.getValue()); // устанавливаем выбранный элемент по умолчанию
+            mComboBox.setValue(mComboBox.getValue());  // устанавливаем выбранный элемент по умолчанию
             drawCalendar();
         });
 
@@ -490,12 +497,12 @@ public class Logic extends BorderPane implements Initializable {
         if (!isDark) {
             firstColor.setStyle("-fx-background-color: #a5a5a5;");
             secondColor.setStyle("-fx-background-color: #303131;");
-            fourthColor.setStyle("-fx-background-color: #303131;");
+            thirdColor.setStyle("-fx-background-color: #2a2a2a;");
             isDark = true;
         } else {
             firstColor.setStyle("-fx-background-color: #d1f0f1;");
             secondColor.setStyle("-fx-background-color: #8ed8d8;");
-            fourthColor.setStyle("-fx-background-color: #8ed8d8;");
+            thirdColor.setStyle("-fx-background-color: #61c7c7;");
             isDark = false;
         }
     }
