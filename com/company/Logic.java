@@ -41,7 +41,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
 public class Logic extends BorderPane implements Initializable {
     public Calendar currentMonth;
     public AnchorPane firstColor;
@@ -59,9 +58,6 @@ public class Logic extends BorderPane implements Initializable {
             years.add(i);
         }
         yComboBox.setItems(years);
-        System.out.println("ЗДЕСЯЯЯЯ");
-        drawBody();
-        System.out.println("ЗАБЕЖАЛиииииИ");
         drawCalendar();
     }
 
