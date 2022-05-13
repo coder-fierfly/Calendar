@@ -18,7 +18,6 @@ public class PartyParser {
                 return null;
             }
             String word = findWord(document);
-            System.out.println(word);
             return word;
         } catch (IOException e) {
             e.printStackTrace();
@@ -27,7 +26,6 @@ public class PartyParser {
     }
 
     private Connection findPage(String id) {
-        System.out.println(id);
         String[] str = id.split("/");
         id = String.join("-", str[2], str[0], str[1]);
         StringBuilder sb = new StringBuilder();

@@ -21,6 +21,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);
+        primaryStage.toBack();
         primaryStage.setTitle("Календарь");
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("file:Calendar.png"));

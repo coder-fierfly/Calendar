@@ -81,7 +81,7 @@ public class FadeApp {
             if (newState == Worker.State.SUCCEEDED) {
                 loadProgress.progressProperty().unbind();
                 loadProgress.setProgress(1);
-                initStage.toFront();
+//                initStage.toFront();
                 initCompletionHandler.complete();
             }
         });
@@ -93,7 +93,7 @@ public class FadeApp {
         initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - 338);
         initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - 113);
         initStage.initStyle(StageStyle.TRANSPARENT);
-        initStage.setAlwaysOnTop(true);
+//        initStage.setAlwaysOnTop(true);
         initStage.show();
     }
 

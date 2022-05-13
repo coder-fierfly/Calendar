@@ -11,7 +11,7 @@ public class Parser {
     public int[] pages = new int[0];
 
     public String[] parse(String lang) {
-        String[] w = new String[2];
+        String[] words = new String[2];
         Connection connect = findPage(lang);
         try {
             Document document;
@@ -25,24 +25,21 @@ public class Parser {
             if (word.charAt(word.length() - 1) == '-') {
                 word = word.replaceAll("-", "");
             }
-            System.out.println(word);
+//            System.out.println(word);
 
-            //TODO: а как какать
-            w[0] = word;
+            words[0] = word;
             word = word.replaceAll(" ", "_");
             StringBuilder sb = new StringBuilder();
             sb.append("https://gufo.me/dict/").append(lang).append("ru/").append(word);
             connect = Jsoup.connect(String.valueOf(sb)).userAgent("Mozilla");
 
             String trans = connect.get().select("#dictionary-acticle > article > p > span").text();
-            System.out.println(trans);
-            //TODO: та же самая w
-            w[1] = trans;
+//            System.out.println(trans);
+            words[1] = trans;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //TODO: и здесь
-        return w;
+        return words;
     }
 
     private Connection findPage(String lang) {
@@ -88,7 +85,7 @@ public class Parser {
             count = pages[page];
         }
 
-        System.out.println(count);
+//        System.out.println(count);
         count = (int) ((Math.random() * ((count - 1) + 1)) + 1);
         sb.append("https://gufo.me/dict/").append(lang).append("ru?page=").append(count).append("&letter=").append(let);
         return Jsoup.connect(String.valueOf(sb)).userAgent("Mozilla");
@@ -109,7 +106,7 @@ public class Parser {
             }
         }
 
-        System.out.println(count);
+//        System.out.println(count);
         int let = ((int) ((Math.random() * ((count - 1) + 1)) + 1));
         sb.append("#all_words > div > div:nth-child(1) > ul > li:nth-child(").append(let).append(") > a");
         return (document.select(String.valueOf(sb)).text());

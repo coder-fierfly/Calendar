@@ -25,8 +25,8 @@ public class ChangeLang {
 
     //кнопки выбора языка
     public void radioLangButton() {
-        // TODO написать другие языки на радиобаттонах после полного внесения
         File langFile = new File("lang.txt");
+        // если файл не существуем, то создаем его и записываем в него язык для изучения
         if (!langFile.exists()) {
             try {
                 boolean bool = langFile.createNewFile();
@@ -80,7 +80,7 @@ public class ChangeLang {
         File partiesFile = new File("parties.txt");
         File dataFile = new File("data.txt");
         addLang(word);
-        System.out.println(word);
+//        System.out.println(word);
         // TODO проверить что && это или
         if(numFile.exists() && partiesFile.exists() && dataFile.exists()) {
             cleanFiles();
@@ -100,8 +100,6 @@ public class ChangeLang {
     }
 
     public void cleanFiles() {
-        //TODO сделать типо если файл существует и все действия именно с одним файлом в if запихнуть
-        // Так если есть почему-т один файл он не будет ломать всю программу
         BufferedWriter numFile = null;
         BufferedWriter parties = null;
         BufferedWriter data = null;
@@ -112,6 +110,7 @@ public class ChangeLang {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         //if(numFile.)
         try {
             if (data != null) {
@@ -127,7 +126,6 @@ public class ChangeLang {
             numFile.flush();
             assert parties != null;
             parties.flush();
-            //  assert numFile != null;
             numFile.flush();
         } catch (IOException e) {
             e.printStackTrace();
