@@ -14,7 +14,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,14 +27,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.MenuItem;
-import javafx.scene.effect.Light;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import javafx.scene.robot.Robot;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -91,10 +88,9 @@ public class Logic extends BorderPane implements Initializable {
 
     public void drawBody() {
         File langFile = new File("lang.txt");
-        System.out.println("ЗАБЕЖАЛИ1");
-        System.out.println(langFile.exists());
+//        System.out.println(langFile.exists());
+        // если файл не существует записываю в него nый язык, чтобы дальше можно было выбрать любой другой
         if (!langFile.exists()) {
-            System.out.println("ЗАБЕЖАЛииииии");
             try {
                 langFile.createNewFile();
                 FileWriter fr = new FileWriter("lang.txt", false);
@@ -104,7 +100,7 @@ public class Logic extends BorderPane implements Initializable {
                 e.printStackTrace();
             }
             try {
-                System.out.println("ЗАБЕЖАЛИ");
+//                System.out.println("ЗАБЕЖАЛИ");
                 changeLangOpen();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -355,7 +351,6 @@ public class Logic extends BorderPane implements Initializable {
                     e.printStackTrace();
                 }
             } else {
-                //TODO: опа целых две однобуквенных вот это улов
                 String[] words = getWords(id);
                 String partyStr = getParty(id);
                 if (partyStr == null || words[0] == null) {
@@ -399,10 +394,6 @@ public class Logic extends BorderPane implements Initializable {
         secondaryLayout.getChildren().add(userTextField);
 
         Button btn = new Button("Добавить");
-        //HBox hbBtn = new HBox(30);
-        //hbBtn.setAlignment(Pos.BASELINE_RIGHT);
-
-        //hbBtn.getChildren().add(btn);
         secondaryLayout.getChildren().add(btn);
 
         btn.setOnAction(e -> {
@@ -574,7 +565,6 @@ public class Logic extends BorderPane implements Initializable {
         return sb.toString();
     }
 
-    //TODO: и здесь тоже
     public static String getMonthName(int num) {
         String[] monthNames = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
         return monthNames[num];

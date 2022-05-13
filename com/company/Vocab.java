@@ -48,7 +48,6 @@ public class Vocab implements Initializable {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
                 while ((line = br.readLine()) != null) {
-                    System.out.println(line);
                     sb.append(Logic.getMonthName(Integer.parseInt(line.substring(0, 2)) - 1))
                             .append(", ").append(line, 6, 10);
                     if (!vocab.contains(String.valueOf(sb)) && (!vocab.isEmpty())) {

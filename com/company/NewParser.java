@@ -16,6 +16,7 @@ import java.util.Objects;
 public class NewParser {
 
     public String[] getPage() throws IOException {
+        //беру файл
         File file = new File("lang.txt");
         //создаем объект FileReader для объекта File
         FileReader fr = new FileReader(file);
@@ -25,6 +26,7 @@ public class NewParser {
         String fileName = reader.readLine();
         int vocSize;
         File vocFile;
+        //по слову в файле выбераю какой язык парсить
         switch (fileName) {
             case "en" -> {
                 vocFile = new File("en.xml");
@@ -56,12 +58,12 @@ public class NewParser {
         FileInputStream fis = new FileInputStream(vocFile);
         Document doc = Jsoup.parse(fis, null, "VOC", Parser.xmlParser());
 
-
         String allWord = Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize)))).after(Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize))))).text();
         String[] wordMass = allWord.split(" ", 2);
         return wordMass;
     }
 
+    // Выбераю из файла еще не занятые слова
     private int getNumEl(int size) {
         String lineSeparator = System.getProperty("line.separator");
         //наше будующее id. По сути просто является местом элемента в файле.
@@ -82,7 +84,7 @@ public class NewParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(idStr);
+//        System.out.println(idStr);
         try {
             fw.write(lineSeparator);
         } catch (IOException e) {
@@ -97,7 +99,8 @@ public class NewParser {
         return id;
     }
 
-    private boolean checkWord(String w) {
+    //проверяю не занято ли место в файле
+    private boolean checkWord(String str) {
         File numFile = new File("numFile.txt");
         try {
             boolean bool = numFile.createNewFile();
@@ -110,7 +113,7 @@ public class NewParser {
             BufferedReader br = new BufferedReader(new FileReader(numFile));
             try {
                 while ((line = br.readLine()) != null) {
-                    if (line.equals(w)) {
+                    if (line.equals(str)) {
                         return true;
                     }
                 }
