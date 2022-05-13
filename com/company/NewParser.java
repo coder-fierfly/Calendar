@@ -26,6 +26,10 @@ public class NewParser {
         int vocSize;
         File vocFile;
         switch (fileName) {
+            case "en" -> {
+                vocFile = new File("en.xml");
+                vocSize = 17007;
+            }
             case "be" -> {
                 vocFile = new File("be.xml");
                 vocSize = 43509;
@@ -48,7 +52,6 @@ public class NewParser {
             }
             default -> throw new IllegalStateException("Unexpected value: " + fileName);
         }
-        // TODO при выборе другого свича делать полное стирание всех файлов
 
         FileInputStream fis = new FileInputStream(vocFile);
         Document doc = Jsoup.parse(fis, null, "VOC", Parser.xmlParser());
@@ -67,7 +70,6 @@ public class NewParser {
             id = (int) (Math.random() * size);
         } while (checkWord(String.valueOf(id)));
 
-        //TODO нормальная запись в файл, почему-то все стирается..
         FileWriter fw = null;
         try {
             fw = new FileWriter("numFile.txt", true);

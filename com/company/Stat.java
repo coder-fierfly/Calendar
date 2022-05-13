@@ -22,6 +22,26 @@ import java.util.ResourceBundle;
 public class Stat implements Initializable {
     public ListView<String> statList;
 
+    //TODO так можно сделать красивый график информация взята с
+    // https://www.youtube.com/watch?v=0_TeHv2Q1PI&t=648s&ab_channel=CoolITHelp
+//    @FXML
+//    private LineChart lineChart;
+//    @FXML
+//    private void handleButtonAction(ActionEvent event) {
+//        //XYChart.Series series = (XYChart.Series)lineChart.getData().get(0);
+//            //new animetefx.animation.Pulse (series.getNode()).play;
+//    }
+//    @Override
+//    public void initialize(URL url, ResourceBundle resourceBundle) {
+//        statList.setItems(getAllWords());
+//        XYChart.Series series = new XYChart.Series();
+//
+//        series.setName("KFKFK");
+//        series.getData().add(new XYChart.Data<String, Integer>("asd", 2));
+//        series.getData().add(new XYChart.Data<String, Integer>("add", 3));
+//        series.getData().add(new XYChart.Data<String, Integer>("as", 10));
+//    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         statList.setItems(getAllWords());
