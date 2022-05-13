@@ -1,4 +1,5 @@
 package com.company;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -27,12 +28,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.MenuItem;
+import javafx.scene.effect.Light;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import javafx.scene.robot.Robot;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -56,6 +59,9 @@ public class Logic extends BorderPane implements Initializable {
             years.add(i);
         }
         yComboBox.setItems(years);
+        System.out.println("ЗДЕСЯЯЯЯ");
+        drawBody();
+        System.out.println("ЗАБЕЖАЛиииииИ");
         drawCalendar();
     }
 
@@ -88,6 +94,26 @@ public class Logic extends BorderPane implements Initializable {
     private GridPane gpBody;
 
     public void drawBody() {
+        File langFile = new File("lang.txt");
+        System.out.println("ЗАБЕЖАЛИ1");
+        System.out.println(langFile.exists());
+        if (!langFile.exists()) {
+            System.out.println("ЗАБЕЖАЛииииии");
+            try {
+                langFile.createNewFile();
+                FileWriter fr = new FileWriter("lang.txt", false);
+                fr.write("en");
+                fr.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                System.out.println("ЗАБЕЖАЛИ");
+                changeLangOpen();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         // рисуем дни недели
         for (int day = 1; day <= 7; day++) {
@@ -197,14 +223,12 @@ public class Logic extends BorderPane implements Initializable {
         File file = new File("data.txt");
         // потом возможно это нужно удалить, т.к. мы будем создавать файл при регистрации
         // и каждый раз проверять его существование не нужно будет
-        if (file.exists()) {
+        // TODO временами
+        if (!file.exists()) {
             System.out.println("шото файла нету, куда дели?");
-        } else {
-            file = new File("data.txt");
         }
         String line;
-        //TODO: ага попалась еще одна однобуквенная!!
-        String[] w = null;
+        String[] words = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             try {
@@ -212,7 +236,7 @@ public class Logic extends BorderPane implements Initializable {
                     if (line.startsWith(id)) {
                         System.out.println(line);
                         line = line.substring(11);
-                        w = line.split("/");
+                        words = line.split("/");
                         break;
                     }
                 }
@@ -223,7 +247,7 @@ public class Logic extends BorderPane implements Initializable {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return w;
+        return words;
     }
 
     private String getParty(String id) {
@@ -258,9 +282,8 @@ public class Logic extends BorderPane implements Initializable {
         return String.valueOf(sb);
     }
 
-    public static void addWords(String w, String fileName) {
-        //TODO: тута тоже однобуквенная.... хз вообще насколько важно такие буферные переменные переименовывать
-        System.out.println(w);
+    public static void addWords(String word, String fileName) {
+        System.out.println(word);
         File file = new File(fileName);
         if (!file.exists()) {
             try {
@@ -290,7 +313,7 @@ public class Logic extends BorderPane implements Initializable {
             FileWriter writer = new FileWriter(fileName, false);
             String lineSeparator = System.getProperty("line.separator");
             //TODO: та же самая w, что сверху была, чтобы не потерялась
-            writer.write(w + lineSeparator);
+            writer.write(word + lineSeparator);
             writer.close();
             FileWriter writer2 = new FileWriter(fileName, true);
             for (String lines : list) {
@@ -337,20 +360,19 @@ public class Logic extends BorderPane implements Initializable {
                 }
             } else {
                 //TODO: опа целых две однобуквенных вот это улов
-                String[] w = getWords(id);
-                String p = getParty(id);
-                if (p == null || w[0] == null) {
+                String[] words = getWords(id);
+                String partyStr = getParty(id);
+                if (partyStr == null || words[0] == null) {
                     showButton("Отсутствует подключение к интернету!", id);
                 } else {
-                    showButton(String.format("Да вы прям полиглот.\nСлово за выбранный день:\n%s - %s\n\nТакже сегодня отмечается следующее событие:\n%s", w[0], w[1], p), id);
+                    showButton(String.format("Да вы прям полиглот.\nСлово за выбранный день:\n%s - %s\n\nТакже сегодня отмечается следующее событие:\n%s", words[0], words[1], partyStr), id);
                 }
             }
         });
         return pt;
     }
 
-    //TODO: ну тут то же самое
-    public void addId(String w) {
+    public void addId(String word) {
         String fineName = "testId.txt";
         File file = new File(fineName);
         try {
@@ -361,7 +383,7 @@ public class Logic extends BorderPane implements Initializable {
 
         try {
             FileWriter writer = new FileWriter(fineName, false);
-            writer.write(w);
+            writer.write(word);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -409,10 +431,15 @@ public class Logic extends BorderPane implements Initializable {
             } */
     }
 
-    @FXML private Button nextMonth, prevMonth, vocab, stat;
-    @FXML private MenuItem topic, changeLang, info;
-    @FXML private ComboBox<String> mComboBox;
-    @FXML private ComboBox<Integer> yComboBox;
+    @FXML
+    private Button nextMonth, prevMonth, vocab, stat;
+    @FXML
+    private MenuItem topic, changeLang, info;
+    @FXML
+    private ComboBox<String> mComboBox;
+    @FXML
+    private ComboBox<Integer> yComboBox;
+
     private void drawFooter() {
         prevMonth.setOnAction(e -> previous());
         nextMonth.setOnAction(e -> next());
@@ -438,6 +465,11 @@ public class Logic extends BorderPane implements Initializable {
         });
 
         // кнопка смены языка
+//        Light.Point p = (Light.Poi;
+//        Robot r = new Robot();
+//
+//
+//            changeLang
         changeLang.setOnAction(event -> {
             try {
                 changeLangOpen();
@@ -488,8 +520,9 @@ public class Logic extends BorderPane implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Язык");
+        stage.toFront();
         stage.getIcons().add(new Image("file:Calendar.png"));
-        stage.show();
+        stage.showAndWait();
     }
 
     // функция смены цвета
@@ -531,10 +564,9 @@ public class Logic extends BorderPane implements Initializable {
         return new GregorianCalendar(pYear, pMonth, 1);
     }
 
-    private String getDayName(int n) {
+    private String getDayName(int num) {
         StringBuilder sb = new StringBuilder();
-        //TODO: надо ли менять эту n? мудрецы уже который век бьются над этим вопросом....
-        switch (n) {
+        switch (num) {
             case 1 -> sb.append("Понедельник");
             case 2 -> sb.append("Вторник");
             case 3 -> sb.append("Среда");
@@ -547,9 +579,9 @@ public class Logic extends BorderPane implements Initializable {
     }
 
     //TODO: и здесь тоже
-    public static String getMonthName(int n) {
+    public static String getMonthName(int num) {
         String[] monthNames = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
-        return monthNames[n];
+        return monthNames[num];
     }
 
     private int getMonthNum(String name) {
