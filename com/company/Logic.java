@@ -78,8 +78,12 @@ public class Logic extends BorderPane implements Initializable {
         Thread t2 = new Thread(task2);
         t1.start();
         t2.start();*/
-        drawBody();
+        File langFile = new File("lang.txt");
+        if (!langFile.exists()) {
+            chooseLang(langFile);
+        }
         fadeApp.init();
+        drawBody();
         fadeApp.startLoad();
         drawFooter();
         fadeApp.endLoad();
@@ -88,26 +92,26 @@ public class Logic extends BorderPane implements Initializable {
     @FXML
     private GridPane gpBody;
 
-    public void drawBody() {
-        File langFile = new File("lang.txt");
-//        System.out.println(langFile.exists());
+    public void chooseLang(File file) {
+        //File langFile = new File("lang.txt");
         // если файл не существует записываю в него nый язык, чтобы дальше можно было выбрать любой другой
-        if (!langFile.exists()) {
-            try {
-                langFile.createNewFile();
-                FileWriter fr = new FileWriter("lang.txt", false);
-                fr.write("en");
-                fr.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-//                System.out.println("ЗАБЕЖАЛИ");
-                changeLangOpen();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            file.createNewFile();
+            FileWriter fr = new FileWriter("lang.txt", false);
+            fr.write("en");
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        try {
+            changeLangOpen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void drawBody() {
 
         // рисуем дни недели
         for (int day = 1; day <= 7; day++) {
@@ -453,12 +457,6 @@ public class Logic extends BorderPane implements Initializable {
             }
         });
 
-        // кнопка смены языка
-//        Light.Point p = (Light.Poi;
-//        Robot r = new Robot();
-//
-//
-//            changeLang
         changeLang.setOnAction(event -> {
             try {
                 changeLangOpen();
