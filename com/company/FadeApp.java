@@ -81,7 +81,7 @@ public class FadeApp {
             if (newState == Worker.State.SUCCEEDED) {
                 loadProgress.progressProperty().unbind();
                 loadProgress.setProgress(1);
-//                initStage.toFront();
+                initStage.toFront();
                 initCompletionHandler.complete();
             }
         });
@@ -90,6 +90,7 @@ public class FadeApp {
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         initStage.setScene(splashScene);
         //TODO: может, 338 и 113 можно вызывать откуда-то? если нет, то просто сотрите меня
+        // а что это за числа?
         initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - 338);
         initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - 113);
         initStage.initStyle(StageStyle.TRANSPARENT);

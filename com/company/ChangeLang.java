@@ -103,10 +103,12 @@ public class ChangeLang {
         BufferedWriter numFile = null;
         BufferedWriter parties = null;
         BufferedWriter data = null;
+        BufferedWriter testData = null;
         try {
             numFile = Files.newBufferedWriter(Paths.get("numFile.txt"));
             parties = Files.newBufferedWriter(Paths.get("parties.txt"));
             data = Files.newBufferedWriter(Paths.get("data.txt"));
+            testData = Files.newBufferedWriter(Paths.get("testData.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -117,6 +119,7 @@ public class ChangeLang {
                 data.write("");
                 parties.write("");
                 numFile.write("");
+                testData.write("");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -127,9 +130,11 @@ public class ChangeLang {
             assert parties != null;
             parties.flush();
             numFile.flush();
+            testData.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     //кнопочка сохранения языка. закрывает окно.
