@@ -68,7 +68,6 @@ public class Logic extends BorderPane implements Initializable {
 
         // todo запускать окошко загрузки, пока идет поиск слов
         FadeApp fadeApp = new FadeApp();
-        fadeApp.init();
         /*Runnable task1 = fadeApp::startLoad;
         Runnable task2 = this::drawBody;
         Platform.setImplicitExit(false);
@@ -77,8 +76,9 @@ public class Logic extends BorderPane implements Initializable {
         Thread t2 = new Thread(task2);
         t1.start();
         t2.start();*/
-        fadeApp.startLoad();
         drawBody();
+        fadeApp.init();
+        fadeApp.startLoad();
         drawFooter();
         fadeApp.endLoad();
     }
