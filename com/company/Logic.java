@@ -50,11 +50,13 @@ public class Logic extends BorderPane implements Initializable {
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
         ObservableList<String> months = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
         mComboBox.setItems(months);
+//        mComboBox.setStyle("-fx-background-color: transparent;");
         ObservableList<Integer> years = FXCollections.observableArrayList();
         for (int i = 1900; i <= 2100; i++) {
             years.add(i);
         }
         yComboBox.setItems(years);
+//        yComboBox.setStyle("-fx-background-color: transparent;");
         drawCalendar();
     }
 
@@ -507,6 +509,7 @@ public class Logic extends BorderPane implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Язык");
+        stage.setResizable(false);
         stage.toFront();
         stage.getIcons().add(new Image("file:Calendar.png"));
         stage.showAndWait();

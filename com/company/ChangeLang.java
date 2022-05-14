@@ -33,7 +33,7 @@ public class ChangeLang {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            title.setText("Выберите язык для изучения.");
+            title.setText("Выберите язык для изучения:");
             if (be.isSelected()) {
                 addLang("be");
                 saveLang();
@@ -56,7 +56,7 @@ public class ChangeLang {
                 makeChoice.setText("Вы не сделали выбор.");
             }
         } else {
-            title.setText("Выберите новый язык для изучения.(Старый язык при этом удалится)");
+            title.setText("Выберите новый язык для изучения:(Старый язык при этом удалится)");
             if (be.isSelected()) {
                 selectedLang("be");
             } else if (en.isSelected()) {
