@@ -7,6 +7,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="apBody" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Logic">
@@ -51,14 +52,14 @@
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
-            <MenuButton alignment="CENTER_RIGHT" graphicTextGap="6.0" layoutX="755.0" layoutY="16.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" popupSide="TOP" prefHeight="30.0" prefWidth="125.0" stylesheets="@main.css" text="Настройки" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
+            <MenuButton alignment="CENTER_RIGHT" graphicTextGap="6.0" layoutX="831.0" layoutY="16.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" popupSide="TOP" prefHeight="30.0" prefWidth="55.0" stylesheets="@main.css" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
                 <items>
                     <MenuItem fx:id="topic" mnemonicParsing="false" text="Тема" />
                     <MenuItem fx:id="changeLang" mnemonicParsing="false" text="Выбор языка" />
                     <MenuItem fx:id="info" text="Информация" />
                 </items>
             <graphic>
-               <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="19.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../../Settings.png" />
                   </image></ImageView>
@@ -109,11 +110,13 @@
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
-            <ComboBox fx:id="mComboBox" layoutX="311.0" layoutY="6.0" prefWidth="150.0" stylesheets="@main.css">
+         <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffffffc7" focusTraversable="true" height="25.0" layoutX="470.0" layoutY="6.0" stroke="#e4e4e4" strokeType="INSIDE" width="76.0" />
+            <ComboBox fx:id="yComboBox" layoutX="470.0" layoutY="6.0" prefHeight="25.0" prefWidth="76.0" stylesheets="@main.css">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></ComboBox>
-            <ComboBox fx:id="yComboBox" layoutX="470.0" layoutY="6.0" prefHeight="26.0" prefWidth="76.0" stylesheets="@main.css">
+         <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffffffc7" height="25.0" layoutX="311.0" layoutY="6.0" stroke="#e4e4e4" strokeType="INSIDE" width="150.0" />
+            <ComboBox fx:id="mComboBox" layoutX="311.0" layoutY="6.0" prefHeight="25.0" prefWidth="150.0" stylesheets="@main.css">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></ComboBox>

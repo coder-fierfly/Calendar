@@ -9,9 +9,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -44,6 +48,9 @@ public class Test implements Initializable {
 
     public Label resultLabel;
     public Button reButton;
+    public Text infoTest;
+    public ImageView imTest;
+    public Rectangle recTest;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,6 +66,9 @@ public class Test implements Initializable {
             question_text.setVisible(true);
             answerBtn.setVisible(true);
             reButton.setVisible(false);
+            infoTest.setVisible(false);
+            imTest.setVisible(false);
+            recTest.setVisible(false);
         });
         Questions[] questions = doTest(id);
         // берем корректный ответ для текущего вопроса
@@ -215,7 +225,9 @@ public class Test implements Initializable {
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.setTitle("тест");
+        stage.setTitle("Тест");
+        stage.getIcons().add(new Image("file:Calendar.png"));
+        stage.setResizable(false);
         stage.show();
     }
 
