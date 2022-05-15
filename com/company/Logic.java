@@ -83,8 +83,8 @@ public class Logic extends BorderPane implements Initializable {
             chooseLang(langFile);
         }
         fadeApp.init();
-        drawBody();
         fadeApp.startLoad();
+        drawBody();
         drawFooter();
         fadeApp.endLoad();
     }
