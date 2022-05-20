@@ -1,5 +1,6 @@
 package com.company;
 
+import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -77,9 +78,7 @@ public class ChangeLang {
         File numFile = new File("numFile.txt");
         File dataFile = new File("data.txt");
         addLang(word);
-//        System.out.println(word);
-        // TODO проверить что && это или
-        if (numFile.exists() && dataFile.exists()) {
+        if (numFile.exists() || dataFile.exists()) {
             cleanFiles();
         }
         saveLang();
