@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,7 +19,6 @@ public class ChangeLang {
     public Label makeChoice;
     public Button save;
     public ToggleGroup answers;
-    public Text tit;
     public javafx.scene.text.Text title;
 
     //кнопки выбора языка
@@ -77,17 +75,17 @@ public class ChangeLang {
 
     public void selectedLang(String word) {
         File numFile = new File("numFile.txt");
-        File partiesFile = new File("parties.txt");
         File dataFile = new File("data.txt");
         addLang(word);
 //        System.out.println(word);
         // TODO проверить что && это или
-        if(numFile.exists() && partiesFile.exists() && dataFile.exists()) {
+        if (numFile.exists() && dataFile.exists()) {
             cleanFiles();
         }
         saveLang();
     }
 
+    // Запись в файл после выбора язка
     public void addLang(String word) {
         String fileName = "lang.txt";
         try {
@@ -99,27 +97,21 @@ public class ChangeLang {
         }
     }
 
+    // Удаление старых файлов, после обновления языка
     public void cleanFiles() {
         BufferedWriter numFile = null;
-        BufferedWriter parties = null;
         BufferedWriter data = null;
-        BufferedWriter testData = null;
         try {
             numFile = Files.newBufferedWriter(Paths.get("numFile.txt"));
-            parties = Files.newBufferedWriter(Paths.get("parties.txt"));
             data = Files.newBufferedWriter(Paths.get("data.txt"));
-            testData = Files.newBufferedWriter(Paths.get("testData.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //if(numFile.)
         try {
             if (data != null) {
                 data.write("");
-                parties.write("");
                 numFile.write("");
-                testData.write("");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -127,14 +119,11 @@ public class ChangeLang {
         try {
             assert numFile != null;
             numFile.flush();
-            assert parties != null;
-            parties.flush();
-            numFile.flush();
-            testData.flush();
+            assert data != null;
+            data.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     //кнопочка сохранения языка. закрывает окно.

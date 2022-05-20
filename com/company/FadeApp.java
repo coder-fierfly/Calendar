@@ -30,9 +30,9 @@ public class FadeApp {
         loadProgress.setPrefWidth(656);
         progressText = new Label("Необходимо найти слова для словаря...");
         splashLayout = new VBox();
-        splashLayout.getChildren().addAll(loadProgress, progressText);
+        //splashLayout.getChildren().addAll(loadProgress, progressText);
         progressText.setAlignment(Pos.CENTER);
-        splashLayout.setEffect(new DropShadow());
+        //splashLayout.setEffect(new DropShadow());
     }
 
     Task<ObservableList<String>> friendTask;
@@ -56,7 +56,6 @@ public class FadeApp {
         };
 
         initStage = new Stage();
-        showSplash(initStage, friendTask, () -> showMainStage());
         new Thread(friendTask).start();
     }
 
