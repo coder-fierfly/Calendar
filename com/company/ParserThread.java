@@ -14,8 +14,7 @@ public class ParserThread {
     }
 
     public void run() {
-        NewParser pvf = new NewParser();
-        //TODO: многа words
+        Parser pvf = new Parser();
         String[] words = getWords(id);
 
         if (words == null) {
@@ -32,11 +31,12 @@ public class ParserThread {
             }
         }
 
-        String part = getParty(id);
+        String part = getParty(id.substring(0, 5));
         if (part == null) {
             PartyParser pp = new PartyParser();
             part = pp.parse(id);
             StringBuilder sb = new StringBuilder();
+            id = id.substring(0, 5);
             sb.append(id).append(" ").append(part);
             Logic.addWords(String.valueOf(sb), "parties.txt");
         }
@@ -75,7 +75,7 @@ public class ParserThread {
                 while ((line = br.readLine()) != null) {
                     if (line.startsWith(id)) {
 //                        System.out.println(line);
-                        line = line.substring(11);
+                        line = line.substring(7);
                         break;
                     }
                 }

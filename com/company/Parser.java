@@ -1,114 +1,126 @@
 package com.company;
 
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.net.UnknownHostException;
+import java.util.Objects;
 
 public class Parser {
-    public int[] pages = new int[0];
 
-    public String[] parse(String lang) {
-        String[] words = new String[2];
-        Connection connect = findPage(lang);
+    public String[] getPage() throws IOException {
+        //беру файл
+        File file = new File("lang.txt");
+        //создаем объект FileReader для объекта File
+        FileReader fr = new FileReader(file);
+        //создаем BufferedReader с существующего FileReader для построчного считывания
+        BufferedReader reader = new BufferedReader(fr);
+        // считаем сначала первую строку
+        String fileName = reader.readLine();
+        int vocSize;
+        File vocFile;
+        //по слову в файле выбираю какой язык парсить
+        switch (fileName) {
+            case "en" -> {
+                vocFile = new File("en.xml");
+                vocSize = 17007;
+            }
+            case "be" -> {
+                vocFile = new File("be.xml");
+                vocSize = 43509;
+            }
+            case "cs" -> {
+                vocFile = new File("cs.xml");
+                vocSize = 9655;
+            }
+            case "de" -> {
+                vocFile = new File("de.xml");
+                vocSize = 13001;
+            }
+            case "sv" -> {
+                vocFile = new File("sv.xml");
+                vocSize = 10403;
+            }
+            case "et" -> {
+                vocFile = new File("et.xml");
+                vocSize = 58652;
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + fileName);
+        }
+
+        FileInputStream fis = new FileInputStream(vocFile);
+        Document doc = Jsoup.parse(fis, null, "VOC", org.jsoup.parser.Parser.xmlParser());
+
+        String allWord = Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize)))).after(Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize))))).text();
+        String[] wordMass = allWord.split(" ", 2);
+        return wordMass;
+    }
+
+    // Выбираю из файла еще не занятые слова
+    private int getNumEl(int size) {
+        String lineSeparator = System.getProperty("line.separator");
+        // Будущий id. По сути просто является местом элемента в файле.
+        int id;
+        do {
+            id = (int) (Math.random() * size);
+        } while (checkWord(String.valueOf(id)));
+
+        FileWriter fw = null;
         try {
-            Document document;
-            try {
-                document = connect.get();
-            } catch (UnknownHostException e) {
-                return null;
-            }
-
-            String word = findWord(document);
-            if (word.charAt(word.length() - 1) == '-') {
-                word = word.replaceAll("-", "");
-            }
-//            System.out.println(word);
-
-            words[0] = word;
-            word = word.replaceAll(" ", "_");
-            StringBuilder sb = new StringBuilder();
-            sb.append("https://gufo.me/dict/").append(lang).append("ru/").append(word);
-            connect = Jsoup.connect(String.valueOf(sb)).userAgent("Mozilla");
-
-            String trans = connect.get().select("#dictionary-acticle > article > p > span").text();
-//            System.out.println(trans);
-            words[1] = trans;
+            fw = new FileWriter("numFile.txt", true);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return words;
+        String idStr = String.valueOf(id);
+        try {
+            fw.write(idStr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            fw.write(lineSeparator);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 
-    private Connection findPage(String lang) {
-        char[] letters = new char[0];
-        switch (lang) {
-            case "et":
-                letters = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 'š', 't', 'u', 'v', 'w', 'õ', 'ä', 'ö', 'ü'};
-                if (pages.length != letters.length) {
-                    pages = new int[letters.length];
-                }
-                break;
-            case "de":
-                letters = new char[]{'a', 'ä', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'ö', 'p', 'q', 'r', 's', 't', 'u', 'ü', 'v', 'w', 'x', 'y', 'z'};
-                if (pages.length != letters.length) {
-                    pages = new int[letters.length];
-                }
-                break;
-            default:
-                break;
+    //проверяю не занято ли место в файле
+    private boolean checkWord(String str) {
+        File numFile = new File("numFile.txt");
+        try {
+            boolean bool = numFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        int page = (int) ((Math.random() * ((26 - 1) + 1)) + 1);
-        char let = letters[page];
-        int count = 0;
-        StringBuilder sb = new StringBuilder();
-
-        if (pages[page] == 0) {
-            while (true) {  // TODO придумать что-нибудь для оптимизации чтения страницы (f.e. читать заголовок, но без использования get(), однако для этого нужно обходить защиту сайта (ошибку 403) - я еще не разобралась, как)
-                sb.append("https://gufo.me/dict/").append(lang).append("ru?page=").append(count + 1).append("&letter=").append(let);
-                Connection connect = Jsoup.connect(String.valueOf(sb)).userAgent("Mozilla");
-                sb.setLength(0);
-                try {
-                    if (connect.get().title().equals("Not Found (#404)")) {
-                        break;
+        String line;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(numFile));
+            try {
+                while ((line = br.readLine()) != null) {
+                    if (line.equals(str)) {
+                        return true;
                     }
-                    count++;
-                    pages[page] = count;
-                } catch (IOException e) {
-                    break;
                 }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } else {
-            count = pages[page];
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-
-//        System.out.println(count);
-        count = (int) ((Math.random() * ((count - 1) + 1)) + 1);
-        sb.append("https://gufo.me/dict/").append(lang).append("ru?page=").append(count).append("&letter=").append(let);
-        return Jsoup.connect(String.valueOf(sb)).userAgent("Mozilla");
-    }
-
-    private String findWord(Document document) {
-        int count = 0;
-        StringBuilder sb = new StringBuilder();
-
-        while (true) {
-            sb.append("#all_words > div > div:nth-child(1) > ul > li:nth-child(").append(count + 1).append(") > a");
-            if (document.select(String.valueOf(sb)).text().equals("")) {
-                sb.setLength(0);
-                break;
-            } else {
-                sb.setLength(0);
-                count++;
-            }
-        }
-
-//        System.out.println(count);
-        int let = ((int) ((Math.random() * ((count - 1) + 1)) + 1));
-        sb.append("#all_words > div > div:nth-child(1) > ul > li:nth-child(").append(let).append(") > a");
-        return (document.select(String.valueOf(sb)).text());
+        return false;
     }
 }

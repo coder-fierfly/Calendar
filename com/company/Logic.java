@@ -50,13 +50,11 @@ public class Logic extends BorderPane implements Initializable {
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
         ObservableList<String> months = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
         mComboBox.setItems(months);
-//        mComboBox.setStyle("-fx-background-color: transparent;");
         ObservableList<Integer> years = FXCollections.observableArrayList();
         for (int i = 1900; i <= 2100; i++) {
             years.add(i);
         }
         yComboBox.setItems(years);
-//        yComboBox.setStyle("-fx-background-color: transparent;");
         drawCalendar();
     }
 
@@ -70,14 +68,6 @@ public class Logic extends BorderPane implements Initializable {
 
         // todo запускать окошко загрузки, пока идет поиск слов
         FadeApp fadeApp = new FadeApp();
-        /*Runnable task1 = fadeApp::startLoad;
-        Runnable task2 = this::drawBody;
-        Platform.setImplicitExit(false);
-
-        Thread t1 = new Thread(task1);
-        Thread t2 = new Thread(task2);
-        t1.start();
-        t2.start();*/
         File langFile = new File("lang.txt");
         if (!langFile.exists()) {
             chooseLang(langFile);
@@ -96,7 +86,7 @@ public class Logic extends BorderPane implements Initializable {
         //File langFile = new File("lang.txt");
         // если файл не существует записываю в него nый язык, чтобы дальше можно было выбрать любой другой
         try {
-            file.createNewFile();
+            boolean bool = file.createNewFile();
             FileWriter fr = new FileWriter("lang.txt", false);
             fr.write("en");
             fr.close();
@@ -108,11 +98,9 @@ public class Logic extends BorderPane implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void drawBody() {
-
         // рисуем дни недели
         for (int day = 1; day <= 7; day++) {
             Text tDayName = new Text(getDayName(day));
@@ -167,13 +155,6 @@ public class Logic extends BorderPane implements Initializable {
         }
 
         fadeApp.startLoad();
-        /* for (ParserThread thread : list) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } */
         fadeApp.endLoad();
 
         // рисуем дни предыдущего месяца там, где остались пустые ячейки
@@ -219,12 +200,6 @@ public class Logic extends BorderPane implements Initializable {
 
     private String[] getWords(String id) {
         File file = new File("data.txt");
-        // потом возможно это нужно удалить, т.к. мы будем создавать файл при регистрации
-        // и каждый раз проверять его существование не нужно будет
-        // TODO временами
-        if (!file.exists()) {
-            System.out.println("шото файла нету, куда дели?");
-        }
         String line;
         String[] words = null;
         try {
@@ -266,7 +241,7 @@ public class Logic extends BorderPane implements Initializable {
                 while ((line = br.readLine()) != null) {
                     if (line.startsWith(id)) {
                         System.out.println(line);
-                        line = line.substring(11);
+                        line = line.substring(6);
                         sb.append(line).append("\n");
                     }
                 }
@@ -310,7 +285,6 @@ public class Logic extends BorderPane implements Initializable {
         try {
             FileWriter writer = new FileWriter(fileName, false);
             String lineSeparator = System.getProperty("line.separator");
-            //TODO: та же самая w, что сверху была, чтобы не потерялась
             writer.write(word + lineSeparator);
             writer.close();
             FileWriter writer2 = new FileWriter(fileName, true);
@@ -350,7 +324,7 @@ public class Logic extends BorderPane implements Initializable {
             System.out.println(cal.getTime());
             if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
                 addId(id);
-                Test test = new Test(); // TODO: ВАЖНО!!! я запуталась и не понимаю, как передать айди через два класса, если они оба инициализируются
+                Test test = new Test();
                 try {
                     test.testOpen();
                 } catch (IOException e) {
@@ -358,7 +332,7 @@ public class Logic extends BorderPane implements Initializable {
                 }
             } else {
                 String[] words = getWords(id);
-                String partyStr = getParty(id);
+                String partyStr = getParty(id.substring(0, 5));
                 if (partyStr == null || words[0] == null) {
                     showButton("Отсутствует подключение к интернету!", id);
                 } else {
@@ -404,7 +378,7 @@ public class Logic extends BorderPane implements Initializable {
 
         btn.setOnAction(e -> {
             StringBuilder sb = new StringBuilder();
-            sb.append(id).append(" ").append(userTextField.getText());
+            sb.append(id.substring(0, 5)).append(" ").append(userTextField.getText());
             addWords(String.valueOf(sb), "parties.txt");
         });
 
@@ -415,13 +389,6 @@ public class Logic extends BorderPane implements Initializable {
         newWindow.setScene(secondScene);
         newWindow.initModality(Modality.WINDOW_MODAL);
         newWindow.show();
-
-           /* try {
-                Panel panel = new Panel();
-                panel.panelOpen(text);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } */
     }
 
     @FXML
@@ -457,6 +424,7 @@ public class Logic extends BorderPane implements Initializable {
             }
         });
 
+        //кнопка смены языка
         changeLang.setOnAction(event -> {
             try {
                 changeLangOpen();
