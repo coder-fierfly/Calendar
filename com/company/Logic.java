@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -58,7 +59,7 @@ public class Logic extends BorderPane implements Initializable {
         drawCalendar();
     }
 
-    private void drawCalendar() {
+    public void drawCalendar() {
         // меняем подписи у выпадающих списков выбора года и месяца
         mComboBox.setPromptText(getMonthName(currentMonth.get(Calendar.MONTH)));  // setValue(getMonthName(currentMonth.get(Calendar.MONTH)));
         yComboBox.setPromptText(String.valueOf(currentMonth.get(Calendar.YEAR)));
@@ -98,6 +99,7 @@ public class Logic extends BorderPane implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //drawCalendar();
     }
 
     public void drawBody() {
@@ -431,6 +433,8 @@ public class Logic extends BorderPane implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            currentMonth = new GregorianCalendar(currentMonth.get(Calendar.YEAR), currentMonth.get(Calendar.MONTH), 1);
+            drawCalendar();
         });
 
         // кнопка словаря
