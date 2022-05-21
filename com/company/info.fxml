@@ -4,8 +4,8 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Info">
-    <Text layoutX="60.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Информация о нас" wrappingWidth="506.60150146484375">
+<AnchorPane prefHeight="405.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Info">
+    <Text layoutX="37.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Информация о нас" wrappingWidth="506.60150146484375">
       <font>
          <Font name="Segoe UI Semibold" size="20.0" />
       </font>
@@ -25,4 +25,43 @@
             </stops>
          </LinearGradient>
       </fill></Text>
+   <Text layoutX="37.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Основная идея календаря заключается в его «образовательной» функции. По задумке пользователь выбирает интересующий его иностранный язык, после чего с помощью обращения к соответствующему словарю каждый день в ячейке нового дня отображаются несколько случайно выбранных слов, а в конце недели пользователю становится доступен небольшой тест по выученным в течение недели словам, ориентированный на надежное закрепление их в памяти. Кроме того, в функционале календаря есть возможность отслеживать добавляемые самим пользователем или встроенные события." textAlignment="JUSTIFY" wrappingWidth="539.6015014648438">
+      <font>
+         <Font name="Segoe UI Semilight" size="13.0" />
+      </font>
+   </Text>
+   <Text layoutX="37.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Состав группы разработчиков:" wrappingWidth="214.13671875">
+      <font>
+         <Font name="Segoe UI Semilight" size="13.0" />
+      </font>
+   </Text>
+   <Text layoutX="37.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Руководитель группы: Андрианова Елена">
+      <font>
+         <Font name="Segoe UI Semilight" size="13.0" />
+      </font>
+   </Text>
+   <Text layoutX="37.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Разработчик: Целищева Елизавета">
+      <font>
+         <Font name="Segoe UI Semilight" size="13.0" />
+      </font>
+   </Text>
+   <Text layoutX="37.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Дизайнер: Абдрахманова Айсулу">
+      <font>
+         <Font name="Segoe UI Semilight" size="13.0" />
+      </font>
+   </Text>
+   <Text layoutX="37.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Тестировщик: Литвинова Юлия">
+      <font>
+         <Font name="Segoe UI Semilight" size="13.0" />
+      </font>
+   </Text>
+   <Text layoutX="37.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Аналитик: Лоскутова Софья">
+      <font>
+         <Font name="Segoe UI Semilight" size="13.0" />
+      </font>
+   </Text>
+   <Text layoutX="37.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Год создания программы: 2022">
+      <font>
+         <Font name="Segoe UI Semilight" size="13.0" />
+      </font></Text>
 </AnchorPane>

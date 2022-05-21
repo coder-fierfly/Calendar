@@ -366,16 +366,21 @@ public class Logic extends BorderPane implements Initializable {
     public void showButton(String text, String id) {
 
         VBox secondaryLayout = new VBox(10);
+        Text textHead = new Text();
+        textHead.setText("Информация о дне");
         Label label = new Label();
+        label.setFont(Font.font("Segoe UI Semilight", 13));
         label.setText(text);
         secondaryLayout.getChildren().add(label);
         secondaryLayout.setSpacing(10);
         Label userName = new Label("Вы можете добавить новое событие на этот день: ");
+        userName.setFont(Font.font("Segoe UI Semilight", 13));
         secondaryLayout.getChildren().add(userName);
         TextField userTextField = new TextField();
+        userTextField.setFont(Font.font("Segoe UI Semilight", 13));
         secondaryLayout.getChildren().add(userTextField);
-
         Button btn = new Button("Добавить");
+        btn.setFont(Font.font("Segoe UI Semilight", 13));
         secondaryLayout.getChildren().add(btn);
 
         btn.setOnAction(e -> {
@@ -389,6 +394,7 @@ public class Logic extends BorderPane implements Initializable {
         newWindow.setTitle("Информация о дне");
         newWindow.getIcons().add(new Image("file:Calendar.png"));
         newWindow.setScene(secondScene);
+        newWindow.setResizable(false);
         newWindow.initModality(Modality.WINDOW_MODAL);
         newWindow.show();
     }
@@ -468,6 +474,7 @@ public class Logic extends BorderPane implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Информация");
+        stage.setResizable(false);
         stage.getIcons().add(new Image("file:Calendar.png"));
         stage.show();
     }
