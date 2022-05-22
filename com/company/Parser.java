@@ -54,7 +54,7 @@ public class Parser {
             default -> throw new IllegalStateException("Unexpected value: " + fileName);
         }
 
-        FileInputStream fis = new FileInputStream(vocFile);
+        FileInputStream fis = new FileInputStream("xml/" + vocFile);
         Document doc = Jsoup.parse(fis, null, "VOC", org.jsoup.parser.Parser.xmlParser());
 
         String allWord = Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize)))).after(Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize))))).text();

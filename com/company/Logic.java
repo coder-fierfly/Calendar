@@ -14,7 +14,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,11 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -44,6 +39,7 @@ public class Logic extends BorderPane implements Initializable {
     public AnchorPane firstColor;
     public AnchorPane secondColor;
     public AnchorPane thirdColor;
+    public MenuButton menuButton;
     Boolean isDark = false;
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -67,8 +63,7 @@ public class Logic extends BorderPane implements Initializable {
         gpBody.getChildren().clear();
         gpBody.setGridLinesVisible(true);
 
-        // todo запускать окошко загрузки, пока идет поиск слов
-        FadeApp fadeApp = new FadeApp();
+        FadeAppController fadeApp = new FadeAppController();
         File langFile = new File("lang.txt");
         if (!langFile.exists()) {
             chooseLang(langFile);
@@ -123,7 +118,7 @@ public class Logic extends BorderPane implements Initializable {
         String dateNow = new SimpleDateFormat("MM/dd/yyyy").format(Calendar.getInstance().getTime());
         int row = 1;
 
-        FadeApp fadeApp = new FadeApp();
+        FadeAppController fadeApp = new FadeAppController();
         fadeApp.init();
 
         List<ParserThread> list = new ArrayList<>();
@@ -326,7 +321,7 @@ public class Logic extends BorderPane implements Initializable {
             System.out.println(cal.getTime());
             if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
                 addId(id);
-                Test test = new Test();
+                TestController test = new TestController();
                 try {
                     test.testOpen();
                 } catch (IOException e) {
@@ -446,7 +441,7 @@ public class Logic extends BorderPane implements Initializable {
         // кнопка словаря
         vocab.setOnAction(event -> {
             try {
-                Vocab vocab = new Vocab();
+                VocabController vocab = new VocabController();
                 vocab.vocabOpen();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -456,7 +451,7 @@ public class Logic extends BorderPane implements Initializable {
         // кнопка статистики
         stat.setOnAction(event -> {
             try {
-                Stat stat = new Stat();
+                StatController stat = new StatController();
                 stat.statOpen();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -469,7 +464,7 @@ public class Logic extends BorderPane implements Initializable {
 
     @FXML // загрузка окна информации
     private void infoOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fx/info.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -481,14 +476,14 @@ public class Logic extends BorderPane implements Initializable {
 
     @FXML // загрузка окна смены языка
     private void changeLangOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("changeLang.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fx/changeLang.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Язык");
         stage.setResizable(false);
         stage.toFront();
-        stage.getIcons().add(new Image("file:Calendar.png"));
+        stage.getIcons().add(new Image("file:out/pictures/Calendar.png"));
         stage.showAndWait();
     }
 
@@ -499,11 +494,19 @@ public class Logic extends BorderPane implements Initializable {
             secondColor.setStyle("-fx-background-color: #303131;");
             thirdColor.setStyle("-fx-background-color: #2a2a2a;");
             isDark = true;
+            menuButton.getItems().remove(0);
+            MenuItem menuItem = new MenuItem("Светлая тема");
+            menuButton.getItems().add(0, menuItem);
+            menuItem.setOnAction(event -> changeColor());
         } else {
             firstColor.setStyle("-fx-background-color: #d1f0f1;");
             secondColor.setStyle("-fx-background-color: #8ed8d8;");
             thirdColor.setStyle("-fx-background-color: #61c7c7;");
             isDark = false;
+            menuButton.getItems().remove(0);
+            MenuItem menuItem = new MenuItem("Темная тема");
+            menuButton.getItems().add(0, menuItem);
+            menuItem.setOnAction(event -> changeColor());
         }
     }
 

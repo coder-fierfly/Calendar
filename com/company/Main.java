@@ -13,14 +13,14 @@ import java.util.Objects;
 public class Main extends Application {
 
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Cont2.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fx/Cont2.fxml")));
         Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);
         primaryStage.toBack();
         primaryStage.setTitle("Календарь");
         primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image("file:Calendar.png"));
+        primaryStage.getIcons().add(new Image("file:out/pictures/Calendar.png"));
         primaryStage.show();
     }
 
