@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="747.0" style="-fx-background-color: #F4F7FB;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Test">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="747.0" style="-fx-background-color: #F4F7FB;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.TestController">
    <Text layoutX="349.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тест">
       <font>
          <Font name="Segoe UI Semibold" size="25.0" />
@@ -67,37 +67,37 @@
          <Image url="@../../Test.png" />
       </image>
    </ImageView>
-    <Text fx:id="question_text" layoutX="120.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" visible="false" wrappingWidth="494.8199462890625">
+    <Text fx:id="question_text" layoutX="70.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" visible="false" wrappingWidth="494.8199462890625">
         <font>
-            <Font name="Segoe UI Semibold" size="16.0" />
+            <Font name="Segoe UI Semibold" size="18.0" />
         </font>
     </Text>
-    <RadioButton fx:id="radio_btn_1" layoutX="120.0" layoutY="150.0" mnemonicParsing="false" text="1" textFill="#5e5e5e" visible="false">
+    <RadioButton fx:id="radio_btn_1" layoutX="70.0" layoutY="150.0" mnemonicParsing="false" text="1" textFill="#5e5e5e" visible="false">
         <font>
-            <Font name="Segoe UI Semilight" size="13.0" />
+            <Font name="Segoe UI Semilight" size="15.0" />
         </font>
         <toggleGroup>
             <ToggleGroup fx:id="answers" />
         </toggleGroup>
     </RadioButton>
-    <RadioButton fx:id="radio_btn_2" layoutX="120.0" layoutY="180.0" mnemonicParsing="false" text="2" textFill="#5e5e5e" toggleGroup="$answers" visible="false">
+    <RadioButton fx:id="radio_btn_2" layoutX="70.0" layoutY="180.0" mnemonicParsing="false" text="2" textFill="#5e5e5e" toggleGroup="$answers" visible="false">
         <font>
-            <Font name="Segoe UI Semilight" size="13.0" />
+            <Font name="Segoe UI Semilight" size="15.0" />
         </font>
     </RadioButton>
-    <RadioButton fx:id="radio_btn_3" layoutX="120.0" layoutY="210.0" mnemonicParsing="false" text="3" textFill="#5e5e5e" toggleGroup="$answers" visible="false">
+    <RadioButton fx:id="radio_btn_3" layoutX="70.0" layoutY="210.0" mnemonicParsing="false" text="3" textFill="#5e5e5e" toggleGroup="$answers" visible="false">
         <font>
-            <Font name="Segoe UI Semilight" size="13.0" />
+            <Font name="Segoe UI Semilight" size="15.0" />
         </font>
     </RadioButton>
-    <RadioButton fx:id="radio_btn_4" layoutX="120.0" layoutY="240.0" mnemonicParsing="false" text="4" textFill="#5e5e5e" toggleGroup="$answers" visible="false">
+    <RadioButton fx:id="radio_btn_4" layoutX="70.0" layoutY="240.0" mnemonicParsing="false" text="4" textFill="#5e5e5e" toggleGroup="$answers" visible="false">
         <font>
-            <Font name="Segoe UI Semilight" size="13.0" />
+            <Font name="Segoe UI Semilight" size="15.0" />
         </font>
     </RadioButton>
     <Button fx:id="answerBtn" layoutX="290.0" layoutY="300.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" stylesheets="@main.css" text="Ответить" textFill="WHITE" visible="false">
         <font>
-            <Font name="Segoe UI Semilight" size="13.0" />
+            <Font name="Segoe UI Semilight" size="14.0" />
         </font>
         <cursor>
             <Cursor fx:constant="HAND" />

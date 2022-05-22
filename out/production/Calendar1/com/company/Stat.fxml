@@ -1,10 +1,10 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<?xml version="1.0" encoding="UTF-8"?>
 
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
 <!--<?import javafx.scene.chart.*?>-->
 <!--<?import javafx.scene.control.*?>-->
 <!--<?import javafx.scene.layout.*?>-->
-
-<!--<AnchorPane prefHeight="434.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Stat">-->
+<!--<AnchorPane prefHeight="434.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.StatControllerController">-->
 <!--    <ScrollPane layoutX="571.0" prefHeight="400.0" prefWidth="36.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="571.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">-->
 <!--        <ScrollBar orientation="VERTICAL" prefHeight="401.0" prefWidth="14.0" visible="false" />-->
 <!--    </ScrollPane>-->
@@ -18,19 +18,32 @@
 <!--   </LineChart>-->
 <!--</AnchorPane>-->
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.company.Stat">
-    <ScrollPane layoutX="447.0" prefHeight="400.0" prefWidth="153.0" AnchorPane.bottomAnchor="0.0"
-                AnchorPane.leftAnchor="447.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <ScrollBar orientation="VERTICAL" prefHeight="401.0" prefWidth="14.0" visible="false"/>
-    </ScrollPane>
-    <ListView fx:id="statList" layoutX="29.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
-              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.StatController">
+   <Text layoutX="13.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Статистика">
+      <font>
+         <Font name="Segoe UI Semibold" size="19.0" />
+      </font>
+      <fill>
+         <LinearGradient endX="1.0" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.03529411926865578" green="0.4588235318660736" blue="0.4313725531101227" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.06360000371932983" green="0.4444933235645294" blue="0.5299999713897705" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+    <ListView fx:id="statList" layoutX="13.0" layoutY="48.0" prefHeight="338.0" prefWidth="575.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="48.0" />
 </AnchorPane>
