@@ -87,7 +87,7 @@ public class StatController implements Initializable {
                     }
                     if (line.length() < 16) {
                         sb.setLength(0);
-                        sb.append(line, 3, 5).append(": ").append(line.substring(11));
+                        sb.append("За ").append(line, 3, 5).append("-е число было набрано ").append(line.substring(11) + " из 6 баллов");
                         vocab.add(String.valueOf(sb));
                     }
                     sb.setLength(0);
