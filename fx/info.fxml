@@ -4,7 +4,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="405.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Info">
+<AnchorPane prefHeight="405.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.InfoController">
     <Text layoutX="37.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Информация о нас" wrappingWidth="506.60150146484375">
       <font>
          <Font name="Segoe UI Semibold" size="20.0" />

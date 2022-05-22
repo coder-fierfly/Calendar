@@ -5,7 +5,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.ChangeLang">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.ChangeLangController">
     <RadioButton fx:id="be" layoutX="221.0" layoutY="110.0" mnemonicParsing="false" text="Белорусский">
         <toggleGroup>
             <ToggleGroup fx:id="answers" />
@@ -39,7 +39,7 @@
             <Font name="Segoe UI Light" size="14.0" />
         </font>
     </RadioButton>
-    <Button fx:id="save" layoutX="223.0" layoutY="285.0" mnemonicParsing="false" onAction="#radioLangButton" prefHeight="20.0" prefWidth="100.0" stylesheets="@main.css" text="Сохранить">
+    <Button fx:id="save" layoutX="223.0" layoutY="285.0" mnemonicParsing="false" onAction="#radioLangButton" prefHeight="20.0" prefWidth="100.0" stylesheets="@../com/company/main.css" text="Сохранить">
         <font>
             <Font name="Segoe UI Light" size="13.0" />
         </font>

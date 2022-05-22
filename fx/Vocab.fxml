@@ -27,5 +27,5 @@
          </LinearGradient>
       </fill>
    </Text>
-   <ListView fx:id="vocabList" layoutX="12.0" layoutY="53.0" prefHeight="357.0" prefWidth="664.0" stylesheets="@main.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="53.0" />
+   <ListView fx:id="vocabList" layoutX="12.0" layoutY="53.0" prefHeight="357.0" prefWidth="664.0" stylesheets="@../com/company/main.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="53.0" />
 </AnchorPane>
