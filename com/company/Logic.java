@@ -41,6 +41,7 @@ public class Logic extends BorderPane implements Initializable {
     public AnchorPane thirdColor;
     public MenuButton menuButton;
     Boolean isDark = false;
+    public static String currLang = "en";
 
     public void initialize(URL location, ResourceBundle resources) {
         currentMonth = new GregorianCalendar();
@@ -63,7 +64,7 @@ public class Logic extends BorderPane implements Initializable {
         gpBody.getChildren().clear();
         gpBody.setGridLinesVisible(true);
 
-        FadeAppController fadeApp = new FadeAppController();
+        FadeApp fadeApp = new FadeApp();
         File langFile = new File("lang.txt");
         if (!langFile.exists()) {
             chooseLang(langFile);
@@ -118,7 +119,7 @@ public class Logic extends BorderPane implements Initializable {
         String dateNow = new SimpleDateFormat("MM/dd/yyyy").format(Calendar.getInstance().getTime());
         int row = 1;
 
-        FadeAppController fadeApp = new FadeAppController();
+        FadeApp fadeApp = new FadeApp();
         fadeApp.init();
 
         List<ParserThread> list = new ArrayList<>();
@@ -321,7 +322,7 @@ public class Logic extends BorderPane implements Initializable {
             System.out.println(cal.getTime());
             if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
                 addId(id);
-                TestController test = new TestController();
+                Test test = new Test();
                 try {
                     test.testOpen();
                 } catch (IOException e) {
@@ -441,7 +442,7 @@ public class Logic extends BorderPane implements Initializable {
         // кнопка словаря
         vocab.setOnAction(event -> {
             try {
-                VocabController vocab = new VocabController();
+                Vocab vocab = new Vocab();
                 vocab.vocabOpen();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -451,7 +452,7 @@ public class Logic extends BorderPane implements Initializable {
         // кнопка статистики
         stat.setOnAction(event -> {
             try {
-                StatController stat = new StatController();
+                Stat stat = new Stat();
                 stat.statOpen();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -464,7 +465,7 @@ public class Logic extends BorderPane implements Initializable {
 
     @FXML // загрузка окна информации
     private void infoOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fx/info.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("./info.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -476,14 +477,17 @@ public class Logic extends BorderPane implements Initializable {
 
     @FXML // загрузка окна смены языка
     private void changeLangOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fx/changeLang.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("changeLang.fxml"));
         Parent root = loader.load();
+        ChangeLang changeLangController = loader.getController();
+        changeLangController.setParent(this);
+
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Язык");
         stage.setResizable(false);
         stage.toFront();
-        stage.getIcons().add(new Image("file:out/pictures/Calendar.png"));
+        stage.getIcons().add(new Image("file:./Calendar.png"));
         stage.showAndWait();
     }
 
@@ -562,5 +566,13 @@ public class Logic extends BorderPane implements Initializable {
             }
         }
         return i;
+    }
+
+    public static void setLang(String lang) {
+        currLang = lang;
+    }
+
+    public static String getLang() {
+        return currLang;
     }
 }

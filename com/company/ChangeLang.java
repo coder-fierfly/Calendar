@@ -1,31 +1,64 @@
 package com.company;
 
-import javafx.application.Application;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ResourceBundle;
 
-public class ChangeLang {
+public class ChangeLang implements Initializable {
 
+    @FXML
     public RadioButton de, be, et, cs, sv, en;
     public Label makeChoice;
+    @FXML
     public Button save;
     public ToggleGroup answers;
     public javafx.scene.text.Text title;
+    private Logic logic;
+
+    public void initialize(URL location, ResourceBundle resources) {
+        getButton(Logic.getLang()).setSelected(true);
+    }
+
+    public void setParent(Logic logic) {
+        this.logic = logic;
+    }
+
+    public ChangeLang getThis() {
+        return this;
+    }
+
+    public RadioButton getButton(String lang) {
+        if (lang.equals("be")) {
+            return be;
+        } else if (lang.equals("en")) {
+            return en;
+        } else if (lang.equals("de")) {
+            return de;
+        } else if (lang.equals("cs")) {
+            cs.requestFocus();
+        } else if (lang.equals("et")) {
+            return et;
+        } else if (lang.equals("sv")) {
+            return sv;
+        }
+        return null;
+    }
 
     //кнопки выбора языка
     public void radioLangButton() {
         File langFile = new File("lang.txt");
-        // если файл не существуем, то создаем его и записываем в него язык для изучения
+
+        // если файл не существует, то создаем его и записываем в него язык для изучения
         if (!langFile.exists()) {
             try {
                 boolean bool = langFile.createNewFile();

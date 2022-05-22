@@ -25,6 +25,7 @@ public class Parser {
         String fileName = reader.readLine();
         int vocSize;
         File vocFile;
+        Logic.setLang(fileName);
         //по слову в файле выбираю какой язык парсить
         switch (fileName) {
             case "en" -> {
@@ -54,7 +55,7 @@ public class Parser {
             default -> throw new IllegalStateException("Unexpected value: " + fileName);
         }
 
-        FileInputStream fis = new FileInputStream("xml/" + vocFile);
+        FileInputStream fis = new FileInputStream("./" + vocFile);
         Document doc = Jsoup.parse(fis, null, "VOC", org.jsoup.parser.Parser.xmlParser());
 
         String allWord = Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize)))).after(Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize))))).text();
