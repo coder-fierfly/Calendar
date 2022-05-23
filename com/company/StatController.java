@@ -49,7 +49,7 @@ public class StatController implements Initializable {
 
     @FXML // загрузка окна статистики
     public void statOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(StatController.class.getResource("Stat.fxml"));
+        FXMLLoader loader = new FXMLLoader(StatController.class.getResource("fx/Stat.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

@@ -2,6 +2,7 @@ package com.company;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Objects;
 
 public class Parser {
 
@@ -28,38 +28,41 @@ public class Parser {
         //по слову в файле выбираю какой язык парсить
         switch (fileName) {
             case "en" -> {
-                vocFile = new File("en.xml");
+                vocFile = new File("com/company/xml/en.xml");
                 vocSize = 17007;
             }
             case "be" -> {
-                vocFile = new File("be.xml");
+                vocFile = new File("com/company/xml/be.xml");
                 vocSize = 43509;
             }
             case "cs" -> {
-                vocFile = new File("cs.xml");
+                vocFile = new File("com/company/xml/cs.xml");
                 vocSize = 9655;
             }
             case "de" -> {
-                vocFile = new File("de.xml");
+                vocFile = new File("com/company/xml/de.xml");
                 vocSize = 13001;
             }
             case "sv" -> {
-                vocFile = new File("sv.xml");
+                vocFile = new File("com/company/xml/sv.xml");
                 vocSize = 10403;
             }
             case "et" -> {
-                vocFile = new File("et.xml");
+                vocFile = new File("com/company/xml/et.xml");
                 vocSize = 58652;
             }
             default -> throw new IllegalStateException("Unexpected value: " + fileName);
         }
 
-        FileInputStream fis = new FileInputStream(vocFile);
+        FileInputStream fis = new FileInputStream (vocFile);
         Document doc = Jsoup.parse(fis, null, "VOC", org.jsoup.parser.Parser.xmlParser());
-
-        String allWord = Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize)))).after(Objects.requireNonNull(doc.getElementById(String.valueOf(getNumEl(vocSize))))).text();
-        String[] wordMass = allWord.split(" ", 2);
-        return wordMass;
+        Elements foreignLang = doc.getElementsByTag("k");
+        Elements ourLang = doc.getElementsByTag("ar");
+        StringBuilder sb = new StringBuilder();
+        int num = getNumEl(vocSize);
+        sb.append(foreignLang.get(num).ownText());
+        sb.append("%").append(ourLang.get(num).ownText());
+        return sb.toString().split("%");
     }
 
     // Выбираю из файла еще не занятые слова

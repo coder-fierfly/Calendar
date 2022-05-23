@@ -229,7 +229,7 @@ public class TestController implements Initializable {
 
     @FXML //загрузка окна тестов
     public void testOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(TestController.class.getResource("sample.fxml"));
+        FXMLLoader loader = new FXMLLoader(TestController.class.getResource("Sample.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

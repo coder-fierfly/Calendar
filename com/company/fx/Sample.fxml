@@ -1,0 +1,106 @@
+<?com.company.xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="747.0" style="-fx-background-color: #F4F7FB;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.TestController">
+   <Text layoutX="349.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тест">
+      <font>
+         <Font name="Segoe UI Semibold" size="25.0" />
+      </font>
+      <fill>
+         <LinearGradient endX="1.0" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.18640351295471191" green="0.38709795475006104" blue="0.8947368264198303" />
+                  </color>
+               </Stop>
+               <Stop offset="0.1323221550736659">
+                  <color>
+                     <Color red="0.1940789520740509" green="0.5434210300445557" blue="0.7763158082962036" />
+                  </color>
+               </Stop>
+               <Stop offset="0.2853813643006676">
+                  <color>
+                     <Color red="0.16118420660495758" green="0.47247806191444397" blue="0.7105262875556946" />
+                  </color>
+               </Stop>
+               <Stop offset="0.5021132045661018">
+                  <color>
+                     <Color red="0.1493055522441864" green="0.6799190044403076" blue="0.75" />
+                  </color>
+               </Stop>
+               <Stop offset="0.770391436584113">
+                  <color>
+                     <Color red="0.1937134563922882" green="0.6008162498474121" blue="0.7894737124443054" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.11306042969226837" green="0.35607537627220154" blue="0.8421052694320679" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill></Text>
+   <Text fx:id="infoTest" layoutX="113.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вам предстоит ответить на 6 вопросов, выбирая правильный перевод заданных слов. Учитываются только те слова, которые Вы прошли на этой неделе." textAlignment="CENTER" wrappingWidth="529.67333984375">
+      <font>
+         <Font name="Segoe UI Semilight" size="14.0" />
+      </font>
+   </Text>
+   <Rectangle fx:id="recTest" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffffff00" height="61.0" layoutX="113.0" layoutY="101.0" stroke="#cdcdcd" strokeType="INSIDE" width="530.0" />
+    <Button fx:id="reButton" layoutX="326.0" layoutY="184.0" mnemonicParsing="false" stylesheets="com/company/main.css" text="Пройти тест">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+      <font>
+         <Font name="Segoe UI Semilight" size="14.0" />
+      </font></Button>
+   <ImageView fx:id="imTest" fitHeight="150.0" fitWidth="150.0" layoutX="299.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="com/company/pictures/Test.png" />
+      </image>
+   </ImageView>
+    <Text fx:id="question_text" layoutX="70.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" visible="false" wrappingWidth="494.8199462890625">
+        <font>
+            <Font name="Segoe UI Semibold" size="18.0" />
+        </font>
+    </Text>
+    <RadioButton fx:id="radio_btn_1" layoutX="70.0" layoutY="150.0" mnemonicParsing="false" text="1" textFill="#5e5e5e" visible="false">
+        <font>
+            <Font name="Segoe UI Semilight" size="15.0" />
+        </font>
+        <toggleGroup>
+            <ToggleGroup fx:id="answers" />
+        </toggleGroup>
+    </RadioButton>
+    <RadioButton fx:id="radio_btn_2" layoutX="70.0" layoutY="180.0" mnemonicParsing="false" text="2" textFill="#5e5e5e" toggleGroup="$answers" visible="false">
+        <font>
+            <Font name="Segoe UI Semilight" size="15.0" />
+        </font>
+    </RadioButton>
+    <RadioButton fx:id="radio_btn_3" layoutX="70.0" layoutY="210.0" mnemonicParsing="false" text="3" textFill="#5e5e5e" toggleGroup="$answers" visible="false">
+        <font>
+            <Font name="Segoe UI Semilight" size="15.0" />
+        </font>
+    </RadioButton>
+    <RadioButton fx:id="radio_btn_4" layoutX="70.0" layoutY="240.0" mnemonicParsing="false" text="4" textFill="#5e5e5e" toggleGroup="$answers" visible="false">
+        <font>
+            <Font name="Segoe UI Semilight" size="15.0" />
+        </font>
+    </RadioButton>
+    <Button fx:id="answerBtn" layoutX="290.0" layoutY="300.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" stylesheets="com/company/main.css" text="Ответить" textFill="WHITE" visible="false">
+        <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+        </font>
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+</AnchorPane>

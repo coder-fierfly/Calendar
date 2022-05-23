@@ -464,7 +464,7 @@ public class Logic extends BorderPane implements Initializable {
 
     @FXML // загрузка окна информации
     private void infoOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fx/info.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fx/Info.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -476,14 +476,14 @@ public class Logic extends BorderPane implements Initializable {
 
     @FXML // загрузка окна смены языка
     private void changeLangOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fx/changeLang.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fx/ChangeLang.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Язык");
         stage.setResizable(false);
         stage.toFront();
-        stage.getIcons().add(new Image("file:out/pictures/Calendar.png"));
+        stage.getIcons().add(new Image("file:out/com.company.pictures/Calendar.png"));
         stage.showAndWait();
     }
 

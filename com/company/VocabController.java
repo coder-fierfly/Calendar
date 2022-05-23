@@ -29,7 +29,7 @@ public class VocabController implements Initializable {
 
     @FXML // загрузка окна словаря
     public void vocabOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(VocabController.class.getResource("Vocab.fxml"));
+        FXMLLoader loader = new FXMLLoader(VocabController.class.getResource("fx/Vocab.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
