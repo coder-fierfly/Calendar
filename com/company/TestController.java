@@ -182,13 +182,6 @@ public class TestController implements Initializable {
                 sb.append("0");
             }
             sb.append(cal.get(Calendar.DAY_OF_MONTH)).append("/").append(cal.get(Calendar.YEAR));
-            //System.out.println(sb);
-            if ((cal.get(Calendar.DAY_OF_MONTH) == 1) && (i < 5)) {
-                infoTest.setText("Вы еще не изучили все слова, необходимые для прохождения недельного теста.\nВы можете посмотреть их, обратившись к станице предыдущего месяца.");
-                reButton.setDisable(true);
-                Questions[] q = new Questions[]{};
-                return q;
-            }
 
             try {
                 BufferedReader br = new BufferedReader(new FileReader(file));
@@ -206,6 +199,12 @@ public class TestController implements Initializable {
                         line = br.readLine();
                     }
                     br.close();
+                    if (line == null) {
+                        infoTest.setText("Вы еще не изучили все слова, необходимые для прохождения недельного теста.\nВы можете посмотреть их, обратившись к станице предыдущего месяца.");
+                        reButton.setDisable(true);
+                        Questions[] q = new Questions[]{};
+                        return q;
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -229,7 +228,7 @@ public class TestController implements Initializable {
 
     @FXML //загрузка окна тестов
     public void testOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(TestController.class.getResource("Sample.fxml"));
+        FXMLLoader loader = new FXMLLoader(TestController.class.getResource("fx/Sample.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
