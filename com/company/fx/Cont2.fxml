@@ -41,21 +41,21 @@
          </rotationAxis>
         </AnchorPane>
         <AnchorPane fx:id="secondColor" layoutX="-1.0" layoutY="515.0" prefHeight="62.0" prefWidth="903.0" style="-fx-background-color: #8ed8d8;">
-            <Button fx:id="stat" layoutX="25.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" stylesheets="com/company/main.css" text="Статистика">
+            <Button fx:id="stat" layoutX="25.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" stylesheets="/com/company/main.css" text="Статистика">
             <font>
                <Font name="Segoe UI Semilight" size="13.0" />
             </font>
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
-            <Button fx:id="vocab" layoutX="150.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" stylesheets="com/company/main.css" text="Словарь">
+            <Button fx:id="vocab" layoutX="150.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" stylesheets="/com/company/main.css" text="Словарь">
             <font>
                <Font name="Segoe UI Semilight" size="13.0" />
             </font>
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
-            <MenuButton fx:id="menuButton" alignment="CENTER_RIGHT" graphicTextGap="6.0" layoutX="831.0" layoutY="16.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" popupSide="TOP" prefHeight="30.0" prefWidth="55.0" stylesheets="com/company/main.css" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
+            <MenuButton fx:id="menuButton" alignment="CENTER_RIGHT" graphicTextGap="6.0" layoutX="831.0" layoutY="16.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" popupSide="TOP" prefHeight="30.0" prefWidth="55.0" stylesheets="/com/company/main.css" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
                 <items>
                     <MenuItem fx:id="topic" mnemonicParsing="false" text="Темная тема" />
                     <MenuItem fx:id="changeLang" mnemonicParsing="false" text="Выбор языка" />
@@ -64,7 +64,7 @@
             <graphic>
                <ImageView fx:id="menu" fitHeight="19.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="com/company/pictures/Settings.png" />
+                     <Image url="/com/company/pictures/Settings.png" />
                   </image></ImageView>
             </graphic>
             <font>
@@ -78,7 +78,7 @@
         <AnchorPane fx:id="thirdColor" prefHeight="38.0" prefWidth="902.0" style="-fx-background-color: #8ed8d8;">
          <ImageView fitHeight="23.0" fitWidth="49.0" layoutX="832.0" layoutY="8.0" opacity="0.87" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="com/company/pictures/ArrowRight.png" />
+               <Image url="/com/company/pictures/ArrowRight.png" />
             </image>
             <effect>
                <DropShadow height="9.14" radius="4.067500000000001" width="9.13">
@@ -97,7 +97,7 @@
             </cursor></Button>
          <ImageView fitHeight="23.0" fitWidth="70.0" layoutX="25.0" layoutY="7.5" opacity="0.87" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="com/company/pictures/ArrowLeft.png" />
+               <Image url="/com/company/pictures/ArrowLeft.png" />
             </image>
             <cursor>
                <Cursor fx:constant="DEFAULT" />
@@ -114,12 +114,12 @@
                <Cursor fx:constant="HAND" />
             </cursor></Button>
          <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffffffc7" focusTraversable="true" height="25.0" layoutX="470.0" layoutY="6.0" stroke="#e4e4e4" strokeType="INSIDE" width="76.0" />
-            <ComboBox fx:id="yComboBox" layoutX="470.0" layoutY="6.0" prefHeight="25.0" prefWidth="76.0" stylesheets="com/company/main.css">
+            <ComboBox fx:id="yComboBox" layoutX="470.0" layoutY="6.0" prefHeight="25.0" prefWidth="76.0" stylesheets="/com/company/main.css">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></ComboBox>
          <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffffffc7" height="25.0" layoutX="311.0" layoutY="6.0" stroke="#e4e4e4" strokeType="INSIDE" width="150.0" />
-            <ComboBox fx:id="mComboBox" layoutX="311.0" layoutY="6.0" prefHeight="25.0" prefWidth="150.0" stylesheets="com/company/main.css">
+            <ComboBox fx:id="mComboBox" layoutX="311.0" layoutY="6.0" prefHeight="25.0" prefWidth="150.0" stylesheets="/com/company/main.css">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></ComboBox>

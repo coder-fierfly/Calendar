@@ -64,7 +64,7 @@ public class Logic extends BorderPane implements Initializable {
         gpBody.setGridLinesVisible(true);
 
         FadeAppController fadeApp = new FadeAppController();
-        File langFile = new File("com/company/lang.txt");
+        File langFile = new File("lang.txt");
         if (!langFile.exists()) {
             chooseLang(langFile);
         }
@@ -83,7 +83,7 @@ public class Logic extends BorderPane implements Initializable {
         // если файл не существует записываю в него nый язык, чтобы дальше можно было выбрать любой другой
         try {
             boolean bool = file.createNewFile();
-            FileWriter fr = new FileWriter("com/company/lang.txt", false);
+            FileWriter fr = new FileWriter("lang.txt", false);
             fr.write("en");
             fr.close();
         } catch (IOException e) {
@@ -221,7 +221,7 @@ public class Logic extends BorderPane implements Initializable {
     }
 
     private String getParty(String id) {
-        File file = new File("com/company/parties.txt");
+        File file = new File("parties.txt");
         if (!file.exists()) {
             try {
                 boolean bool = file.createNewFile();
@@ -381,7 +381,7 @@ public class Logic extends BorderPane implements Initializable {
         btn.setOnAction(e -> {
             StringBuilder sb = new StringBuilder();
             sb.append(id.substring(0, 5)).append(" ").append(userTextField.getText());
-            addWords(String.valueOf(sb), "com/company/parties.txt");
+            addWords(String.valueOf(sb), "parties.txt");
         });
 
         Scene secondScene = new Scene(secondaryLayout, 500, 300);

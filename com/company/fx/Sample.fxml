@@ -55,7 +55,7 @@
       </font>
    </Text>
    <Rectangle fx:id="recTest" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffffff00" height="61.0" layoutX="113.0" layoutY="101.0" stroke="#cdcdcd" strokeType="INSIDE" width="530.0" />
-    <Button fx:id="reButton" layoutX="326.0" layoutY="184.0" mnemonicParsing="false" stylesheets="com/company/main.css" text="Пройти тест">
+    <Button fx:id="reButton" layoutX="326.0" layoutY="184.0" mnemonicParsing="false" stylesheets="/com/company/main.css" text="Пройти тест">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
@@ -64,7 +64,7 @@
       </font></Button>
    <ImageView fx:id="imTest" fitHeight="150.0" fitWidth="150.0" layoutX="299.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="com/company/pictures/Test.png" />
+         <Image url="/com/company/pictures/Test.png" />
       </image>
    </ImageView>
     <Text fx:id="question_text" layoutX="70.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" visible="false" wrappingWidth="494.8199462890625">
@@ -95,7 +95,7 @@
             <Font name="Segoe UI Semilight" size="15.0" />
         </font>
     </RadioButton>
-    <Button fx:id="answerBtn" layoutX="290.0" layoutY="300.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" stylesheets="com/company/main.css" text="Ответить" textFill="WHITE" visible="false">
+    <Button fx:id="answerBtn" layoutX="290.0" layoutY="300.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" stylesheets="/com/company/main.css" text="Ответить" textFill="WHITE" visible="false">
         <font>
             <Font name="Segoe UI Semilight" size="14.0" />
         </font>
