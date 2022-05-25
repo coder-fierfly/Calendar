@@ -1,5 +1,6 @@
-<?com.company.xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
+<?com.company.xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
@@ -44,11 +45,15 @@
             <Font name="Segoe UI Light" size="13.0" />
         </font>
     </Button>
-    <Label fx:id="makeChoice" layoutX="200.0" layoutY="250.0" prefHeight="20.0" prefWidth="163.0" textFill="#bf4545">
+    <Label fx:id="makeChoice" layoutX="210.0" layoutY="247.0" prefHeight="20.0" prefWidth="231.0" textFill="#bf4545">
         <font>
             <Font name="Segoe UI Semibold" size="14.0" />
         </font>
     </Label>
+   <Label fx:id="makeChoice2" layoutX="90.0" layoutY="247.0" prefHeight="17.0" prefWidth="456.0" textFill="RED">
+      <font>
+         <Font name="Segoe UI Semibold" size="14.0" />
+      </font></Label>
     <Text fx:id="title" layoutX="185.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите нужный язык:">
         <font>
             <Font name="Segoe UI Semibold" size="20.0" />

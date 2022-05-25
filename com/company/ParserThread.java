@@ -38,12 +38,12 @@ public class ParserThread {
             StringBuilder sb = new StringBuilder();
             id = id.substring(0, 5);
             sb.append(id).append(" ").append(part);
-            Logic.addWords(String.valueOf(sb), "parties.txt");
+            Logic.addWords(String.valueOf(sb), "com/company/parties.txt");
         }
     }
 
     public String getLang() {
-        File file = new File("lang.txt");
+        File file = new File("com/company/lang.txt");
         String line = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -59,7 +59,7 @@ public class ParserThread {
     }
 
     private String getParty(String id) {
-        File file = new File("parties.txt");
+        File file = new File("com/company/parties.txt");
         if (!file.exists()) {
             try {
                 boolean bool = file.createNewFile();

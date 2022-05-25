@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 public class ChangeLangController {
 
     public RadioButton de, be, et, cs, sv, en;
-    public Label makeChoice;
+    public Label makeChoice, makeChoice2;
     public Button save;
     public ToggleGroup answers;
     public javafx.scene.text.Text title;
@@ -55,7 +55,7 @@ public class ChangeLangController {
                 makeChoice.setText("Вы не сделали выбор.");
             }
         } else {
-            title.setText("Выберите новый язык для изучения:(Старый язык при этом удалится)");
+            title.setText("Выберите нужный язык:");
             if (be.isSelected()) {
                 selectedLang("be");
             } else if (en.isSelected()) {
@@ -128,7 +128,8 @@ public class ChangeLangController {
     //кнопочка сохранения языка закрывает окно.
     public void saveLang() {
         if (!warning) {
-            makeChoice.setText("Старый язык будет удален. Нажмите 'Сохранить', если уверены.");
+            makeChoice2.setText("Старый язык будет удален. Нажмите 'Сохранить', если уверены.");
+            makeChoice.setVisible(false);
             warning = true;
         } else {
             Stage stage = (Stage) save.getScene().getWindow();

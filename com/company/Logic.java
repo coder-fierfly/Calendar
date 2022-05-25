@@ -64,7 +64,7 @@ public class Logic extends BorderPane implements Initializable {
         gpBody.setGridLinesVisible(true);
 
         FadeAppController fadeApp = new FadeAppController();
-        File langFile = new File("lang.txt");
+        File langFile = new File("com/company/lang.txt");
         if (!langFile.exists()) {
             chooseLang(langFile);
         }
@@ -83,7 +83,7 @@ public class Logic extends BorderPane implements Initializable {
         // если файл не существует записываю в него nый язык, чтобы дальше можно было выбрать любой другой
         try {
             boolean bool = file.createNewFile();
-            FileWriter fr = new FileWriter("lang.txt", false);
+            FileWriter fr = new FileWriter("com/company/lang.txt", false);
             fr.write("en");
             fr.close();
         } catch (IOException e) {
@@ -221,7 +221,7 @@ public class Logic extends BorderPane implements Initializable {
     }
 
     private String getParty(String id) {
-        File file = new File("parties.txt");
+        File file = new File("com/company/parties.txt");
         if (!file.exists()) {
             try {
                 boolean bool = file.createNewFile();
@@ -333,7 +333,7 @@ public class Logic extends BorderPane implements Initializable {
                 if (partyStr == null || words[0] == null) {
                     showButton("Отсутствует подключение к интернету!", id);
                 } else {
-                    showButton(String.format("Да вы прям полиглот.\nСлово за выбранный день:\n%s - %s\n\nТакже сегодня отмечается следующее событие:\n%s", words[0], words[1], partyStr), id);
+                    showButton(String.format("Слово за выбранный день:\n%s - %s\n\nТакже сегодня отмечается следующее событие:\n%s", words[0], words[1], partyStr), id);
                 }
             }
         });
@@ -381,13 +381,13 @@ public class Logic extends BorderPane implements Initializable {
         btn.setOnAction(e -> {
             StringBuilder sb = new StringBuilder();
             sb.append(id.substring(0, 5)).append(" ").append(userTextField.getText());
-            addWords(String.valueOf(sb), "parties.txt");
+            addWords(String.valueOf(sb), "com/company/parties.txt");
         });
 
         Scene secondScene = new Scene(secondaryLayout, 500, 300);
         Stage newWindow = new Stage();
         newWindow.setTitle("Информация о дне");
-        newWindow.getIcons().add(new Image("file:Calendar.png"));
+        newWindow.getIcons().add(new Image("file:com/company/pictures/Calendar.png"));
         newWindow.setScene(secondScene);
         newWindow.setResizable(false);
         newWindow.initModality(Modality.WINDOW_MODAL);
@@ -470,7 +470,7 @@ public class Logic extends BorderPane implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("Информация");
         stage.setResizable(false);
-        stage.getIcons().add(new Image("file:Calendar.png"));
+        stage.getIcons().add(new Image("file:com/company/pictures/Calendar.png"));
         stage.show();
     }
 
@@ -483,7 +483,7 @@ public class Logic extends BorderPane implements Initializable {
         stage.setTitle("Язык");
         stage.setResizable(false);
         stage.toFront();
-        stage.getIcons().add(new Image("file:out/com.company.pictures/Calendar.png"));
+        stage.getIcons().add(new Image("file:com/company/pictures/Calendar.png"));
         stage.showAndWait();
     }
 

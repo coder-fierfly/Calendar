@@ -233,7 +233,7 @@ public class TestController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Тест");
-        stage.getIcons().add(new Image("file:Calendar.png"));
+        stage.getIcons().add(new Image("file:com/company/pictures/Calendar.png"));
         stage.setResizable(false);
         stage.show();
     }

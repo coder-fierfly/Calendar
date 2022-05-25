@@ -20,7 +20,7 @@ public class Main extends Application {
         primaryStage.toBack();
         primaryStage.setTitle("Календарь");
         primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image("file:out/com.company.pictures/Calendar.png"));
+        primaryStage.getIcons().add(new Image("file:com/company/pictures/Calendar.png"));
         primaryStage.show();
     }
 
