@@ -16,7 +16,7 @@ public class Parser {
 
     public String[] getPage() throws IOException {
         //беру файл
-        File file = new File("com/company/lang.txt");
+        File file = new File("lang.txt");
         //создаем объект FileReader для объекта File
         FileReader fr = new FileReader(file);
         //создаем BufferedReader с существующего FileReader для построчного считывания

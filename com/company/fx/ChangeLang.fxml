@@ -54,7 +54,7 @@
       <font>
          <Font name="Segoe UI Semibold" size="14.0" />
       </font></Label>
-    <Text fx:id="title" layoutX="185.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите нужный язык:">
+    <Text fx:id="title" layoutX="185.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите язык для изучения:">
         <font>
             <Font name="Segoe UI Semibold" size="20.0" />
         </font>

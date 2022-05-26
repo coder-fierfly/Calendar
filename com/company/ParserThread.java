@@ -58,7 +58,7 @@ public class ParserThread {
         return line;
     }
 
-    private String getParty(String id) {
+    public String getParty(String id) {
         File file = new File("parties.txt");
         if (!file.exists()) {
             try {

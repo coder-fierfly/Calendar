@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ChangeLangController {
@@ -20,42 +21,34 @@ public class ChangeLangController {
     public Button save;
     public ToggleGroup answers;
     public javafx.scene.text.Text title;
-    public boolean warning = false;
 
     //кнопки выбора языка
     public void radioLangButton() {
-        File langFile = new File("lang.txt");
+        Path path = Paths.get("lang.txt");
         // если файл не существуем, то создаем его и записываем в него язык для изучения
-        if (!langFile.exists()) {
+        if (Files.exists(path)) {
+            File langFile = new File("lang.txt");
             try {
                 boolean bool = langFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            title.setText("Выберите язык для изучения:");
             if (be.isSelected()) {
-                addLang("be");
-                saveLang();
+                saveLang("be");
             } else if (en.isSelected()) {
-                addLang("en");
-                saveLang();
+                saveLang("en");
             } else if (de.isSelected()) {
-                addLang("de");
-                saveLang();
+                saveLang("de");
             } else if (cs.isSelected()) {
-                addLang("cs");
-                saveLang();
+                saveLang("cs");
             } else if (et.isSelected()) {
-                addLang("et");
-                saveLang();
+                saveLang("et");
             } else if (et.isSelected()) {
-                addLang("sv");
-                saveLang();
+                saveLang("sv");
             } else {
                 makeChoice.setText("Вы не сделали выбор.");
             }
         } else {
-            title.setText("Выберите нужный язык:");
             if (be.isSelected()) {
                 selectedLang("be");
             } else if (en.isSelected()) {
@@ -81,7 +74,8 @@ public class ChangeLangController {
         if (numFile.exists() || dataFile.exists()) {
             cleanFiles();
         }
-        saveLang();
+        Stage stage = (Stage) save.getScene().getWindow();
+        stage.close();
     }
 
     // Запись в файл после выбора язка
@@ -126,15 +120,13 @@ public class ChangeLangController {
     }
 
     //кнопочка сохранения языка закрывает окно.
-    public void saveLang() {
-        if (!warning) {
-            makeChoice2.setText("Старый язык будет удален. Нажмите 'Сохранить', если уверены.");
-            makeChoice.setVisible(false);
-            warning = true;
-        } else {
-            Stage stage = (Stage) save.getScene().getWindow();
-            stage.close();
-
-        }
+    public void saveLang(String word) {
+        makeChoice2.setVisible(true);
+        makeChoice2.setText("Старый язык будет удален. Нажмите 'Сохранить', если уверены.");
+        makeChoice.setVisible(false);
+        save.setOnAction(e -> {
+            makeChoice2.setVisible(false);
+            selectedLang(word);
+        });
     }
 }

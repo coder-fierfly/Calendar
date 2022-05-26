@@ -64,10 +64,16 @@ public class Logic extends BorderPane implements Initializable {
         gpBody.setGridLinesVisible(true);
 
         FadeAppController fadeApp = new FadeAppController();
+
         File langFile = new File("lang.txt");
         if (!langFile.exists()) {
-            chooseLang(langFile);
+            try {
+                changeLangOpen();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
         fadeApp.init();
         fadeApp.startLoad();
         drawBody();
@@ -77,25 +83,6 @@ public class Logic extends BorderPane implements Initializable {
 
     @FXML
     private GridPane gpBody;
-
-    public void chooseLang(File file) {
-        //File langFile = new File("lang.txt");
-        // если файл не существует записываю в него nый язык, чтобы дальше можно было выбрать любой другой
-        try {
-            boolean bool = file.createNewFile();
-            FileWriter fr = new FileWriter("lang.txt", false);
-            fr.write("en");
-            fr.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            changeLangOpen();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //drawCalendar();
-    }
 
     public void drawBody() {
         // рисуем дни недели
@@ -121,7 +108,7 @@ public class Logic extends BorderPane implements Initializable {
         FadeAppController fadeApp = new FadeAppController();
         fadeApp.init();
 
-        List<ParserThread> list = new ArrayList<>();
+        List<ParserThread> listochek = new ArrayList<>();
         for (int i = currentDay; i <= daysInMonth; i++) {
             if (dayOfWeek == 8) {
                 dayOfWeek = 1;
@@ -143,7 +130,7 @@ public class Logic extends BorderPane implements Initializable {
             }
 
             // делаем дни кликабельными
-            list.add(addButtons(String.valueOf(sb), dayOfWeek - 1, row));
+            listochek.add(addButtons(String.valueOf(sb), dayOfWeek - 1, row));
 
             gpBody.add(tDate, dayOfWeek - 1, row);
             GridPane.setHalignment(tDate, HPos.CENTER);
