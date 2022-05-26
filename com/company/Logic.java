@@ -318,9 +318,9 @@ public class Logic extends BorderPane implements Initializable {
                 String[] words = getWords(id);
                 String partyStr = getParty(id.substring(0, 5));
                 if (partyStr == null || words[0] == null) {
-                    showButton("Отсутствует подключение к интернету!", id);
+                    showButton("Отсутствует подключение к интернету!", id, id);
                 } else {
-                    showButton(String.format("Слово за выбранный день:\n%s - %s\n\nТакже сегодня отмечается следующее событие:\n%s", words[0], words[1], partyStr), id);
+                    showButton(String.format("Слово за выбранный день:\n%s - %s\n\nТакже сегодня отмечается следующее событие:", words[0], words[1]), (String.format(partyStr)), id);
                 }
             }
         });
@@ -345,7 +345,7 @@ public class Logic extends BorderPane implements Initializable {
         }
     }
 
-    public void showButton(String text, String id) {
+    public void showButton(String text, String parties, String id) {
 
         VBox secondaryLayout = new VBox(10);
         Text textHead = new Text();
@@ -355,6 +355,12 @@ public class Logic extends BorderPane implements Initializable {
         label.setText(text);
         secondaryLayout.getChildren().add(label);
         secondaryLayout.setSpacing(10);
+        Label label2 = new Label();
+        label2.setFont(Font.font("Segoe UI Semilight", 13));
+        label2.setText(parties);
+        ScrollPane scrollpane = new ScrollPane(label2);
+        scrollpane.setPrefSize(0, 100);
+        secondaryLayout.getChildren().add(scrollpane);
         Label userName = new Label("Вы можете добавить новое событие на этот день: ");
         userName.setFont(Font.font("Segoe UI Semilight", 13));
         secondaryLayout.getChildren().add(userName);
