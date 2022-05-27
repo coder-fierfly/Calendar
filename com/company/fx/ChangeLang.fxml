@@ -50,7 +50,7 @@
             <Font name="Segoe UI Semibold" size="14.0" />
         </font>
     </Label>
-   <Label fx:id="makeChoice2" layoutX="90.0" layoutY="247.0" prefHeight="17.0" prefWidth="456.0" textFill="RED">
+   <Label fx:id="makeChoice2" layoutX="90.0" layoutY="247.0" prefHeight="17.0" prefWidth="456.0" textFill="#bf4545">
       <font>
          <Font name="Segoe UI Semibold" size="14.0" />
       </font></Label>

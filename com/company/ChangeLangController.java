@@ -21,6 +21,7 @@ public class ChangeLangController {
     public Button save;
     public ToggleGroup answers;
     public javafx.scene.text.Text title;
+    public boolean warning = false;
 
     //кнопки выбора языка
     public void radioLangButton() {
@@ -43,12 +44,13 @@ public class ChangeLangController {
                 saveLang("cs");
             } else if (et.isSelected()) {
                 saveLang("et");
-            } else if (et.isSelected()) {
+            } else if (sv.isSelected()) {
                 saveLang("sv");
             } else {
                 makeChoice.setText("Вы не сделали выбор.");
             }
         } else {
+            title.setText("Выберите нужный язык:");
             if (be.isSelected()) {
                 selectedLang("be");
             } else if (en.isSelected()) {
