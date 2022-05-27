@@ -73,7 +73,6 @@ public class Logic extends BorderPane implements Initializable {
                 e.printStackTrace();
             }
         }
-
         fadeApp.init();
         fadeApp.startLoad();
         drawBody();
