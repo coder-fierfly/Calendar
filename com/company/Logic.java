@@ -41,6 +41,7 @@ public class Logic extends BorderPane implements Initializable {
     public AnchorPane thirdColor;
     public MenuButton menuButton;
     Boolean isDark = false;
+    public static String currLang = "en";
 
     public void initialize(URL location, ResourceBundle resources) {
         currentMonth = new GregorianCalendar();
@@ -485,6 +486,9 @@ public class Logic extends BorderPane implements Initializable {
     private void changeLangOpen() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fx/ChangeLang.fxml"));
         Parent root = loader.load();
+        ChangeLangController changeLangController = loader.getController();
+        changeLangController.setParent(this);
+
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Язык");
@@ -569,5 +573,13 @@ public class Logic extends BorderPane implements Initializable {
             }
         }
         return i;
+    }
+
+    public static void setLang(String lang) {
+        currLang = lang;
+    }
+
+    public static String getLang() {
+        return currLang;
     }
 }

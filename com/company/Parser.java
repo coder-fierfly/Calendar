@@ -25,6 +25,7 @@ public class Parser {
         String fileName = reader.readLine();
         int vocSize;
         File vocFile;
+        Logic.setLang(fileName);
         //по слову в файле выбираю какой язык парсить
         switch (fileName) {
             case "en" -> {
