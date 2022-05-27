@@ -353,6 +353,7 @@ public class Logic extends BorderPane implements Initializable {
         Label label = new Label();
         label.setFont(Font.font("Segoe UI Semilight", 13));
         label.setText(text);
+        label.setWrapText(true);
         secondaryLayout.getChildren().add(label);
         secondaryLayout.setSpacing(10);
         Label label2 = new Label();
@@ -370,14 +371,16 @@ public class Logic extends BorderPane implements Initializable {
         Button btn = new Button("Добавить");
         btn.setFont(Font.font("Segoe UI Semilight", 13));
         secondaryLayout.getChildren().add(btn);
+        Label textWar = new Label("Вы ничего не ввели.");
+        textWar.setVisible(false);
+        textWar.setTextFill(Color.color(1, 0, 0));
+        textWar.setLayoutX(200);
+        textWar.setLayoutY(500);
+        textWar.setFont(Font.font("Segoe UI Semilight", 13));
+        secondaryLayout.getChildren().add(textWar);
 
-        btn.setOnAction(e -> {
-            StringBuilder sb = new StringBuilder();
-            sb.append(id.substring(0, 5)).append(" ").append(userTextField.getText());
-            addWords(String.valueOf(sb), "parties.txt");
-        });
 
-        Scene secondScene = new Scene(secondaryLayout, 500, 300);
+        Scene secondScene = new Scene(secondaryLayout, 570, 370);
         Stage newWindow = new Stage();
         newWindow.setTitle("Информация о дне");
         newWindow.getIcons().add(new Image("file:com/company/pictures/Calendar.png"));
@@ -385,6 +388,18 @@ public class Logic extends BorderPane implements Initializable {
         newWindow.setResizable(false);
         newWindow.initModality(Modality.WINDOW_MODAL);
         newWindow.show();
+
+        btn.setOnAction(e -> {
+            if(userTextField.getText().trim().equals("")) {
+                textWar.setVisible(true);
+            } else {
+                StringBuilder sb = new StringBuilder();
+                sb.append(id.substring(0, 5)).append(" ").append(userTextField.getText());
+                addWords(String.valueOf(sb), "parties.txt");
+                newWindow.close();
+                textWar.setVisible(false);
+            }
+        });
     }
 
     @FXML
