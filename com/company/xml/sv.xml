@@ -16800,7 +16800,7 @@ cекция, отдел;</ar>
 <ar id="8398"><k>stamtavla</k>
 племенная таблица</ar>
 <ar id="8399"><k>stan</k>
-staden) = город</ar>
+город</ar>
 <ar id="8400"><k>standardläge</k>
 стандартный режим</ar>
 <ar id="8401"><k>standardvärde</k>
@@ -20204,556 +20204,374 @@ web-страница</ar>
 <ar id="10100"><k>zoologi</k>
 зоология</ar>
 <ar id="10101"><k>äckel</k>
-äckel
 тошнота, отвращение</ar>
 <ar id="10102"><k>ädelmod</k>
-ädelmod
 благородство, великодушие</ar>
 <ar id="10103"><k>ädelsten</k>
-ädelsten
 драгоценный камень</ar>
 <ar id="10104"><k>äga</k>
-äga
 владение</ar>
 <ar id="10105"><k>äga rum</k>
-äga rum
 иметь место</ar>
 <ar id="10106"><k>äga</k>
-äga (v.)
 владеть, иметь</ar>
 <ar id="10107"><k>ägare</k>
-ägare
 владелец</ar>
 <ar id="10108"><k>ägg</k>
-ägg
 яйцо</ar>
 <ar id="10109"><k>äggröra</k>
-äggröra
 яичница</ar>
 <ar id="10110"><k>äggstock</k>
-äggstock
 яичник (анат.)</ar>
 <ar id="10111"><k>äggula</k>
-äggula
 желток (из яйца)</ar>
 <ar id="10112"><k>äggvita</k>
-äggvita
 белок</ar>
 <ar id="10113"><k>ägo</k>
-ägo
 владение</ar>
 <ar id="10114"><k>ägodelar</k>
-ägodelar
 имущество, собственность</ar>
 <ar id="10115"><k>ägor</k>
-ägor
 поместье, имение</ar>
 <ar id="10116"><k>äh</k>
-äh!
 эх!</ar>
 <ar id="10117"><k>äkta</k>
-äkta
 истинный, настоящий, подлинный, законный (супруг)</ar>
 <ar id="10118"><k>äkta maka</k>
-äkta maka
 законная жена</ar>
 <ar id="10119"><k>äktenskap</k>
-äktenskap
 супружество, брак</ar>
 <ar id="10120"><k>äktenskapsannons</k>
-äktenskapsannons
 брачное объявление</ar>
 <ar id="10121"><k>äktenskapsbrott</k>
-äktenskapsbrott
 нарушение супружеской верности</ar>
 <ar id="10122"><k>äldre</k>
-äldre
 старше, пожилой</ar>
 <ar id="10123"><k>äldst</k>
-äldst
 самый старший, старше всех</ar>
 <ar id="10124"><k>älg</k>
-älg
 лось</ar>
 <ar id="10125"><k>älgkött</k>
-älgkött
 лосиное мясо</ar>
 <ar id="10126"><k>älska</k>
-älska (1)
 любить</ar>
 <ar id="10127"><k>älskare</k>
-älskare -n
 любовник; любитель (музыки)</ar>
 <ar id="10128"><k>älsklig</k>
-älsklig
 прелестный, восхитительный</ar>
 <ar id="10129"><k>älskling</k>
-älskling -en
 дорогая, любимая</ar>
 <ar id="10130"><k>älskvärd</k>
-älskvärd
 любезный, обходительный, приятный</ar>
 <ar id="10131"><k>älv</k>
-älv -en -ar
 река (большая)</ar>
 <ar id="10132"><k>ämbete</k>
-ämbete
 должность, служба</ar>
 <ar id="10133"><k>ämbetsman nen män</k>
-ämbetsman -nen -män
 служащий, должностное лицо, чиновник</ar>
 <ar id="10134"><k>ämbetsverk</k>
-ämbetsverk -et
 учреждение, ведомство</ar>
 <ar id="10135"><k>ämna</k>
-ämna (1)
 намереваться, предполагать</ar>
 <ar id="10136"><k>ämne</k>
-ämne -t -n
 тема, вещество, материя, предмет (преподавания)</ar>
 <ar id="10137"><k>än</k>
-än
 чем</ar>
 <ar id="10138"><k>än</k>
-än (adv.)
 еще</ar>
 <ar id="10139"><k>ända</k>
-ända (2)
 кончать</ar>
 <ar id="10140"><k>ända fram till</k>
-ända fram till
 до самого, прямо до</ar>
 <ar id="10141"><k>ända</k>
-ända -n -r
 конец</ar>
 <ar id="10142"><k>ända till</k>
 вплоть до</ar>
 <ar id="10143"><k>ända tills</k>
 до некоторого времени</ar>
 <ar id="10144"><k>ändamål</k>
-ändamål -et
 цель, намерение</ar>
 <ar id="10145"><k>ändelse</k>
-ändelse -n -r
 окончание (грам.)</ar>
 <ar id="10146"><k>ändlös</k>
-ändlös
 бесконечный, безграничный, беспредельный</ar>
 <ar id="10147"><k>ändra</k>
-ändra (1)
 изменять, переделывать</ar>
 <ar id="10148"><k>ändra sig</k>
-ändra sig
 меняться, изменяться</ar>
 <ar id="10149"><k>ändring</k>
-ändring -en
 перемена, изменение, переделка, поправка</ar>
 <ar id="10150"><k>ändå</k>
-ändå
 все-таки, все же, еще</ar>
 <ar id="10151"><k>äng</k>
-äng -en -ar
 поле, луг</ar>
 <ar id="10152"><k>ängel</k>
-ängel -n
 ангел</ar>
 <ar id="10153"><k>ängslan</k>
-ängslan
 боязнь, тревога, страх</ar>
 <ar id="10154"><k>ängslig</k>
-ängslig
 встревоженный, испуганный, боязливый</ar>
 <ar id="10155"><k>änka</k>
-änka -n
 вдова</ar>
 <ar id="10156"><k>änkling</k>
 вдовец</ar>
 <ar id="10157"><k>ännu</k>
-ännu
 еще, все еще</ar>
 <ar id="10158"><k>äntligen</k>
-äntligen
 наконец, в конце концов, обязательно</ar>
 <ar id="10159"><k>äpple</k>
-äpple -t -n
 яблоко</ar>
 <ar id="10160"><k>är det bra så</k>
-är det bra så?
 это все?, что-нибудь еще?</ar>
 <ar id="10161"><k>är pres av vara</k>
-är (pres. av vara)
 есть (имеется)</ar>
 <ar id="10162"><k>ära</k>
-ära (1)
 уважать, чтить</ar>
 <ar id="10163"><k>ära</k>
-ära -n
 честь, слава</ar>
 <ar id="10164"><k>ärbar</k>
-ärbar
 добродетельный</ar>
 <ar id="10165"><k>äregirig</k>
-äregirig
 честолюбивый, тщеславный</ar>
 <ar id="10166"><k>ärelysten</k>
-ärelysten
 честолюбивый, тщеславный</ar>
 <ar id="10167"><k>ärelystnad</k>
-ärelystnad
 честолюбие</ar>
 <ar id="10168"><k>ärelös</k>
-ärelös
 бесчестный</ar>
 <ar id="10169"><k>ärende</k>
-ärende
 поручение, дело</ar>
 <ar id="10170"><k>ärftlig</k>
-ärftlig
 наследственный</ar>
 <ar id="10171"><k>ärkebiskop</k>
-ärkebiskop
 архиепископ</ar>
 <ar id="10172"><k>ärlig</k>
-ärlig
 честный</ar>
 <ar id="10173"><k>ärlighet</k>
-ärlighet
 честность</ar>
 <ar id="10174"><k>ärm</k>
-ärm
 рукава</ar>
 <ar id="10175"><k>ärt</k>
-ärt
 горох</ar>
 <ar id="10176"><k>ärta</k>
-ärta
 горох, горошек, горошина</ar>
 <ar id="10177"><k>ärtsoppa</k>
-ärtsoppa
 гороховый суп</ar>
 <ar id="10178"><k>äsch</k>
-äsch!
 чепуха, ерунда</ar>
 <ar id="10179"><k>äss</k>
-äss
 туз</ar>
 <ar id="10180"><k>ässja</k>
-ässja
 горн (кузнечный)</ar>
 <ar id="10181"><k>äta frukost</k>
-äta frukost
 завтракать</ar>
 <ar id="10182"><k>äta lunch</k>
-äta lunch
 завтракать, обедать</ar>
 <ar id="10183"><k>äta middag</k>
-äta middag
 обедать, ужинать</ar>
 <ar id="10184"><k>ätaäteråtätit</k>
-äta-äter-åt-ätit
 есть, кушать</ar>
 <ar id="10185"><k>ätt</k>
-ätt
 род, дом (дворянский или королевский)</ar>
 <ar id="10186"><k>ättling</k>
-ättling
 потомок (знатной семьи)</ar>
 <ar id="10187"><k>även</k>
-även
 также, тоже</ar>
 <ar id="10188"><k>även om</k>
-även om
 даже если</ar>
 <ar id="10189"><k>äventyr</k>
-äventyr -et
 приключение, авантюра</ar>
 <ar id="10190"><k>äventyrare</k>
-äventyrare -n
 аферист, авантюрист</ar>
 <ar id="10191"><k>äventyrlig</k>
-äventyrlig
 полный приключений, рискованный</ar>
 <ar id="10192"><k>äventyrsfilm</k>
-äventyrsfilm -en
 приключенческий фильм</ar>
 <ar id="10193"><k>å</k>
-å
 речка, река (небольшая), проток</ar>
 <ar id="10194"><k>å</k>
-å!
 о!</ar>
 <ar id="10195"><k>å ja</k>
-å ja!
 да ну?, неужели?</ar>
 <ar id="10196"><k>åberopa sig</k>
-åberopa sig
 ссылаться, приводить в доказательство</ar>
 <ar id="10197"><k>åderlåta</k>
-åderlåta
 пускать кровь</ar>
 <ar id="10198"><k>ådra sig</k>
-ådra sig
 навлечь на себя</ar>
 <ar id="10199"><k>åhöra</k>
-åhöra
 выслушать, прослушать</ar>
 <ar id="10200"><k>åhörare</k>
-åhörare
 слушатель</ar>
 <ar id="10201"><k>åja</k>
-åja
 о!</ar>
 <ar id="10202"><k>åka</k>
-åka
 ездить (в экипаже), кататься, скользить</ar>
 <ar id="10203"><k>åka buss</k>
-åka buss
 ехать автобусом</ar>
 <ar id="10204"><k>åka båt</k>
-åka båt
 плыть на лодке, на корабле</ar>
 <ar id="10205"><k>åka iväg</k>
-åka iväg
 выехать, отправиться</ar>
 <ar id="10206"><k>åka med buss</k>
-åka med buss
 ехать на определенном автобусе</ar>
 <ar id="10207"><k>åka skidor</k>
-åka skidor
 кататься на лыжах</ar>
 <ar id="10208"><k>åka skridskor</k>
-åka skridskor
 кататься на коньках</ar>
 <ar id="10209"><k>åka tåg</k>
-åka tåg
 ехать поездом</ar>
 <ar id="10210"><k>åkalla</k>
-åkalla
 взывать, призывать</ar>
 <ar id="10211"><k>åkdon</k>
-åkdon
 телега, повозка, экипаж, автомобиль</ar>
 <ar id="10212"><k>åker</k>
-åker
 пахотное поле, пашня</ar>
 <ar id="10213"><k>åkerbruk</k>
-åkerbruk
 земледелие</ar>
 <ar id="10214"><k>åklagare</k>
-åklagare
 обвинитель</ar>
 <ar id="10215"><k>åkomma</k>
-åkomma
 недуг, недомогание</ar>
 <ar id="10216"><k>åktur</k>
-åktur
 прогулка, поездка</ar>
 <ar id="10217"><k>ål</k>
-ål
 угорь</ar>
 <ar id="10218"><k>ålder</k>
-ålder
 возраст, период, век</ar>
 <ar id="10219"><k>ålderdomlig</k>
-ålderdomlig
 архаичный, старинный, древний</ar>
 <ar id="10220"><k>ålderdomligshem</k>
-ålderdomligshem
 дом для престарелых</ar>
 <ar id="10221"><k>åliggande</k>
-åliggande
 обязанность</ar>
 <ar id="10222"><k>ålägga</k>
-ålägga
 приказать, обязывать</ar>
 <ar id="10223"><k>ånga</k>
-ånga
 пар, испарение, чад</ar>
 <ar id="10224"><k>ånga</k>
-ånga (v.)
 выпускать пар, испаряться</ar>
 <ar id="10225"><k>ångare</k>
-ångare
 пароход</ar>
 <ar id="10226"><k>ångest</k>
-ångest
 отчаяние, страх, мука, тоска</ar>
 <ar id="10227"><k>ångra sig</k>
-ångra sig
 раскаяться</ar>
 <ar id="10228"><k>ånyo</k>
-ånyo
 снова, вторично</ar>
 <ar id="10229"><k>år</k>
-år
 год</ar>
 <ar id="10230"><k>åra</k>
-åra
 весло</ar>
 <ar id="10231"><k>århundrade</k>
-århundrade
 столетие, век</ar>
 <ar id="10232"><k>åring</k>
-åring
 годовалый конь</ar>
 <ar id="10233"><k>årlig</k>
-årlig
 ежегодный, годовой, годичный</ar>
 <ar id="10234"><k>årsdag</k>
-årsdag
 годовщина</ar>
 <ar id="10235"><k>årskurs</k>
-årskurs -en -er
 класс (год в школе)</ar>
 <ar id="10236"><k>årstid</k>
-årstid -en -er
 время года</ar>
 <ar id="10237"><k>årtal</k>
-årtal
 дата, год</ar>
 <ar id="10238"><k>årtionde</k>
-årtionde
 десятилетие</ar>
 <ar id="10239"><k>ås</k>
-ås
 конек крыши, вершина горы, хребет, гряда</ar>
 <ar id="10240"><k>åsido</k>
-åsido
 в сторону</ar>
 <ar id="10241"><k>åsikt</k>
-åsikt
 мнение</ar>
 <ar id="10242"><k>åska</k>
-åska
 гром, гроза</ar>
 <ar id="10243"><k>åska</k>
-åska (v.)
 греметь (о громе)</ar>
 <ar id="10244"><k>åskväder ret</k>
-åskväder -ret
 гроза</ar>
 <ar id="10245"><k>åskådare</k>
-åskådare -n
 зритель, наблюдатель</ar>
 <ar id="10246"><k>åskådlig</k>
-åskådlig
 наглядный, ясный</ar>
 <ar id="10247"><k>åsna</k>
-åsna
 осел</ar>
 <ar id="10248"><k>åstadkomma</k>
-åstadkomma
 причинять, вызывать, делать</ar>
 <ar id="10249"><k>åstunda</k>
-åstunda
 желать, хотеть, жаждать</ar>
 <ar id="10250"><k>åsyn</k>
-åsyn
 вид</ar>
 <ar id="10251"><k>åt</k>
-åt
 к, для</ar>
 <ar id="10252"><k>åtal</k>
-åtal
 обвинение</ar>
 <ar id="10253"><k>åtala</k>
-åtala
 привлекать к ответственности</ar>
 <ar id="10254"><k>åter</k>
-åter
 снова, опять, обратно</ar>
 <ar id="10255"><k>återblick</k>
-återblick
 взгляд назад</ar>
 <ar id="10256"><k>återbud</k>
-återbud
 отказ</ar>
 <ar id="10257"><k>återförena</k>
-återförena
 сводить вместе</ar>
 <ar id="10258"><k>återhålla</k>
-återhålla
 задержать, сдержать</ar>
 <ar id="10259"><k>återkomma</k>
-återkomma
 возвращаться, повторяться</ar>
 <ar id="10260"><k>återkomst</k>
-återkomst
 возвращение</ar>
 <ar id="10261"><k>återlämna</k>
-återlämna
 возвращать (взятое)</ar>
 <ar id="10262"><k>återspegla</k>
-återspegla
 отражать (в зеркале)</ar>
 <ar id="10263"><k>återställa</k>
-återställa
 возвращать (прежнему владельцу), восстанавливать</ar>
 <ar id="10264"><k>återsökning</k>
-återsökning
 поиск, запрос</ar>
 <ar id="10265"><k>återtåg</k>
-återtåg
 отступление, отход</ar>
 <ar id="10266"><k>återtåga</k>
-återtåga
 брать назад</ar>
 <ar id="10267"><k>återuppliva</k>
-återuppliva
 оживлять, возвращать к жизни</ar>
 <ar id="10268"><k>återuppståndelse</k>
-återuppståndelse
 воскресение (из мертвых), возрождение, воскрешени</ar>
 <ar id="10269"><k>återvända</k>
-återvända
 возвращаться</ar>
 <ar id="10270"><k>åtfölja</k>
-åtfölja
 сопровождать</ar>
 <ar id="10271"><k>åtgärd</k>
-åtgärd
 мероприятие, мера</ar>
 <ar id="10272"><k>åtkomst</k>
-åtkomst
 приобретение</ar>
 <ar id="10273"><k>åtkomsttid</k>
-åtkomsttid
 время доступа</ar>
 <ar id="10274"><k>åtlöje</k>
-åtlöje
 насмешка</ar>
 <ar id="10275"><k>åtminstone</k>
-åtminstone
 по крайней мере, хотя бы, по меньшей мере</ar>
 <ar id="10276"><k>åtnjuta</k>
-åtnjuta
 наслаждаться, пользоваться</ar>
 <ar id="10277"><k>åtrå</k>
-åtrå
 жажда, страстное желание</ar>
 <ar id="10278"><k>åtrå</k>
-åtrå (v.)
 страстно желать</ar>
 <ar id="10279"><k>åtskillig</k>
-åtskillig
 значительный, некоторые, разные</ar>
 <ar id="10280"><k>åtta</k>
-åtta
 восемь</ar>
 <ar id="10281"><k>åttahundra</k>
-åttahundra
 восемьсот</ar>
 <ar id="10282"><k>åttakantig</k>
-åttakantig
 восьмигранный</ar>
 <ar id="10283"><k>åttio</k>
-åttio
 восемьдесят</ar>
 <ar id="10284"><k>åttonde</k>
-åttonde
 восьмой</ar>
 <ar id="10285"><k>åverkan</k>
-åverkan
 нанесение вреда, нанесение ущерба</ar>
 <ar id="10286"><k>ö</k>
 остров</ar>
