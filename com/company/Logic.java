@@ -53,6 +53,14 @@ public class Logic extends BorderPane implements Initializable {
             years.add(i);
         }
         yComboBox.setItems(years);
+        String id = new SimpleDateFormat("MM/dd/yyyy").format(Calendar.getInstance().getTime());
+        String[] words = getWords(id);
+        String partyStr = getParty(id.substring(0, 5));
+        if (partyStr == null || words[0] == null) {
+            showButton("Отсутствует подключение к интернету!", id, id);
+        } else {
+            showButton(String.format("Слово за выбранный день:\n%s - %s\n\nТакже сегодня отмечается следующее событие:", words[0], words[1]), (String.format(partyStr)), id);
+        }
         drawCalendar();
 
         File file = new File("lang.txt");
@@ -94,14 +102,7 @@ public class Logic extends BorderPane implements Initializable {
         fadeApp.startLoad();
         drawBody();
         drawFooter();
-        String id = new SimpleDateFormat("MM/dd/yyyy").format(Calendar.getInstance().getTime());
-        String[] words = getWords(id);
-        String partyStr = getParty(id.substring(0, 5));
-        if (partyStr == null || words[0] == null) {
-            showButton("Отсутствует подключение к интернету!", id, id);
-        } else {
-            showButton(String.format("Слово за выбранный день:\n%s - %s\n\nТакже сегодня отмечается следующее событие:", words[0], words[1]), (String.format(partyStr)), id);
-        }
+
         fadeApp.endLoad();
     }
 
