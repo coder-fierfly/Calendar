@@ -78,6 +78,14 @@ public class Logic extends BorderPane implements Initializable {
         fadeApp.startLoad();
         drawBody();
         drawFooter();
+        String id = new SimpleDateFormat("MM/dd/yyyy").format(Calendar.getInstance().getTime());
+        String[] words = getWords(id);
+        String partyStr = getParty(id.substring(0, 5));
+        if (partyStr == null || words[0] == null) {
+            showButton("Отсутствует подключение к интернету!", id, id);
+        } else {
+            showButton(String.format("Слово за выбранный день:\n%s - %s\n\nТакже сегодня отмечается следующее событие:", words[0], words[1]), (String.format(partyStr)), id);
+        }
         fadeApp.endLoad();
     }
 
@@ -388,6 +396,7 @@ public class Logic extends BorderPane implements Initializable {
         newWindow.setResizable(false);
         newWindow.initModality(Modality.WINDOW_MODAL);
         newWindow.show();
+        newWindow.setAlwaysOnTop(true);
 
         btn.setOnAction(e -> {
             if(userTextField.getText().trim().equals("")) {
