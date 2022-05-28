@@ -54,6 +54,22 @@ public class Logic extends BorderPane implements Initializable {
         }
         yComboBox.setItems(years);
         drawCalendar();
+
+        File file = new File("lang.txt");
+        FileReader fr = null;
+        try {
+            fr = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        BufferedReader reader = new BufferedReader(fr);
+        String fileName = null;
+        try {
+            fileName = reader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Logic.setLang(fileName);
     }
 
     public void drawCalendar() {
