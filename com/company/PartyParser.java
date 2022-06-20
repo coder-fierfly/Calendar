@@ -13,6 +13,7 @@ public class PartyParser {
         try {
             Document document;
             try {
+
                 document = connect.get();
             } catch (UnknownHostException e) {
                 return null;
