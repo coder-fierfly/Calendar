@@ -74,7 +74,6 @@ public class ParserThread {
             try {
                 while ((line = br.readLine()) != null) {
                     if (line.startsWith(id)) {
-//                        System.out.println(line);
                         line = line.substring(7);
                         break;
                     }
@@ -106,7 +105,6 @@ public class ParserThread {
             try {
                 while ((line = br.readLine()) != null) {
                     if (line.startsWith(id)) {
-//                        System.out.println(line);
                         line = line.substring(11);
                         words = line.split("/");
                         break;

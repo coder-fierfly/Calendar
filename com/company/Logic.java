@@ -208,7 +208,6 @@ public class Logic extends BorderPane implements Initializable {
             try {
                 while ((line = br.readLine()) != null) {
                     if (line.startsWith(id)) {
-                        System.out.println(line);
                         line = line.substring(11);
                         words = line.split("/");
                         break;
@@ -241,7 +240,6 @@ public class Logic extends BorderPane implements Initializable {
             try {
                 while ((line = br.readLine()) != null) {
                     if (line.startsWith(id)) {
-                        System.out.println(line);
                         line = line.substring(6);
                         sb.append(line).append("\n");
                     }
@@ -257,7 +255,6 @@ public class Logic extends BorderPane implements Initializable {
     }
 
     public static void addWords(String word, String fileName) {
-        System.out.println(word);
         File file = new File(fileName);
         if (!file.exists()) {
             try {
@@ -322,7 +319,6 @@ public class Logic extends BorderPane implements Initializable {
 
 
         toggleButton11.setOnAction(event -> {
-            System.out.println(cal.getTime());
             if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
                 addId(id);
                 TestController test = new TestController();

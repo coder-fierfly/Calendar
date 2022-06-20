@@ -54,7 +54,6 @@ public class TestController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String id = getTestId();
-        System.out.println(id);
 
         reButton.setOnAction(event -> {
             radio_btn_1.setVisible(true);
@@ -94,12 +93,8 @@ public class TestController implements Initializable {
                 String toogleGroupValue = selectedRadioButton.getText();
 
                 if (toogleGroupValue.equals(nowCorrectAnswer)) {
-                    System.out.println("Верный ответ");
                     correctAnswers++;
-                } else {
-                    System.out.println("Неверный ответ");
                 }
-
                 if (nowQuestion + 1 == questions.length) {
                     radio_btn_1.setVisible(false);
                     radio_btn_2.setVisible(false);
@@ -168,12 +163,10 @@ public class TestController implements Initializable {
         cal.set(Calendar.MONTH, Integer.parseInt(id.substring(0, 2)) - 1);
         cal.set(Calendar.DATE, Integer.parseInt(id.substring(3, 5)));
         cal.set(Calendar.YEAR, Integer.parseInt(id.substring(6)));
-        System.out.println(cal.getTime());
 
         for (int i = 0; i < 6; i++) {
             sb.setLength(0);
             cal.add(Calendar.DAY_OF_MONTH, -1);
-            System.out.println(cal.getTime());
             if ((cal.get(Calendar.MONTH) + 1) < 10) {
                 sb.append("0");
             }
@@ -187,11 +180,9 @@ public class TestController implements Initializable {
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 try {
                     line = br.readLine();
-                    System.out.println(sb);
                     while (line != null) {
                         if (line.startsWith(String.valueOf(sb))) {
                             line = line.substring(11);
-                            System.out.println(line);
                             newWords = line.split("/");
                             words.add(newWords);
                             break;
