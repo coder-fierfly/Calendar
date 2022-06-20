@@ -53,14 +53,6 @@ public class Logic extends BorderPane implements Initializable {
             years.add(i);
         }
         yComboBox.setItems(years);
-        String id = new SimpleDateFormat("MM/dd/yyyy").format(Calendar.getInstance().getTime());
-        String[] words = getWords(id);
-        String partyStr = getParty(id.substring(0, 5));
-        if (partyStr == null || words[0] == null) {
-            showButton("Отсутствует подключение к интернету!", id, id);
-        } else {
-            showButton(String.format("Слово за выбранный день:\n%s - %s\n\nТакже сегодня отмечается следующее событие:", words[0], words[1]), (String.format(partyStr)), id);
-        }
         drawCalendar();
 
         File file = new File("lang.txt");
@@ -98,11 +90,11 @@ public class Logic extends BorderPane implements Initializable {
                 e.printStackTrace();
             }
         }
+
         fadeApp.init();
         fadeApp.startLoad();
         drawBody();
         drawFooter();
-
         fadeApp.endLoad();
     }
 
@@ -370,7 +362,7 @@ public class Logic extends BorderPane implements Initializable {
         }
     }
 
-    public void showButton(String text, String parties, String id) {
+    public void showButton(String text,String parties, String id) {
 
         VBox secondaryLayout = new VBox(10);
         Text textHead = new Text();
@@ -404,6 +396,11 @@ public class Logic extends BorderPane implements Initializable {
         textWar.setFont(Font.font("Segoe UI Semilight", 13));
         secondaryLayout.getChildren().add(textWar);
 
+        btn.setOnAction(e -> {
+            StringBuilder sb = new StringBuilder();
+            sb.append(id.substring(0, 5)).append(" ").append(userTextField.getText());
+            addWords(String.valueOf(sb), "parties.txt");
+        });
 
         Scene secondScene = new Scene(secondaryLayout, 570, 370);
         Stage newWindow = new Stage();
